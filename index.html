@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)file:///C:/Users/qxb843/Downloads/brooks-band-avvof-demo%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brooks Band AVVOF™ Demo — Sensory Bridges</title>
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+:root{--ink:#0c1a2e;--navy:#14253d;--teal:#0b7d6e;--teal2:#0a9e8b;--teal-l:#e6f5f3;--gold:#b8882e;--gold-l:#fdf5e6;--slate:#4d6275;--fog:#f4f7f9;--pearl:#fafcfd;--bdr:#d8e2ea;--txt:#1b2b3a;--mut:#7a8fa0;--wht:#ffffff;--red:#c04040;--red-l:#fde8e8;--amber:#cc7a00;--amber-l:#fef3c7;--green:#0f7b4f;--green-l:#dcfce7;--purple:#5a3e8a;--purple-l:#ede8f7;--r:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',system-ui,sans-serif;background:#0c1a2e;color:var(--txt);font-size:13.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.topnav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(12,26,46,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.topnav h1{font-family:'Fraunces',serif;font-size:16px;color:#fff;font-weight:400}
+.topnav h1 em{color:var(--teal2);font-style:normal;font-size:12px;margin-left:6px;letter-spacing:.08em}
+.nav-pills{display:flex;gap:4px;flex-wrap:wrap}
+.nav-pill{padding:6px 14px;border-radius:100px;font-size:11.5px;font-weight:600;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);background:transparent;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif}
+.nav-pill:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)}
+.nav-pill.active{background:var(--teal);border-color:var(--teal);color:#fff}
+.sec{display:none;padding:72px 0 40px;min-height:100vh}.sec.active{display:block}
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px}
+.watch-stage{display:flex;align-items:center;justify-content:center;gap:48px;padding:40px 0}
+.watch-body{width:220px;height:260px;background:linear-gradient(145deg,#1a2d4a,#0f1d2e);border-radius:50px;border:3px solid rgba(255,255,255,.08);position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.05)}
+.watch-screen{width:170px;height:170px;border-radius:50%;background:#000;overflow:hidden;position:relative;border:2px solid rgba(255,255,255,.06)}
+.watch-face{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;position:relative}
+.wf-time{font-family:'Fraunces',serif;font-size:28px;color:#fff;font-weight:300}
+.wf-label{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px}
+.wf-db{font-family:'Fraunces',serif;font-size:36px;color:var(--teal2);margin-top:4px;line-height:1;transition:color .3s}
+.wf-db span{font-size:12px;color:rgba(255,255,255,.3)}
+.wf-status{font-size:9px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:6px;transition:all .3s}
+.wf-status.ok{background:rgba(15,123,79,.3);color:#6ee7b7;border:1px solid rgba(15,123,79,.4)}
+.wf-status.mid{background:rgba(204,122,0,.3);color:#fcd34d;border:1px solid rgba(204,122,0,.4)}
+.wf-status.hi{background:rgba(192,64,64,.3);color:#fca5a5;border:1px solid rgba(192,64,64,.4)}
+.wf-status.st{background:rgba(90,62,138,.3);color:#c4b5fd;border:1px solid rgba(90,62,138,.4)}
+.wf-ring{position:absolute;top:6px;left:6px;right:6px;bottom:6px;border-radius:50%;border:2px solid transparent;transition:border-color .3s}
+.wf-ring.ok{border-color:rgba(15,123,79,.3)}.wf-ring.mid{border-color:rgba(204,122,0,.3)}.wf-ring.hi{border-color:rgba(192,64,64,.3)}.wf-ring.st{border-color:rgba(90,62,138,.3)}
+.watch-btn{position:absolute;right:-8px;width:6px;height:20px;background:rgba(255,255,255,.08);border-radius:3px}
+.watch-btn.top{top:70px}.watch-btn.bot{top:100px}
+.watch-band-top,.watch-band-bot{position:absolute;left:50%;transform:translateX(-50%);width:80px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border-radius:4px}
+.watch-band-top{top:-28px;height:28px}.watch-band-bot{bottom:-28px;height:28px}
+.sensor-panel{display:flex;flex-direction:column;gap:8px;min-width:280px}
+.sensor-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:8px 12px;transition:all .3s}
+.sensor-row.pulse{animation:spulse 1.5s ease infinite}
+@keyframes spulse{0%,100%{border-color:rgba(255,255,255,.06)}50%{border-color:rgba(11,125,110,.3)}}
+.sensor-ic{font-size:16px;width:24px;text-align:center}
+.sensor-nm{font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase}
+.sensor-val{font-family:'Fraunces',serif;font-size:16px;color:#fff;margin-top:1px}
+.sensor-base{font-size:9px;color:rgba(255,255,255,.2);margin-top:1px}
+.wf-wrap{height:60px;background:var(--ink);border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:2px;margin:10px 0}
+.wf-bar{flex:1;background:var(--teal);border-radius:2px;min-height:2px;transition:height .12s ease}
+.demo-ctrl{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;margin-top:20px}
+.demo-ctrl h4{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+.ctrl-row{display:flex;gap:8px;flex-wrap:wrap}
+.ctrl-btn{padding:8px 16px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif;border:1px solid}
+.ctrl-btn.ok{background:rgba(15,123,79,.15);border-color:rgba(15,123,79,.3);color:#6ee7b7}
+.ctrl-btn.mid{background:rgba(204,122,0,.15);border-color:rgba(204,122,0,.3);color:#fcd34d}
+.ctrl-btn.hi{background:rgba(192,64,64,.15);border-color:rgba(192,64,64,.3);color:#fca5a5}
+.ctrl-btn.st{background:rgba(90,62,138,.15);border-color:rgba(90,62,138,.3);color:#c4b5fd}
+.ctrl-btn:hover{transform:scale(1.03)}
+.ctrl-btn.env{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.5)}
+.ctrl-btn.env.active{background:rgba(11,125,110,.15);border-color:var(--teal);color:var(--teal2)}
+.priv-strip{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;margin-top:14px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.priv-item{text-align:center;font-size:9px;color:rgba(255,255,255,.25)}.priv-item .ic{font-size:16px;margin-bottom:2px}
+.card{background:var(--wht);border:1px solid var(--bdr);border-radius:var(--r);padding:16px 18px;margin-bottom:14px}
+.card-hd{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.disclaimer{background:var(--gold-l);border:1px solid #e8c96e;border-radius:8px;padding:10px 14px;font-size:11px;color:#6b4a00;line-height:1.6;margin-bottom:14px}
+.avvof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.avvof-cat{background:var(--fog);border:1px solid var(--bdr);border-radius:8px;padding:12px;position:relative;overflow:hidden;transition:all .3s}
+.avvof-cat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal)}
+.avvof-cat.live{border-color:var(--teal);box-shadow:0 0 12px rgba(11,125,110,.1)}
+.avvof-cat .cat-nm{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:4px}
+.avvof-cat .cat-val{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);line-height:1}
+.avvof-cat .cat-unit{font-size:10px;color:var(--mut);margin-top:2px}
+.avvof-cat .cat-live{position:absolute;top:8px;right:8px;width:6px;height:6px;border-radius:50%;background:var(--teal);animation:spulse2 1s ease infinite}
+@keyframes spulse2{0%,100%{opacity:1}50%{opacity:.3}}
+.role-tabs{display:flex;gap:0;border-bottom:2px solid var(--bdr);margin-bottom:16px;flex-wrap:wrap}
+.role-tab{padding:10px 16px;font-size:12px;font-weight:600;color:var(--mut);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;font-family:'Manrope',sans-serif;transition:all .15s}
+.role-tab:hover{color:var(--ink)}.role-tab.active{color:var(--teal);border-bottom-color:var(--teal)}
+.role-pane{display:none}.role-pane.active{display:block;animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.iep-note{background:var(--fog);border:1px solid var(--bdr);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:12px 16px;font-size:12px;color:var(--ink);line-height:1.8;margin-bottom:10px}
+.iep-note .src{display:inline-block;background:var(--teal-l);color:var(--teal);font-size:9px;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:4px;letter-spacing:.04em}
+.iep-note.amber{border-left-color:var(--amber)}.iep-note.purple{border-left-color:var(--purple)}.iep-note.green{border-left-color:var(--green)}
+.bio-ind{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--bdr);border-radius:4px;padding:2px 8px;font-size:10px;font-weight:600;margin:2px}
+.bio-ind.baseline{color:var(--green);border-color:rgba(15,123,79,.25);background:#dcfce7}
+.bio-ind.above{color:var(--amber);border-color:rgba(204,122,0,.25);background:#fef3c7}
+.bio-ind.below{color:var(--purple);border-color:rgba(90,62,138,.25);background:#ede8f7}
+.bio-ind.elevated{color:var(--red);border-color:rgba(192,64,64,.25);background:#fde8e8}
+.sb{display:inline-block;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;margin:0 1px;letter-spacing:.03em;vertical-align:middle}
+.sb.ppg{background:#e8f0f8;color:#2563eb}.sb.eda{background:#fef3c7;color:#b45309}.sb.accel{background:#ede8f7;color:var(--purple)}.sb.temp{background:#fde8e8;color:var(--red)}.sb.mic{background:var(--teal-l);color:var(--teal)}
+/* AI Insight Cards */
+.ai-card{border-radius:10px;padding:14px 18px;margin-bottom:12px;position:relative;overflow:hidden}
+.ai-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px}
+.ai-card.observe{background:linear-gradient(135deg,#f0fdf8,#ecfdf5);border:1px solid #a7f3d0}.ai-card.observe::before{background:var(--teal)}
+.ai-card.pattern{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a}.ai-card.pattern::before{background:var(--amber)}
+.ai-card.context{background:linear-gradient(135deg,#faf5ff,#ede8f7);border:1px solid #c4b5fd}.ai-card.context::before{background:var(--purple)}
+.ai-card.positive{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac}.ai-card.positive::before{background:var(--green)}
+.ai-hd{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.ai-hd .tag{background:var(--ink);color:#fff;font-size:7px;padding:1px 5px;border-radius:3px;letter-spacing:.1em}
+.ai-body{font-size:12.5px;color:var(--ink);line-height:1.7}
+.ai-footer{font-size:9px;color:var(--mut);margin-top:6px;font-style:italic;padding-top:6px;border-top:1px solid rgba(0,0,0,.06)}
+/* Pipeline visual */
+.pipe-step{display:flex;align-items:stretch;gap:0;margin-bottom:2px}
+.pipe-num{width:32px;min-height:48px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;border-radius:6px 0 0 6px}
+.pipe-content{flex:1;padding:8px 12px;border:1px solid var(--bdr);border-left:none;border-radius:0 6px 6px 0;background:var(--wht)}
+.pipe-content .pipe-title{font-size:11px;font-weight:700;color:var(--ink)}
+.pipe-content .pipe-desc{font-size:11px;color:var(--slate);margin-top:2px}
+.pipe-arrow{text-align:center;padding:2px 0;font-size:14px;color:var(--teal);padding-left:14px}
+/* Trend bars */
+.trend-wrap{background:var(--fog);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;margin-top:14px}
+.trend-bars{display:flex;align-items:flex-end;gap:3px;height:100px}
+.trend-bar{flex:1;background:var(--teal);border-radius:3px 3px 0 0;transition:height .4s ease;min-height:2px;opacity:.7}
+.trend-bar:hover{opacity:1}
+.trend-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:9px;color:var(--mut)}
+.foot{background:var(--ink);color:rgba(255,255,255,.15);padding:28px 0;font-size:10px;text-align:center;border-top:1px solid rgba(255,255,255,.04)}
+@media(max-width:900px){.watch-stage{flex-direction:column;gap:24px}.sensor-panel{min-width:auto}.avvof-grid,.g2,.g3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <h1>Brooks Band<em>AVVOF™ Demo</em></h1>
+  <div class="nav-pills">
+    <button class="nav-pill active" onclick="showSec(&#39;capture&#39;)">1. Capture</button>
+    <button class="nav-pill" onclick="showSec(&#39;process&#39;)">2. Process</button>
+    <button class="nav-pill" onclick="showSec(&#39;observe&#39;)">3. Observe</button>
+    <button class="nav-pill" onclick="showSec(&#39;report&#39;)">4. Report</button>
+    <button class="nav-pill" onclick="showSec(&#39;assess&#39;)">5. Assessments</button>
+    <button class="nav-pill" onclick="showSec(&#39;insights&#39;)">6. AI Insights</button>
+    <button class="nav-pill" onclick="showSec(&#39;trend&#39;)">7. Progress</button>
+  </div>
+</nav>
+
+<!-- SEC 1: CAPTURE -->
+<div class="sec active" id="sec-capture">
+  <div class="wrap">
+    <div style="text-align:center;padding:20px 0 0">
+      <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.2em;text-transform:uppercase">Step 1 of 7</div>
+      <h2 style="font-family:&#39;Fraunces&#39;,serif;font-size:26px;color:#fff;font-weight:400;margin-top:4px">Samsung Galaxy Watch 8 — Six Sensor Streams</h2>
+      <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:4px;max-width:560px;display:inline-block">Every sensor reading is captured by confirmed Galaxy Watch 8 hardware via the Samsung Health Sensor SDK. Raw signals are processed on-device and immediately discarded. Only wellness indicator labels leave the watch. Six data streams serve three professional roles from one device.</p>
+    </div>
+    <div class="watch-stage">
+      <div style="position:relative">
+        <div class="watch-band-top"></div>
+        <div class="watch-body">
+          <div class="watch-btn top"></div><div class="watch-btn bot"></div>
+          <div class="watch-screen"><div class="watch-face">
+            <div class="wf-ring ok" id="w-ring"></div>
+            <div class="wf-time" id="w-time">10:28</div>
+            <div class="wf-label">Voice Volume</div>
+            <div class="wf-db" id="w-db" style="color: rgb(15, 123, 79);">43 <span>dB</span></div>
+            <div class="wf-status ok" id="w-status">WITHIN RANGE</div>
+          </div></div>
+        </div>
+        <div class="watch-band-bot"></div>
+      </div>
+      <div class="sensor-panel">
+        <div class="sensor-row pulse" id="sr-voice"><div class="sensor-ic">🎙️</div><div><div class="sensor-nm">Voice Volume <span class="sb mic">MIC</span></div><div class="sensor-val" id="sv-voice">43 dB</div><div class="sensor-base">Own-voice isolated · Personal range: 38–52 dB · SLP + Teacher</div></div></div>
+        <div class="sensor-row" id="sr-ambient"><div class="sensor-ic">🌍</div><div><div class="sensor-nm">Ambient Sound <span class="sb mic">MIC</span></div><div class="sensor-val" id="sv-ambient">48 dB</div><div class="sensor-base">Environment: Quiet Instruction · All roles</div></div></div>
+        <div class="sensor-row" id="sr-hr"><div class="sensor-ic">💚</div><div><div class="sensor-nm">Heart Rate / HRV <span class="sb ppg">PPG</span></div><div class="sensor-val" id="sv-hr">At personal baseline</div><div class="sensor-base">BioActive optical sensor · OT + Teacher</div></div></div>
+        <div class="sensor-row" id="sr-eda"><div class="sensor-ic">⚡</div><div><div class="sensor-nm">Skin Conductance (EDA) <span class="sb eda">EDA</span></div><div class="sensor-val" id="sv-eda">At personal baseline</div><div class="sensor-base">BioActive electrical sensor · NEW on Watch 8 · OT</div></div></div>
+        <div class="sensor-row" id="sr-move"><div class="sensor-ic">📐</div><div><div class="sensor-nm">Movement <span class="sb accel">ACCEL+GYRO</span></div><div class="sensor-val" id="sv-move">Low</div><div class="sensor-base">Movement classification + voice attribution assist · OT + Teacher</div></div></div>
+        <div class="sensor-row" id="sr-temp"><div class="sensor-ic">🌡️</div><div><div class="sensor-nm">Skin Temperature <span class="sb temp">IR</span></div><div class="sensor-val" id="sv-temp">At personal baseline</div><div class="sensor-base">Infrared sensor · OT</div></div></div>
+      </div>
+    </div>
+    <div style="max-width:600px;margin:0 auto">
+      <div style="font-size:9px;color:rgba(255,255,255,.2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px">Voice Volume Waveform (dB amplitude only — no audio content)</div>
+      <div class="wf-wrap" id="wf"><div class="wf-bar" style="height: 21.6069px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 3.41044px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 20.8682px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 4.75872px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 19.7284px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 22.7383px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 4.99066px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 11.4816px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 14.6443px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 20.3067px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 4.59831px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 6.81683px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 12.2908px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 6.59669px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 10.7532px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 5.38422px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 20.0334px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 8.65764px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 8.59279px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 6.29485px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 23.5431px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 12.0451px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 12.12px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 6.48704px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 6.62733px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 8.41633px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 11.3792px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 12.467px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 11.8354px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 5.11314px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 4.7225px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 6.57368px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 17.6635px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 18.2044px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 4.15981px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 20.1522px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 22.9271px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 21.0816px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 4.34614px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 15.1159px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 22.5087px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 16.5232px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 7.11933px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 3.25961px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 10.1742px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 9.01454px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 13.0703px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 9.39666px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 22.2539px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 4.97074px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 12.773px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 17.7034px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 18.538px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 23.0896px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 5.92721px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 16.3478px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 3.14183px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 13.9028px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 21.0329px; background: rgb(15, 123, 79);"></div><div class="wf-bar" style="height: 10.0569px; background: rgb(15, 123, 79);"></div></div>
+    </div>
+    <div class="priv-strip">
+      <div class="priv-item"><div class="ic">🚫</div>No audio stored</div>
+      <div class="priv-item"><div class="ic">🔐</div>On-device processing</div>
+      <div class="priv-item"><div class="ic">📡</div>Only labels transmitted</div>
+      <div class="priv-item"><div class="ic">👤</div>Personal baseline only</div>
+      <div class="priv-item"><div class="ic">🔒</div>Knox Manage lockdown</div>
+      <div class="priv-item"><div class="ic">🏥</div>6 sensors · 3 roles · 1 device</div>
+    </div>
+    <div class="demo-ctrl">
+      <h4>Demo Controls — Simulate Student Behavior</h4>
+      <div style="margin-bottom:10px"><div style="font-size:9px;color:rgba(255,255,255,.2);margin-bottom:6px">VOICE STATE</div>
+        <div class="ctrl-row">
+          <button class="ctrl-btn ok" onclick="setVoice(&#39;ok&#39;)">🟢 Within Range</button>
+          <button class="ctrl-btn mid" onclick="setVoice(&#39;mid&#39;)">🟡 Above Range</button>
+          <button class="ctrl-btn hi" onclick="setVoice(&#39;hi&#39;)">🔴 Well Above</button>
+          <button class="ctrl-btn st" onclick="setVoice(&#39;st&#39;)">🔵 Returning</button>
+        </div>
+      </div>
+      <div><div style="font-size:9px;color:rgba(255,255,255,.2);margin-bottom:6px">ENVIRONMENT</div>
+        <div class="ctrl-row">
+          <button class="ctrl-btn env active" id="env-qi" onclick="setEnv(&#39;qi&#39;)">Quiet Instruction</button>
+          <button class="ctrl-btn env" id="env-ga" onclick="setEnv(&#39;ga&#39;)">Group Activity</button>
+          <button class="ctrl-btn env" id="env-tr" onclick="setEnv(&#39;tr&#39;)">Transition</button>
+          <button class="ctrl-btn env" id="env-ha" onclick="setEnv(&#39;ha&#39;)">High-Ambient</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEC 2: PROCESS — On-Device Pipeline -->
+<div class="sec" id="sec-process">
+  <div class="wrap">
+    <div style="text-align:center;padding:20px 0 10px">
+      <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.2em;text-transform:uppercase">Step 2 of 7</div>
+      <h2 style="font-family:&#39;Fraunces&#39;,serif;font-size:26px;color:#fff;font-weight:400;margin-top:4px">On-Device Processing — Privacy by Destruction</h2>
+      <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:4px;max-width:560px;display:inline-block">All six sensor streams are processed on the Exynos W1000 chip. Raw data is born, classified, and destroyed within milliseconds. Nothing leaves the device except wellness indicator labels, event counts, and timestamps.</p>
+    </div>
+    <div style="background:var(--pearl);border-radius:16px;padding:28px;margin-top:20px">
+
+      <!-- Pipeline Visual -->
+      <div class="card">
+        <div class="card-hd">🔄 The On-Device Processing Pipeline — What Happens Inside the Watch</div>
+
+        <div class="pipe-step"><div class="pipe-num" style="background:var(--red)">1</div><div class="pipe-content"><div class="pipe-title">Raw Sensor Capture</div><div class="pipe-desc"><span class="sb mic">MIC</span> Audio waveform enters 10-second rolling buffer (continuous overwrite) · <span class="sb ppg">PPG</span> Light pulse reflections from BioActive sensor · <span class="sb eda">EDA</span> Skin conductance stream at 1 Hz · <span class="sb accel">ACCEL</span> XYZ acceleration at 25 Hz · <span class="sb accel">GYRO</span> Rotation data · <span class="sb temp">IR</span> Skin surface temperature</div></div></div>
+        <div class="pipe-arrow">↓</div>
+        <div class="pipe-step"><div class="pipe-num" style="background:#b45309">2</div><div class="pipe-content"><div class="pipe-title">Own-Voice Isolation — "Whose Voice Is It?"</div><div class="pipe-desc"><strong>Layer 1 (Watch):</strong> <span class="sb mic">MIC</span> Bandpass filter isolates speech frequencies (85 Hz–4 kHz). <span class="sb accel">ACCEL</span> Accelerometer detects speech-correlated body vibrations transmitted through the wrist — when audio amplitude exceeds threshold but the accelerometer shows no speech vibration pattern, the sound is classified as environmental and ignored. Ambient noise floor is continuously updated using spectral subtraction during detected silence periods.<br><strong>Layer 2 (BrooksClip — optional companion):</strong> Bone conduction vibration sensor worn near the vocal source sends a binary flag ("vocalizing" / "not vocalizing") to the watch via BLE. When the BrooksClip confirms vocalization, audio amplitude is definitively attributed to the wearer. When it signals silence, all detected audio is classified as someone else's voice or environmental sound. <strong>The BrooksClip transmits no audio — only a vibration flag.</strong><br><strong>Personal Voice Learning:</strong> During enrollment (first 3 days of wear), the device builds a personal voice profile — learning the student's unique vocal frequency range, typical speaking amplitude, and speech patterns. All thresholds adapt relative to the student's own baseline, not fixed values. The device gets more accurate at distinguishing the student's voice from classmates over time.</div></div></div>
+        <div class="pipe-arrow">↓</div>
+        <div class="pipe-step"><div class="pipe-num" style="background:var(--amber)">3</div><div class="pipe-content"><div class="pipe-title">Feature Extraction + SLM Calibration (On-Device Only)</div><div class="pipe-desc"><span class="sb mic">MIC</span> RMS calculation on voice-attributed audio only → dBFS conversion → <strong>SLM calibration offset applied.</strong> The watch microphone is calibrated against a reference Sound Level Meter (SLM) using an offset value (adjustable in 0.5 dB increments). The on-device app converts raw dBFS (decibels relative to digital full scale — native to the microphone) to approximate dBA (A-weighted decibels — the standard acoustic measurement scale) by applying: <strong>dBA ≈ dBFS + microphone sensitivity constant + calibration offset.</strong> Example: a raw reading of -16 dBFS with a mic sensitivity of +94 dB and a calibration offset of +2.5 dBA = approximately 80.5 dBA. This is the same offset calibration methodology used in OSHA-compliant workplace noise dosimetry. <strong>Audio content is never analyzed — only amplitude.</strong><br><span class="sb ppg">PPG</span> Inter-beat interval (IBI) calculation → HRV derivation · <span class="sb eda">EDA</span> Conductance level comparison to personal baseline · <span class="sb accel">ACCEL</span> Movement pattern classification · <span class="sb temp">IR</span> Temperature delta from baseline</div></div></div>
+        <div class="pipe-arrow">↓</div>
+        <div class="pipe-step"><div class="pipe-num" style="background:var(--purple)">4</div><div class="pipe-content"><div class="pipe-title">Raw Data Destruction</div><div class="pipe-desc">Audio waveform: <strong>destroyed after RMS extraction</strong> — 10-second rolling buffer continuously overwrites. No audio content ever persists on device or transfers anywhere. PPG light pulses: discarded after IBI calculation. EDA raw conductance: discarded after baseline comparison. Accelerometer raw XYZ: discarded after pattern classification. Voice profile stays on-device only. <strong>No raw biometric data is ever stored or transmitted.</strong></div></div></div>
+        <div class="pipe-arrow">↓</div>
+        <div class="pipe-step"><div class="pipe-num" style="background:var(--teal)">5</div><div class="pipe-content"><div class="pipe-title">Personal Baseline Comparison</div><div class="pipe-desc">Each sensor reading is compared to the student's own personal baseline (learned and continuously refined from first 3 days of wear onward). The output for each sensor is a wellness indicator label: <span class="bio-ind above">above baseline</span> <span class="bio-ind baseline">at baseline</span> <span class="bio-ind below">below baseline</span> — never a raw numeric value. Thresholds are relative to the student's own ambient floor, not absolute values — a threshold in a quiet library differs from the same threshold on a noisy playground. Environment classified as: Quiet Instruction, Group Activity, Transition, or High-Ambient.</div></div></div>
+        <div class="pipe-arrow">↓</div>
+        <div class="pipe-step"><div class="pipe-num" style="background:var(--green)">6</div><div class="pipe-content"><div class="pipe-title">What Leaves the Device</div><div class="pipe-desc"><strong>Event counts</strong> (integers) · <strong>Event durations</strong> (seconds) · <strong>Timestamps</strong> · <strong>Environment labels</strong> · <strong>Biometric wellness labels per sensor</strong> (above / at / below personal baseline) — each sensor reported independently, never combined into composite scores. Synced via Knox-secured BLE at end of school day on school WiFi.</div></div></div>
+        <div class="pipe-arrow">↓</div>
+        <div class="pipe-step"><div class="pipe-num" style="background:var(--ink)">7</div><div class="pipe-content"><div class="pipe-title">Platform Routes to Professional Role</div><div class="pipe-desc">The platform receives only labels and counts. It routes the relevant data to each professional's view: <strong>SLP</strong> sees voice + vocalization data. <strong>OT</strong> sees all six biometric streams independently. <strong>Teacher</strong> sees voice + engagement + transition data. <strong>Family</strong> sees a plain-language summary. The professional writes all documentation and applies all judgment.</div></div></div>
+      </div>
+
+      <!-- Sensor-to-Role mapping -->
+      <div class="card">
+        <div class="card-hd">🔗 What Each Professional Receives — From Labels Only</div>
+        <div style="font-size:12px;color:var(--slate);line-height:1.8">
+          <div style="padding:6px 0;border-bottom:1px solid var(--fog)"><strong>🗣️ SLP:</strong> Voice volume event counts, vocalization counts, return-to-range counts, return latency (seconds), environment label at each event <span class="sb mic">MIC</span></div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--fog)"><strong>🧠 OT:</strong> HRV label, skin conductance label, skin temperature label, movement classification, voice volume events — <strong>each displayed independently, never combined</strong> <span class="sb ppg">PPG</span> <span class="sb eda">EDA</span> <span class="sb temp">IR</span> <span class="sb accel">ACCEL</span> <span class="sb mic">MIC</span></div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--fog)"><strong>👩‍🏫 Teacher:</strong> Voice volume events, sustained within-range periods, transition event counts, HRV and movement labels for engagement context <span class="sb mic">MIC</span> <span class="sb ppg">PPG</span> <span class="sb accel">ACCEL</span></div>
+          <div style="padding:6px 0"><strong>👨‍👩‍👧 Family:</strong> Plain-language daily summary only. No event counts, no biometric labels, no technical terminology.</div>
+        </div>
+        <div style="font-size:9px;color:var(--mut);margin-top:8px;font-style:italic">One device deployment → three professional roles served → each sees only their relevant wellness observation labels. The same Samsung Galaxy Watch. The same Knox lockdown. Three additional professional roles beyond what a single-sensor device provides.</div>
+      </div>
+
+      <div class="disclaimer"><strong>21st Century Cures Act Compliance:</strong> The platform displays raw event counts, durations, timestamps, and independent baseline-referenced wellness labels. It does not compute percentages, rates, scores, or statistical analyses. It does not combine biometric readings into composite indices. Each biometric stream is displayed independently. The qualified professional calculates all derived metrics and determines significance using their independent professional judgment.</div>
+    </div>
+  </div>
+</div>
+<!-- SEC 3: OBSERVE -->
+<div class="sec" id="sec-observe">
+  <div class="wrap">
+    <div style="text-align:center;padding:20px 0 10px">
+      <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.2em;text-transform:uppercase">Step 3 of 7</div>
+      <h2 style="font-family:&#39;Fraunces&#39;,serif;font-size:26px;color:#fff;font-weight:400;margin-top:4px">AVVOF™ Observation Categories + Independent Biometric Streams</h2>
+      <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:4px">Nine proprietary voice observation categories with full acoustic measurements (dB, seconds, timestamps) plus six independent biometric wellness indicators referenced to personal baseline.</p>
+    </div>
+    <div style="background:var(--pearl);border-radius:16px;padding:28px;margin-top:20px">
+
+      <!-- Data Classification Key -->
+      <div style="background:var(--wht);border:1px solid var(--bdr);border-radius:var(--r);padding:12px 16px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:6px">📐 Two Categories of Data — Different Display Rules</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:11.5px;line-height:1.7">
+          <div style="background:var(--teal-l);border-radius:6px;padding:10px;border:1px solid rgba(11,125,110,.2)"><strong style="color:var(--teal)">Acoustic &amp; Behavioral Data — Raw Values Shown</strong><br>Voice volume (dB), ambient sound (dB), event counts, durations (seconds), timestamps, latency (seconds), vocalization counts, sustained periods (minutes), environment classification. These are environmental and behavioral observations — the same category of data as a sound level meter, a stopwatch, or a tally counter.</div>
+          <div style="background:var(--purple-l);border-radius:6px;padding:10px;border:1px solid rgba(90,62,138,.2)"><strong style="color:var(--purple)">Physiological Data — Baseline-Referenced Labels Only</strong><br>Heart rate, HRV, skin conductance (EDA), skin temperature — displayed as <span class="bio-ind above" style="font-size:9px">above baseline</span> <span class="bio-ind baseline" style="font-size:9px">at baseline</span> <span class="bio-ind below" style="font-size:9px">below baseline</span> only. No BPM, ms, μS, or °F values. Each stream reported independently. Never combined into composite scores.</div>
+        </div>
+      </div>
+
+      <div class="avvof-grid">
+        <div class="avvof-cat live"><div class="cat-live"></div><div class="cat-nm">Voice Volume Events</div><div class="cat-val" id="av-vve">1</div><div class="cat-unit">events today · peak 68 dB</div></div>
+        <div class="avvof-cat live"><div class="cat-live"></div><div class="cat-nm">Event Duration (Last)</div><div class="cat-val" id="av-dur">14<span style="font-size:12px;color:var(--mut)">s</span></div><div class="cat-unit">at 8:42:17 AM</div></div>
+        <div class="avvof-cat"><div class="cat-nm">Environment at Event</div><div class="cat-val" id="av-env" style="font-size:16px">Group Activity</div><div class="cat-unit">ambient: 62 dB at event time</div></div>
+        <div class="avvof-cat"><div class="cat-nm">Return-to-Range Events</div><div class="cat-val" id="av-rtr">1</div><div class="cat-unit">of 1 total · latency: 14 sec</div></div>
+        <div class="avvof-cat"><div class="cat-nm">Returns Without Adult Voice</div><div class="cat-val" id="av-self">1</div><div class="cat-unit">of 1 return events</div></div>
+        <div class="avvof-cat"><div class="cat-nm">Returns With Adult Voice</div><div class="cat-val" id="av-adult">0</div><div class="cat-unit">of 1 return events</div></div>
+        <div class="avvof-cat"><div class="cat-nm">Vocalization Count</div><div class="cat-val" id="av-voc">47</div><div class="cat-unit">this observation period</div></div>
+        <div class="avvof-cat live"><div class="cat-live"></div><div class="cat-nm">Sustained Within-Range</div><div class="cat-val" id="av-sus">28<span style="font-size:12px;color:var(--mut)">min</span></div><div class="cat-unit">9:15:00 AM – 9:43:12 AM</div></div>
+        <div class="avvof-cat"><div class="cat-nm">Longest Within-Range</div><div class="cat-val" id="av-long">28<span style="font-size:12px;color:var(--mut)">min</span></div><div class="cat-unit">today (Quiet Instruction)</div></div>
+      </div>
+      <div class="g2" style="margin-top:14px">
+        <div class="card">
+          <div class="card-hd">📊 Independent Biometric Wellness Labels — Physiological Streams</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:var(--fog);border-radius:6px;padding:8px;text-align:center;border:1px solid var(--bdr)"><div style="font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em"><span class="sb ppg" style="font-size:7px">PPG</span> Heart Rate</div><div style="font-size:14px;font-weight:600;color:var(--green)">At baseline</div><div style="font-size:8px;color:var(--mut);margin-top:1px">Label only — no BPM</div></div>
+            <div style="background:var(--fog);border-radius:6px;padding:8px;text-align:center;border:1px solid var(--bdr)"><div style="font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em"><span class="sb ppg" style="font-size:7px">PPG</span> HRV</div><div style="font-size:14px;font-weight:600;color:var(--green)">At baseline</div><div style="font-size:8px;color:var(--mut);margin-top:1px">Label only — no ms</div></div>
+            <div style="background:var(--fog);border-radius:6px;padding:8px;text-align:center;border:1px solid var(--bdr)"><div style="font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em"><span class="sb eda" style="font-size:7px">EDA</span> Skin Conductance</div><div style="font-size:14px;font-weight:600;color:var(--green)">At baseline</div><div style="font-size:8px;color:var(--mut);margin-top:1px">Label only — no μS</div></div>
+            <div style="background:var(--fog);border-radius:6px;padding:8px;text-align:center;border:1px solid var(--bdr)"><div style="font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em"><span class="sb temp" style="font-size:7px">IR</span> Skin Temp</div><div style="font-size:14px;font-weight:600;color:var(--green)">At baseline</div><div style="font-size:8px;color:var(--mut);margin-top:1px">Label only — no °F</div></div>
+            <div style="background:var(--fog);border-radius:6px;padding:8px;text-align:center;border:1px solid var(--bdr)"><div style="font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em"><span class="sb accel" style="font-size:7px">ACCEL</span> Movement</div><div style="font-size:14px;font-weight:600;color:var(--green)">Low</div><div style="font-size:8px;color:var(--mut);margin-top:1px">Classification: low / moderate / elevated</div></div>
+            <div style="background:var(--fog);border-radius:6px;padding:8px;text-align:center;border:1px solid var(--bdr)"><div style="font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em"><span class="sb mic" style="font-size:7px">MIC</span> Ambient Level</div><div style="font-size:14px;font-weight:600;color:var(--teal)">48 dB</div><div style="font-size:8px;color:var(--mut);margin-top:1px">Acoustic measurement — raw dB shown</div></div>
+          </div>
+          <div style="font-size:9px;color:var(--mut);margin-top:8px;font-style:italic">Physiological readings displayed as baseline-referenced wellness labels only. Acoustic and environmental readings displayed as raw measurements. Each stream independent — never combined.</div>
+        </div>
+        <div class="card">
+          <div class="card-hd">IEP Goal Mapping (Set by IEP Team)</div>
+          <div style="font-size:12px;color:var(--slate);line-height:1.8">
+            <div style="padding:5px 0;border-bottom:1px solid var(--fog)"><strong>Goal 1:</strong> Voice volume awareness → <span style="color:var(--teal);font-weight:600">VVE, peak dB, Duration, Return-to-Range, Sustained</span> <span class="sb mic">MIC</span></div>
+            <div style="padding:5px 0;border-bottom:1px solid var(--fog)"><strong>Goal 2:</strong> Self-correction without prompting → <span style="color:var(--teal);font-weight:600">Returns Without Adult Voice, Latency (sec)</span> <span class="sb mic">MIC</span></div>
+            <div style="padding:5px 0;border-bottom:1px solid var(--fog)"><strong>Goal 3:</strong> Sustained engagement 20+ min → <span style="color:var(--teal);font-weight:600">Sustained (min), timestamps, Movement label, HRV label</span> <span class="sb mic">MIC</span> <span class="sb accel">ACCEL</span> <span class="sb ppg">PPG</span></div>
+            <div style="padding:5px 0"><strong>Goal 4:</strong> Arousal awareness during transitions → <span style="color:var(--teal);font-weight:600">HRV, EDA, Movement, Skin Temp labels at transition timestamp</span> <span class="sb ppg">PPG</span> <span class="sb eda">EDA</span> <span class="sb accel">ACCEL</span> <span class="sb temp">IR</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEC 4: REPORT — Role-Specific Notes with Maximum Allowable Data -->
+<div class="sec" id="sec-report">
+  <div class="wrap">
+    <div style="text-align:center;padding:20px 0 10px">
+      <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.2em;text-transform:uppercase">Step 4 of 7</div>
+      <h2 style="font-family:&#39;Fraunces&#39;,serif;font-size:26px;color:#fff;font-weight:400;margin-top:4px">Role-Specific Observation Notes — Maximum Data Density</h2>
+      <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:4px">Acoustic and behavioral data shown as raw measurements (dB, seconds, minutes, timestamps, counts). Physiological data shown as baseline-referenced wellness labels. The professional writes all documentation.</p>
+    </div>
+    <div style="background:var(--pearl);border-radius:16px;padding:28px;margin-top:20px">
+
+      <!-- Master Disclaimer -->
+      <div class="disclaimer"><strong>Data Display Classification:</strong> This report contains two categories of observation data. <strong>(1) Acoustic and behavioral observations</strong> — voice volume in dB, ambient sound in dB, event counts, durations in seconds, timestamps, and vocalization counts — are displayed as raw measurements. These are environmental observations equivalent to a sound level meter and stopwatch. <strong>(2) Physiological wellness indicators</strong> — heart rate, HRV, skin conductance, and skin temperature — are displayed as baseline-referenced labels only (above / at / below personal baseline), not as raw numeric physiological values. Each physiological stream is reported independently and is never combined into composite indices or scores. The qualified professional reviews all observations and creates their own documentation using their independent professional judgment.</div>
+
+      <div class="role-tabs" id="rtabs">
+        <button class="role-tab active" onclick="showRole(&#39;teacher&#39;)">👩‍🏫 Teacher</button>
+        <button class="role-tab" onclick="showRole(&#39;slp&#39;)">🗣️ SLP</button>
+        <button class="role-tab" onclick="showRole(&#39;ot&#39;)">🧠 OT</button>
+        <button class="role-tab" onclick="showRole(&#39;family&#39;)">👨‍👩‍👧 Family</button>
+      </div>
+
+      <!-- TEACHER -->
+      <div class="role-pane active" id="rp-teacher">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:15px;color:var(--ink);margin-bottom:12px">IEP Progress Observation Data — Today, March 31, 2026</div>
+
+        <div class="iep-note">
+          <strong>Voice Volume Event Log:</strong><br>
+          <strong>Event 1 — 8:42:17 AM</strong> · Environment: Group Activity (ambient 62 dB) · Peak voice volume: 68 dB · Duration above personal range: 14 seconds · Return to within-range: 8:42:31 AM · Return latency: 14 seconds · Return type: without preceding adult voice event <span class="src">AVVOF: VVE</span><br>
+          <strong>Physiological wellness labels at event onset:</strong> HRV: <span class="bio-ind below">below baseline</span> Movement: <span class="bio-ind above">moderate</span> <span class="src">AVVOF: Biometric</span>
+        </div>
+        <div class="iep-note amber">
+          <strong>Sustained Engagement:</strong><br>
+          Longest sustained within-range period: <strong>28 minutes 12 seconds</strong> (9:15:00 AM – 9:43:12 AM, Quiet Instruction, ambient 46 dB). <span class="src">AVVOF: Sustained</span><br>
+          Second sustained period: <strong>22 minutes 48 seconds</strong> (10:05:30 AM – 10:28:18 AM, Quiet Instruction, ambient 44 dB). <span class="src">AVVOF: Sustained</span><br>
+          Total sustained periods ≥20 minutes today: 2. <br>
+          <strong>Physiological wellness labels during sustained periods:</strong> HRV: <span class="bio-ind baseline">at baseline</span> Movement: <span class="bio-ind baseline">low</span> throughout both periods. <span class="src">AVVOF: Biometric</span>
+        </div>
+        <div class="iep-note">
+          <strong>Goal 1 — Voice Volume Awareness (18 School Days, Feb 24 – Mar 31):</strong><br>
+          Total voice volume events: 22. Total return-to-range events: 22 of 22. Returns without preceding adult voice: 17 of 22. Returns with preceding adult voice: 5 of 22. Average return latency: 18.4 seconds. Average event duration: 16.2 seconds. Average peak dB at event: 66 dB. Average ambient dB at event: 64 dB. <span class="src">AVVOF: 18-day</span>
+        </div>
+        <div style="font-size:10px;color:var(--mut);margin-top:10px;font-style:italic">Acoustic measurements (dB, seconds, minutes, timestamps) are environmental observations displayed as raw values. Physiological indicators (HRV, movement) are wellness labels referenced to personal baseline — not raw physiological measurements. The teacher calculates proportions and determines progress using their independent professional judgment. Formatted for Georgia GO-IEP and Tennessee IEP progress report entry.</div>
+      </div>
+
+      <!-- SLP -->
+      <div class="role-pane" id="rp-slp">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:15px;color:var(--ink);margin-bottom:12px">SLP Observation Data — Today, March 31, 2026</div>
+
+        <div class="iep-note">
+          <strong>Voice Volume Event Detail:</strong><br>
+          <strong>8:42:17 AM</strong> · Group Activity · Ambient: 62 dB · Peak voice: 68 dB · Duration: 14 sec · Return latency: 14 sec · Return type: self (no adult voice preceding) <span class="src">AVVOF: VVE</span><br>
+          <strong>Physiological context at onset:</strong> HRV: <span class="bio-ind below">below baseline</span> EDA: <span class="bio-ind above">above baseline</span> Movement: <span class="bio-ind above">moderate</span> Skin temp: <span class="bio-ind baseline">at baseline</span> <span class="src">AVVOF: Biometric</span>
+        </div>
+        <div class="iep-note amber">
+          <strong>Vocalization Frequency — Today:</strong><br>
+          Total vocalizations detected (own-voice isolated): <strong>47</strong> <span class="src">AVVOF: Voc</span><br>
+          By environment: Quiet Instruction (8:00–8:42 AM, 9:15–10:28 AM): <strong>12 vocalizations</strong> · Group Activity (8:42–9:00 AM, 10:28–11:15 AM): <strong>28 vocalizations</strong> · Transition (9:00–9:15 AM, 9:55–10:05 AM): <strong>4 vocalizations</strong> · Unstructured (11:15–11:45 AM): <strong>3 vocalizations</strong> <span class="src">AVVOF: Voc by Env</span><br>
+          Average time between vocalizations: Quiet Instruction: 8.2 min · Group Activity: 2.1 min · Transition: 3.8 min <span class="src">AVVOF: Voc timing</span>
+        </div>
+        <div class="iep-note purple">
+          <strong>18-Day Observation Period (Feb 24 – Mar 31):</strong><br>
+          Total VVE: 22 · RTR: 22 of 22 · Self-returns: 17 of 22 · Prompted returns: 5 of 22<br>
+          Average return latency: 18.4 sec (range: 6 sec – 42 sec) · Average peak dB: 66 dB (range: 58 – 78 dB)<br>
+          Average event duration: 16.2 sec (range: 4 sec – 38 sec) · Longest sustained within-range: 32 min 14 sec<br>
+          Average vocalizations per observation period: 44 (range: 31 – 62) <span class="src">AVVOF: Period</span><br>
+          <strong>Physiological label pattern across 22 events:</strong> HRV below baseline at event onset: 14 of 22. EDA above baseline at event onset: 16 of 22. Movement moderate or elevated at event onset: 13 of 22. <span class="src">AVVOF: Biometric counts</span>
+        </div>
+        <div style="font-size:9px;color:var(--mut);margin-top:10px;padding:8px;background:var(--fog);border-radius:6px;border:1px solid var(--bdr);font-style:italic"><strong>Data classification note:</strong> Voice volume (dB), ambient sound (dB), durations (seconds), latencies (seconds), vocalization counts, and timestamps are acoustic and behavioral observations displayed as raw measurements. Heart rate, HRV, skin conductance, and skin temperature are physiological wellness indicators displayed as baseline-referenced labels only — not raw physiological values. The SLP determines the significance of all data and creates professional documentation including SOAP notes. This data does not constitute a clinical assessment.</div>
+      </div>
+
+      <!-- OT -->
+      <div class="role-pane" id="rp-ot">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:15px;color:var(--ink);margin-bottom:12px">OT Observation Data — Today, March 31, 2026 — Full Six-Stream View</div>
+
+        <div class="iep-note">
+          <strong>Current Observation (10:45 AM — Quiet Instruction, ambient 46 dB):</strong><br>
+          <span class="sb mic">MIC</span> Voice volume: <strong>42 dB</strong> (within personal range 38–52 dB) · Ambient: <strong>46 dB</strong><br>
+          <span class="sb ppg">PPG</span> Heart Rate: <span class="bio-ind baseline">at baseline</span> · HRV: <span class="bio-ind baseline">at baseline</span><br>
+          <span class="sb eda">EDA</span> Skin Conductance: <span class="bio-ind baseline">at baseline</span> · <span class="sb temp">IR</span> Skin Temp: <span class="bio-ind baseline">at baseline</span><br>
+          <span class="sb accel">ACCEL</span> Movement: <span class="bio-ind baseline">low</span> · sustained in current classification for: <strong>17 min 22 sec</strong>
+        </div>
+        <div class="iep-note amber">
+          <strong>Transition Observation (9:58:04 AM — Transition, ambient 74 dB):</strong><br>
+          <span class="sb mic">MIC</span> Voice volume: <strong>58 dB</strong> (above personal range) · Ambient: <strong>74 dB</strong><br>
+          <span class="sb ppg">PPG</span> HRV: <span class="bio-ind below">below baseline</span> · Heart Rate: <span class="bio-ind above">above baseline</span><br>
+          <span class="sb eda">EDA</span> Skin Conductance: <span class="bio-ind above">above baseline</span> · <span class="sb temp">IR</span> Skin Temp: <span class="bio-ind baseline">at baseline</span><br>
+          <span class="sb accel">ACCEL</span> Movement: <span class="bio-ind elevated">elevated</span> · movement classification changed at <strong>9:57:41 AM</strong><br>
+          <strong>Duration of elevated movement classification:</strong> 4 min 18 sec (9:57:41 AM – 10:01:59 AM)<br>
+          <strong>Duration from transition start to all labels at baseline:</strong> 3 min 55 sec
+        </div>
+        <div class="iep-note purple">
+          <strong>18-Day Physiological Label Patterns — By Environment:</strong><br>
+          <strong>Transitions (18 observations):</strong><br>
+          HRV below baseline: 12 of 18 · EDA above baseline: 14 of 18 · Movement elevated: 15 of 18 · Heart rate above baseline: 11 of 18 · Skin temp at baseline: 16 of 18<br>
+          Average duration from environment change to all labels at baseline: <strong>3 min 42 sec</strong> (range: 1:18 – 8:45)<br>
+          Average ambient dB during transitions: <strong>72 dB</strong> (range: 64 – 82 dB) <span class="src">Independent counts</span><br><br>
+          <strong>Quiet Instruction (18 observations):</strong><br>
+          HRV at baseline: 16 of 18 · EDA at baseline: 15 of 18 · Movement low: 17 of 18 · Heart rate at baseline: 17 of 18<br>
+          Average ambient dB: <strong>45 dB</strong> (range: 38 – 52 dB) <span class="src">Independent counts</span><br><br>
+          <strong>Group Activity (18 observations):</strong><br>
+          HRV below baseline: 8 of 18 · EDA above baseline: 10 of 18 · Movement moderate: 12 of 18<br>
+          Average ambient dB: <strong>63 dB</strong> (range: 54 – 74 dB) <span class="src">Independent counts</span>
+        </div>
+        <div class="iep-note green">
+          <strong>Daily Observation Log — Wellness Labels During Quiet Instruction (Last 5 Days):</strong><br>
+          <strong>Mar 31:</strong> HRV: <span class="bio-ind baseline">at baseline</span> · Movement: <span class="bio-ind baseline">low</span> · Sustained within-range: 28 min 12 sec · Teacher note: morning sensory input provided<br>
+          <strong>Mar 28:</strong> HRV: <span class="bio-ind baseline">at baseline</span> · Movement: <span class="bio-ind baseline">low</span> · Sustained within-range: 26 min 44 sec · Teacher note: morning sensory input provided<br>
+          <strong>Mar 27:</strong> HRV: <span class="bio-ind below">below baseline</span> · Movement: <span class="bio-ind above">moderate</span> · Sustained within-range: 14 min 18 sec · Teacher note: no morning note<br>
+          <strong>Mar 26:</strong> HRV: <span class="bio-ind baseline">at baseline</span> · Movement: <span class="bio-ind baseline">low</span> · Sustained within-range: 24 min 52 sec · Teacher note: morning sensory input provided<br>
+          <strong>Mar 25:</strong> HRV: <span class="bio-ind below">below baseline</span> · Movement: <span class="bio-ind above">moderate</span> · Sustained within-range: 12 min 06 sec · Teacher note: no morning note<br>
+          <span style="font-size:10px;color:var(--mut);font-style:italic">Each day's wellness labels and teacher annotations are displayed independently. The OT reviews individual days and draws their own conclusions about any patterns they observe.</span>
+        </div>
+        <div style="font-size:9px;color:var(--mut);margin-top:10px;padding:8px;background:var(--fog);border-radius:6px;border:1px solid var(--bdr);font-style:italic"><strong>Data classification note for OT documentation:</strong> Voice volume (dB), ambient sound (dB), durations (seconds/minutes), movement classification duration, and timestamps are acoustic, behavioral, and environmental observations displayed as raw measurements. Heart rate, HRV, skin conductance, and skin temperature are physiological wellness indicators displayed as baseline-referenced labels only — not raw physiological values (no BPM, ms, μS, or °F). Each physiological stream is reported independently and never combined into composite arousal scores or indices. The OT determines how individual readings relate to one another, the student's sensory profile, and their occupational performance. This data supports the OT's documentation but does not constitute a clinical assessment or replace the OT's professional evaluation.</div>
+      </div>
+
+      <!-- FAMILY -->
+      <div class="role-pane" id="rp-family">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:15px;color:var(--ink);margin-bottom:12px">Daily Summary for Family</div>
+        <div style="background:var(--green-l);border:1px solid #a7f3d0;border-radius:var(--r);padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start">
+          <div style="font-size:28px">🌟</div>
+          <div><div style="font-size:15px;font-weight:600;color:var(--green);margin-bottom:3px">Today was a good day!</div><div style="font-size:12px;color:#065f46;line-height:1.7">Your child kept their voice in a comfortable range most of the day. There was one louder moment during a group activity — and they brought their voice back down on their own in about 14 seconds without any adult needing to step in. Their longest calm, focused stretch was almost 30 minutes during reading time. That is real progress worth celebrating.</div></div>
+        </div>
+        <div class="iep-note"><strong>Focus highlight:</strong> Your child had their best sustained focus stretch this month — 28 minutes of calm, within-range behavior during morning reading time (9:15 – 9:43 AM).</div>
+        <div class="iep-note amber"><strong>For the next IEP meeting:</strong> This month, your child returned to a comfortable voice level on their own in 17 of 22 louder moments. The average time it took them to settle back down was about 18 seconds. The school team can discuss what this means for your child's goals.</div>
+        <div style="font-size:10px;color:var(--mut);margin-top:10px;font-style:italic">Family view uses plain language with select behavioral observations. No dB values, no biometric labels, no technical terminology. Not a professional report. Contact the school team with questions about your child's IEP.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEC 5: ASSESSMENT HELPER — Pearson Assessment Data Support -->
+<div class="sec" id="sec-assess">
+  <div class="wrap">
+    <div style="text-align:center;padding:20px 0 10px">
+      <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.2em;text-transform:uppercase">Step 5 of 7</div>
+      <h2 style="font-family:&#39;Fraunces&#39;,serif;font-size:26px;color:#fff;font-weight:400;margin-top:4px">Assessment Data Support — Observation Reference for Professionals</h2>
+      <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:4px;max-width:600px;display:inline-block">When a professional completes a Pearson assessment, they answer each item based on what they observed. The platform gives them continuous observation data to reference when they make their own rating — replacing memory with measurement. The platform never fills in the assessment. The professional does.</p>
+    </div>
+    <div style="background:var(--pearl);border-radius:16px;padding:28px;margin-top:20px">
+
+      <div class="disclaimer"><strong>This is not automated assessment completion.</strong> The platform does not score, rate, interpret, or fill in any assessment item. It provides objective observation data — acoustic measurements, event counts, timestamps, durations, and baseline-referenced physiological wellness labels — that the qualified professional may reference when they complete the assessment using their own clinical judgment. The professional selects the rating. The professional checks the box. The platform provides the data they look at while doing so.</div>
+
+      <div class="role-tabs">
+        <button class="role-tab active" onclick="showRole(&#39;basc&#39;)">📋 Structured Observation</button>
+        <button class="role-tab" onclick="showRole(&#39;trs&#39;)">📝 Behavioral Frequency</button>
+        <button class="role-tab" onclick="showRole(&#39;sp2&#39;)">🧩 Sensory/Environment</button>
+        <button class="role-tab" onclick="showRole(&#39;vin&#39;)">📊 Adaptive Behavior</button>
+      </div>
+
+      <!-- STRUCTURED OBSERVATION -->
+      <div class="role-pane active" id="rp-basc">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:15px;color:var(--ink);margin-bottom:4px">Classroom Observation Data Reference — Structured Behavioral Observation</div>
+        <div style="font-size:11px;color:var(--mut);margin-bottom:14px">Structured observation protocols require an observer to code behaviors at regular intervals. The platform provides the equivalent observation data continuously across the entire school day. The observer still codes. They reference continuous data instead of a 15-minute snapshot.</div>
+
+        <div style="font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Engagement Observations</div>
+
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong style="color:var(--ink)">Observation: Focused Engagement During Instruction</strong><br><span style="font-size:11px;color:var(--slate)">Is the student attending to instruction and maintaining focus?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>Platform provides:</strong> During today's Quiet Instruction periods (8:00–8:42 AM, 9:15–10:28 AM), voice volume remained within personal range for <strong>28 min 12 sec</strong> sustained. Movement: <span class="bio-ind baseline">low</span>. HRV: <span class="bio-ind baseline">at baseline</span>. Ambient: 46 dB. Vocalizations during instruction: 12 (avg interval 8.2 min).
+            </div>
+          </div>
+        </div>
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong style="color:var(--ink)">Observation: Task Engagement Duration</strong><br><span style="font-size:11px;color:var(--slate)">How long is the student engaged with academic activities?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>Platform provides:</strong> Sustained within-range periods ≥20 min today: <strong>2</strong> (9:15–9:43 AM, 10:05–10:28 AM). Movement classification: <span class="bio-ind baseline">low</span> throughout. Total time in "low movement + within voice range" during instructional periods: <strong>68 min</strong> of 82 min observed.
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:10px;font-weight:700;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin:14px 0 8px">Vocalization &amp; Movement Observations</div>
+
+        <div class="iep-note amber" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong style="color:var(--ink)">Observation: Voice Volume by Environment</strong><br><span style="font-size:11px;color:var(--slate)">When and where do voice volume events occur?</span></div>
+            <div style="flex:1.4;background:#fef3c7;border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>Platform provides:</strong> Voice volume events during Quiet Instruction: <strong>0 today</strong>. During Group Activity: <strong>1 event</strong> at 8:42:17 AM, peak <strong>68 dB</strong> (ambient 62 dB), duration <strong>14 sec</strong>. 18-day avg during Quiet Instruction: 0.17 events/day. During Unstructured: 0.5 events/day.
+            </div>
+          </div>
+        </div>
+        <div class="iep-note amber" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong style="color:var(--ink)">Observation: Movement Classification by Environment</strong><br><span style="font-size:11px;color:var(--slate)">What movement patterns occur during different activities?</span></div>
+            <div style="flex:1.4;background:#fef3c7;border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>Platform provides:</strong> Movement classification during instruction: <span class="bio-ind baseline">low</span> for 68 of 82 min. Periods of <span class="bio-ind above">moderate</span> movement: 3 episodes totaling 14 min (8:38–8:42 AM, 9:55–10:02 AM, 10:28–10:33 AM). Movement <span class="bio-ind elevated">elevated</span>: only during Transition environments.
+            </div>
+          </div>
+        </div>
+        <div class="iep-note purple" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong style="color:var(--ink)">Observation: Transition Behavior</strong><br><span style="font-size:11px;color:var(--slate)">What happens during environment changes?</span></div>
+            <div style="flex:1.4;background:var(--purple-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>Platform provides:</strong> Transitions observed today: <strong>4</strong>. Movement <span class="bio-ind elevated">elevated</span> during transition: 3 of 4. Average duration of elevated movement: <strong>4 min 18 sec</strong>. HRV: <span class="bio-ind below">below baseline</span> at 3 of 4 transitions. Average duration from environment change to all labels at baseline: <strong>3 min 42 sec</strong>. Ambient dB during transitions: avg <strong>72 dB</strong>.
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--mut);margin-top:12px;font-style:italic">The professional references this observation data when completing any structured observation form, behavioral rating scale, or progress documentation. The professional decides every code, rating, and interpretation. The platform provides timestamped observation data — dB values, durations, event counts, and independent wellness labels.</div>
+      </div>
+
+      <!-- BEHAVIORAL FREQUENCY RATING -->
+      <div class="role-pane" id="rp-trs">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:15px;color:var(--ink);margin-bottom:4px">Behavioral Frequency Data Reference — For Rating Scale Completion</div>
+        <div style="font-size:11px;color:var(--mut);margin-bottom:14px">Behavioral rating scales ask professionals to rate how often a behavior occurs over a period of time. Instead of relying on memory alone, the professional can reference 18+ days of timestamped frequency data.</div>
+
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Voice Volume Event Frequency</strong><br><span style="font-size:11px;color:var(--slate)">How often did voice volume exceed personal range during structured time?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>18-day reference:</strong> Voice volume events during Quiet Instruction: <strong>3 events across 18 days</strong> (avg 0.17/day). During Group Activity: <strong>8 events</strong> (avg 0.44/day). Average peak: 66 dB. Average duration: 16 sec. Average ambient at event: 64 dB. The professional references this frequency data when selecting their rating.
+            </div>
+          </div>
+        </div>
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Vocalization During Wait Periods</strong><br><span style="font-size:11px;color:var(--slate)">How often did vocalizations occur during structured waiting?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>18-day reference:</strong> Vocalization events during structured turn-taking periods (teacher-annotated): <strong>14 vocalizations across 18 days</strong> during waiting. Movement changed from <span class="bio-ind baseline">low</span> to <span class="bio-ind above">moderate</span> during waiting periods in 8 of 18 observations. The professional interprets this data.
+            </div>
+          </div>
+        </div>
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Sustained Engagement Frequency</strong><br><span style="font-size:11px;color:var(--slate)">How often and how long did sustained within-range periods occur?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>18-day reference:</strong> Sustained within-range periods ≥20 min: <strong>28 periods across 18 days</strong> (avg 1.6/day). Days with at least one 20+ min period: <strong>16 of 18</strong>. Average sustained: 24 min 18 sec. Longest: 32 min 14 sec. Interruptions to sustained periods (movement change): <strong>avg 2.1 per instructional block</strong>.
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--mut);margin-top:12px;font-style:italic">The professional selects the rating on any behavioral frequency scale. The platform provides 18+ days of observation data with dB values, durations, timestamps, and event counts so the professional can reference specific evidence instead of memory alone.</div>
+      </div>
+
+      <!-- SENSORY/ENVIRONMENTAL OBSERVATIONS -->
+      <div class="role-pane" id="rp-sp2">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:15px;color:var(--ink);margin-bottom:4px">Sensory and Environmental Observation Data</div>
+        <div style="font-size:11px;color:var(--mut);margin-bottom:14px">Sensory questionnaires ask professionals and caregivers to rate how a student responds to different sensory environments. The platform provides continuous wellness label data and acoustic measurements across environments — supporting the professional's recall with objective observations.</div>
+
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Behavior in High-Ambient Environments</strong><br><span style="font-size:11px;color:var(--slate)">What happens when ambient sound levels are elevated?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>Platform provides:</strong> In environments &gt;70 dB ambient: voice events occurred <strong>11 of 22 times</strong>. HRV: <span class="bio-ind below">below baseline</span> in <strong>9 of 11</strong> of those observations. In environments &lt;50 dB: voice events <strong>3 of 22</strong>. HRV: <span class="bio-ind baseline">at baseline</span> in all 3. The professional determines their rating.
+            </div>
+          </div>
+        </div>
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Movement During Environment Changes</strong><br><span style="font-size:11px;color:var(--slate)">How does the student's movement and physiology respond to transitions?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>Platform provides:</strong> During Transition environments (avg ambient 72 dB): movement <span class="bio-ind elevated">elevated</span> in <strong>15 of 18</strong> observations. EDA: <span class="bio-ind above">above baseline</span> in <strong>14 of 18</strong>. Average duration of elevated movement: <strong>4 min 18 sec</strong>. During Quiet Instruction: movement <span class="bio-ind baseline">low</span> in 17 of 18.
+            </div>
+          </div>
+        </div>
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Duration to Baseline After Environment Change</strong><br><span style="font-size:11px;color:var(--slate)">How long do wellness labels take to reach baseline after transitions?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>Platform provides:</strong> Average duration from environment change to all wellness labels at baseline: <strong>3 min 42 sec</strong> (range 1:18 – 8:45). Each day's individual timestamps and label durations are in the daily observation log. The professional evaluates the relevance.
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--mut);margin-top:12px;font-style:italic">The platform provides observation data organized by environment type and ambient dB level. Each physiological reading is an independent wellness label. The professional selects the rating on any sensory questionnaire or assessment based on the data and their own interpretation.</div>
+      </div>
+
+      <!-- ADAPTIVE BEHAVIOR OBSERVATIONS -->
+      <div class="role-pane" id="rp-vin">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:15px;color:var(--ink);margin-bottom:4px">Adaptive Behavior Observation Data — For Interview and Rating Support</div>
+        <div style="font-size:11px;color:var(--mut);margin-bottom:14px">Adaptive behavior assessments ask caregivers and clinicians to describe what a student "usually" does. Instead of estimating from memory, they can reference continuous observation data for more specific and evidence-grounded responses.</div>
+
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Appropriate Voice Volume</strong><br><span style="font-size:11px;color:var(--slate)">Does the student use a voice volume appropriate for the situation?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>18-day reference:</strong> Voice within personal range: professional can calculate from 22 events across 18 days vs. total monitored hours. Average voice volume during Quiet Instruction: within 38–52 dB personal range. Events above range: avg <strong>1.2/day</strong>, from 2.8/day (week 1) to 0.5/day (current week).
+            </div>
+          </div>
+        </div>
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Self-Regulation After Voice Events</strong><br><span style="font-size:11px;color:var(--slate)">Does the student return to within-range independently?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>18-day reference:</strong> Self-returns to within-range (without adult prompt): <strong>17 of 22</strong> events. Average self-return latency: <strong>16.1 sec</strong>, from 34 sec (week 1) to 14 sec (current). Duration from event to all wellness labels at baseline: avg <strong>3 min 42 sec</strong>. The clinician determines the rating.
+            </div>
+          </div>
+        </div>
+        <div class="iep-note" style="padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="flex:1"><strong>Observation Category: Behavior Across Environments</strong><br><span style="font-size:11px;color:var(--slate)">Does the student adjust behavior to different settings?</span></div>
+            <div style="flex:1.4;background:var(--teal-l);border-radius:6px;padding:8px;font-size:11px;color:var(--ink);line-height:1.7">
+              <strong>18-day reference:</strong> Voice events by environment: Quiet Instruction (avg 45 dB): <strong>3 of 22</strong>. Group Activity (avg 63 dB): <strong>8 of 22</strong>. Transition (avg 72 dB): <strong>2 of 22</strong>. Unstructured (avg 78 dB): <strong>9 of 22</strong>. Movement: <span class="bio-ind baseline">low</span> (QI), <span class="bio-ind above">moderate</span> (GA), <span class="bio-ind elevated">elevated</span> (TR).
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--mut);margin-top:12px;font-style:italic">The professional and caregiver reference the observation data when answering interview questions or completing adaptive behavior rating scales. The clinician determines the rating. The platform provides the continuous observation record for more specific and evidence-grounded responses.</div>
+      </div>
+
+      <!-- Bottom summary -->
+      <div style="background:var(--fog);border:1px solid var(--bdr);border-radius:var(--r);padding:14px;margin-top:14px">
+        <div style="font-size:10px;font-weight:700;color:var(--ink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">How This Works — The Professional Completes the Assessment</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:11.5px;line-height:1.7">
+          <div style="background:var(--wht);border-radius:6px;padding:10px;border:1px solid var(--bdr)"><strong>Without Brooks Band:</strong> Observer sits in classroom 15 min for a structured observation. Teacher rates behavioral frequency from a month of memory. Caregiver estimates typical behavior in an interview. Sensory questionnaire administered once, re-administered in 6-12 months. Assessment is a snapshot of memory and judgment.</div>
+          <div style="background:var(--teal-l);border-radius:6px;padding:10px;border:1px solid rgba(11,125,110,.2)"><strong>With Brooks Band:</strong> Structured observation references continuous all-day data with timestamps and dB values. Frequency ratings reference 18+ days of event counts, durations, and frequencies. Interview answers reference specific behavioral patterns with exact measurements. Sensory observations are supported by weekly wellness label patterns across environments. Documentation is grounded in a longitudinal observation record.</div>
+        </div>
+        <div style="font-size:9px;color:var(--mut);margin-top:8px;font-style:italic">The Brooks Band does not administer, score, interpret, or replace any Pearson assessment. It provides continuous objective observation data — acoustic measurements (dB, seconds, timestamps, counts) and independent physiological wellness labels (above / at / below personal baseline) — that professionals reference when they complete assessments using their own expertise. One device. Six sensors. Data that supports every major assessment Pearson makes. The clinician still holds the pen.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEC 6: AI INSIGHTS — Wellness Pattern Observations -->
+<div class="sec" id="sec-insights">
+  <div class="wrap">
+    <div style="text-align:center;padding:20px 0 10px">
+      <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.2em;text-transform:uppercase">Step 6 of 7</div>
+      <h2 style="font-family:&#39;Fraunces&#39;,serif;font-size:26px;color:#fff;font-weight:400;margin-top:4px">AI-Generated Wellness Pattern Observations</h2>
+      <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:4px;max-width:560px;display:inline-block">The platform observes patterns across measurements and wellness labels over time. It surfaces what the data shows — never what it means. The professional decides significance and writes all documentation.</p>
+    </div>
+    <div style="background:var(--pearl);border-radius:16px;padding:28px;margin-top:20px">
+
+      <div class="disclaimer"><strong>These are pattern observations, not conclusions.</strong> The platform identifies recurring patterns in acoustic measurements, event counts, timestamps, and physiological wellness labels. It does not interpret, diagnose, recommend, or score. Acoustic data is referenced as raw measurements. Physiological data is referenced as baseline labels only. Every observation ends with an invitation for the professional to determine relevance.</div>
+
+      <div class="role-tabs">
+        <button class="role-tab active" onclick="showAI(&#39;ai-teacher&#39;)">👩‍🏫 Teacher</button>
+        <button class="role-tab" onclick="showAI(&#39;ai-slp&#39;)">🗣️ SLP</button>
+        <button class="role-tab" onclick="showAI(&#39;ai-ot&#39;)">🧠 OT</button>
+        <button class="role-tab" onclick="showAI(&#39;ai-family&#39;)">👨‍👩‍👧 Family</button>
+      </div>
+
+      <!-- AI: TEACHER -->
+      <div class="role-pane active" id="rp-ai-teacher">
+        <div class="ai-card observe">
+          <div class="ai-hd" style="color:var(--teal)"><span class="tag">PATTERN</span> Voice Events by Environment and Ambient dB</div>
+          <div class="ai-body">Over 18 school days, 9 of 22 voice volume events occurred in environments classified as Unstructured / High-Ambient (average ambient 78 dB), while only 3 occurred during Quiet Instruction (average ambient 45 dB). The average peak voice volume at events in high-ambient environments was 72 dB, compared to 61 dB during Quiet Instruction events.</div>
+          <div class="ai-footer">The teacher may wish to consider whether the relationship between ambient dB level and voice event frequency is relevant to the student's IEP goals or classroom accommodations.</div>
+        </div>
+        <div class="ai-card pattern">
+          <div class="ai-hd" style="color:var(--amber)"><span class="tag">PATTERN</span> Sustained Engagement Growth</div>
+          <div class="ai-body">The longest sustained within-range period has increased from 12 min (week 1, Feb 24) to 28 min 12 sec (current week, Mar 31). Sustained periods of ≥20 minutes now occur on 16 of 18 school days (average 24 min 18 sec), compared to 4 of 18 days during weeks 1–3 (average 21 min 6 sec). Average ambient dB during sustained periods: 45 dB.</div>
+          <div class="ai-footer">The teacher determines whether this pattern indicates progress toward the student's engagement goals.</div>
+        </div>
+        <div class="ai-card context">
+          <div class="ai-hd" style="color:var(--purple)"><span class="tag">PATTERN</span> Transition Timestamps and Biometric Labels</div>
+          <div class="ai-body">When the environment label shifts to "Transition" (average ambient 72 dB), the HRV wellness label was "below baseline" in 12 of 18 observations and movement was "elevated" in 15 of 18. Average duration from environment change to all wellness labels at baseline: 3 min 42 sec. During Quiet Instruction (average ambient 45 dB), HRV was "at baseline" in 16 of 18.</div>
+          <div class="ai-footer">The teacher may wish to explore this co-occurrence with the OT or discuss whether transition support strategies could be relevant.</div>
+        </div>
+        <div class="ai-card positive">
+          <div class="ai-hd" style="color:var(--green)"><span class="tag">OBSERVATION</span> Self-Return Latency Decreasing</div>
+          <div class="ai-body">Returns to within-range without a preceding adult voice event: 17 of 22 total (weeks 1–6). Average self-return latency has decreased from 34 sec (week 1) to 14 sec (current week). Current week: 4 of 4 returns were self-initiated. Average peak dB at self-return events: 64 dB, compared to 71 dB at prompted-return events.</div>
+          <div class="ai-footer">The teacher determines whether the decreasing latency and increasing self-return frequency are relevant to the student's self-awareness goals.</div>
+        </div>
+      </div>
+
+      <!-- AI: SLP -->
+      <div class="role-pane" id="rp-ai-slp">
+        <div class="ai-card observe">
+          <div class="ai-hd" style="color:var(--teal)"><span class="tag">PATTERN</span> Vocalization Frequency by Environment and Ambient dB</div>
+          <div class="ai-body">Vocalization counts across 18 observation periods: Group Activity (avg ambient 63 dB) averaged 28 vocalizations per period with mean interval of 2.1 min. Quiet Instruction (avg ambient 45 dB) averaged 12 vocalizations with mean interval of 8.2 min. Transition (avg ambient 72 dB) averaged 4 vocalizations with mean interval of 3.8 min.</div>
+          <div class="ai-footer">The SLP determines whether this vocalization distribution pattern is relevant to the student's communication goals or therapy plan.</div>
+        </div>
+        <div class="ai-card pattern">
+          <div class="ai-hd" style="color:var(--amber)"><span class="tag">PATTERN</span> Biometric Labels and Peak dB at Voice Events</div>
+          <div class="ai-body">When HRV was labeled "below baseline" at voice event onset (14 of 22 events), the average peak voice dB was 69 dB and average duration was 19 sec. When HRV was "at baseline" at onset (8 of 22 events), average peak was 61 dB and average duration was 11 sec. EDA was "above baseline" at onset in 16 of 22 events. These physiological labels and acoustic measurements are reported independently.</div>
+          <div class="ai-footer">The SLP determines whether the co-occurrence of physiological wellness labels with voice event acoustic measurements is relevant to their documentation or therapy approach.</div>
+        </div>
+        <div class="ai-card positive">
+          <div class="ai-hd" style="color:var(--green)"><span class="tag">OBSERVATION</span> Return Latency and Duration Trends</div>
+          <div class="ai-body">Average return-to-range latency: Week 1: 38 sec → Week 6 (current): 14 sec. Average event duration: Week 1: 28 sec → Week 6: 14 sec. Average peak dB at event: Week 1: 72 dB → Week 6: 64 dB. All three acoustic measurements show a consistent directional pattern across the observation period.</div>
+          <div class="ai-footer">The SLP determines whether these changes in acoustic measurements are clinically meaningful for the student's progress documentation.</div>
+        </div>
+      </div>
+
+      <!-- AI: OT -->
+      <div class="role-pane" id="rp-ai-ot">
+        <div class="ai-card observe">
+          <div class="ai-hd" style="color:var(--teal)"><span class="tag">PATTERN</span> Six-Stream Labels by Environment with Ambient dB</div>
+          <div class="ai-body">During Transitions (avg ambient 72 dB, 18 observations): HRV "below baseline" 12 of 18, EDA "above baseline" 14 of 18, movement "elevated" 15 of 18, heart rate "above baseline" 11 of 18, skin temp "at baseline" 16 of 18. Average duration from environment change to all labels at baseline: 3 min 42 sec (range: 1:18 – 8:45).<br><br>During Quiet Instruction (avg ambient 45 dB): All streams "at baseline" or "low" in 15+ of 18 observations. Average sustained within-range: 24 min 18 sec.</div>
+          <div class="ai-footer">Each physiological stream is reported independently as a baseline-referenced label. The OT determines how these co-occurring labels relate to the student's sensory profile and arousal patterns.</div>
+        </div>
+        <div class="ai-card pattern">
+          <div class="ai-hd" style="color:var(--amber)"><span class="tag">OBSERVATION</span> Daily Wellness Labels with Teacher Annotations</div>
+          <div class="ai-body">The platform displays each school day's wellness labels alongside any teacher-entered annotations for that day. Over the 18-day observation period, teacher annotations included morning routine notes on 16 days. The remaining 14 days had no morning annotations. Each day's sustained within-range duration, HRV label, and movement classification are available individually in the daily log for the OT to review.</div>
+          <div class="ai-footer">The platform displays daily data and teacher annotations side by side. The OT reviews individual days and identifies any patterns relevant to their professional recommendations.</div>
+        </div>
+        <div class="ai-card context">
+          <div class="ai-hd" style="color:var(--purple)"><span class="tag">OBSERVATION</span> EDA Label Changes and Voice Event Timestamps</div>
+          <div class="ai-body">The following timestamped observations were recorded on 14 of 22 voice volume event days:<br>• Skin conductance label changed to "above baseline" — timestamp recorded<br>• Voice volume event — timestamp recorded<br>• Movement classification changed from "low" to "moderate" — timestamp recorded<br><br>On the remaining 8 voice event days, EDA was "at baseline" at the time of the voice event and no movement classification change was logged prior to the event. All timestamps are available in the daily observation log for the OT to review.</div>
+          <div class="ai-footer">The platform logs independent timestamps for each label change. The OT reviews the timestamps and determines whether any temporal relationships are relevant to the student's documentation.</div>
+        </div>
+      </div>
+
+      <!-- AI: FAMILY -->
+      <div class="role-pane" id="rp-ai-family">
+        <div class="ai-card positive">
+          <div class="ai-hd" style="color:var(--green)"><span class="tag">WEEKLY PATTERN</span> Good Things Happening</div>
+          <div class="ai-body">This week, your child brought their voice back to a comfortable level on their own every single time — all 4 times — without any adult stepping in. It took them about 14 seconds each time, which is much faster than a few weeks ago when it took about 34 seconds. That is meaningful growth.</div>
+          <div class="ai-footer">Talk to your child's teacher or therapist about what this means for their goals.</div>
+        </div>
+        <div class="ai-card observe">
+          <div class="ai-hd" style="color:var(--teal)"><span class="tag">WEEKLY PATTERN</span> Calm Focus Growing</div>
+          <div class="ai-body">Your child's longest stretch of calm, focused behavior has grown from about 12 minutes a few weeks ago to over 28 minutes this week — during morning reading time from about 9:15 to 9:43 AM. They now have stretches of 20+ minutes nearly every day.</div>
+          <div class="ai-footer">Your child's school team can tell you more about how this relates to their learning goals.</div>
+        </div>
+        <div class="ai-card context">
+          <div class="ai-hd" style="color:var(--purple)"><span class="tag">WEEKLY PATTERN</span> Transitions</div>
+          <div class="ai-body">Most of the louder moments happen when your child is switching between activities — like going from one class to another, when things tend to be noisier. During quieter, structured class time, they tend to stay in a very comfortable range almost all day.</div>
+          <div class="ai-footer">This might be worth mentioning at your next IEP meeting. The school team may have ideas for supporting your child during these in-between times.</div>
+        </div>
+      </div>
+
+      <div style="background:var(--fog);border:1px solid var(--bdr);border-radius:var(--r);padding:14px;margin-top:14px">
+        <div style="font-size:10px;font-weight:700;color:var(--ink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">What the AI Does and Does Not Do</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:11.5px;line-height:1.7">
+          <div><strong style="color:var(--green)">✅ The platform observes:</strong><br>• dB levels, durations, timestamps, counts<br>• Ambient dB at time of events<br>• Co-occurrences between wellness labels<br>• Independent timestamps for label changes<br>• Duration from label change to label at baseline<br>• Daily observation logs with teacher annotations</div>
+          <div><strong style="color:var(--red)">🚫 The platform never:</strong><br>• Displays raw physiological values (BPM, ms, μS, °F)<br>• Calculates intervals between physiological and behavioral events<br>• Compares intervention days vs. non-intervention days<br>• Diagnoses any condition or state<br>• Combines biometrics into composite scores<br>• Recommends actions or interventions<br>• Uses clinical or medical language</div>
+        </div>
+        <div style="font-size:9px;color:var(--mut);margin-top:8px;font-style:italic">The device captures raw signals and immediately destroys them. The platform receives labels, counts, and acoustic measurements. The AI surfaces patterns in that data. The professional provides conclusions. This boundary is maintained in every observation the platform generates.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEC 6: TRENDS -->
+<div class="sec" id="sec-trend">
+  <div class="wrap">
+    <div style="text-align:center;padding:20px 0 10px">
+      <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.2em;text-transform:uppercase">Step 7 of 7</div>
+      <h2 style="font-family:&#39;Fraunces&#39;,serif;font-size:26px;color:#fff;font-weight:400;margin-top:4px">Progress Over Time — Raw Count and Measurement Trends</h2>
+      <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:4px">The platform displays event counts, acoustic measurements, and durations on a timeline. The qualified professional determines whether trends indicate progress.</p>
+    </div>
+    <div style="background:var(--pearl);border-radius:16px;padding:28px;margin-top:20px">
+      <div class="disclaimer"><strong>Graph display note:</strong> All graphs display raw event counts, raw durations (minutes), or raw proportions on the Y-axis. The X-axis displays school days. No trend lines, regression calculations, or directional indicators are computed by the platform. The visual arrangement of bars is chronological only. The qualified professional examines the data and determines whether any pattern constitutes progress, decline, or no change.</div>
+      <div class="card">
+        <div class="card-hd">📊 Voice Volume Events Per School Day — 30-Day Display</div>
+        <div style="display:flex;gap:4px;align-items:stretch">
+          <div style="display:flex;flex-direction:column;justify-content:space-between;font-size:8px;color:var(--mut);text-align:right;padding:0 4px 0 0;min-width:28px"><span>6</span><span>4</span><span>2</span><span>0</span></div>
+          <div class="trend-wrap" style="flex:1;margin-top:0"><div class="trend-bars" id="trend-vve"><div class="trend-bar" title="5" style="height: 80px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="4" style="height: 65px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="6" style="height: 95px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="3" style="height: 50px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="5" style="height: 80px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="4" style="height: 65px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="3" style="height: 50px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="4" style="height: 65px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="2" style="height: 35px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="3" style="height: 50px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="4" style="height: 65px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="2" style="height: 35px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="3" style="height: 50px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="2" style="height: 35px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="3" style="height: 50px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="2" style="height: 35px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="2" style="height: 35px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="3" style="height: 50px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="2" style="height: 35px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="2" style="height: 35px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="2" style="height: 35px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div><div class="trend-bar" title="1" style="height: 20px; background: rgb(11, 125, 110);"></div></div><div class="trend-labels"><span>Day 1 (Feb 17)</span><span>Day 10</span><span>Day 20</span><span>Day 30 (Mar 31)</span></div></div>
+        </div>
+        <div style="font-size:9px;color:var(--mut);margin-top:6px">Y-axis: raw event count per school day. Each bar = one school day's voice volume event total. Hover for exact count. The professional examines this data and determines whether any pattern is present.</div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-hd">📊 Returns Without Adult Voice — 30 Days</div>
+          <div style="display:flex;gap:4px;align-items:stretch">
+            <div style="display:flex;flex-direction:column;justify-content:space-between;font-size:8px;color:var(--mut);text-align:right;padding:0 4px 0 0;min-width:28px"><span>5</span><span>3</span><span>1</span><span>0</span></div>
+            <div class="trend-wrap" style="flex:1;margin-top:0"><div class="trend-bars" id="trend-self"><div class="trend-bar" title="1" style="height: 23px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="2" style="height: 41px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="1" style="height: 23px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="2" style="height: 41px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="2" style="height: 41px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="2" style="height: 41px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="2" style="height: 41px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="3" style="height: 59px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="5" style="height: 95px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="5" style="height: 95px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="4" style="height: 77px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="5" style="height: 95px; background: rgb(15, 123, 79);"></div><div class="trend-bar" title="5" style="height: 95px; background: rgb(15, 123, 79);"></div></div><div class="trend-labels"><span>Day 1</span><span>Day 10</span><span>Day 20</span><span>Day 30</span></div></div>
+          </div>
+          <div style="font-size:9px;color:var(--mut);margin-top:6px">Y-axis: raw count of returns without adult voice per day.</div>
+        </div>
+        <div class="card">
+          <div class="card-hd">📊 Longest Sustained Period (min) — 30 Days</div>
+          <div style="display:flex;gap:4px;align-items:stretch">
+            <div style="display:flex;flex-direction:column;justify-content:space-between;font-size:8px;color:var(--mut);text-align:right;padding:0 4px 0 0;min-width:28px"><span>32</span><span>20</span><span>10</span><span>0</span></div>
+            <div class="trend-wrap" style="flex:1;margin-top:0"><div class="trend-bars" id="trend-sus"><div class="trend-bar" title="8" style="height: 30.7143px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="10" style="height: 37.1429px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="12" style="height: 43.5714px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="9" style="height: 33.9286px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="14" style="height: 50px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="11" style="height: 40.3571px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="15" style="height: 53.2143px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="13" style="height: 46.7857px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="16" style="height: 56.4286px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="14" style="height: 50px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="18" style="height: 62.8571px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="15" style="height: 53.2143px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="19" style="height: 66.0714px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="17" style="height: 59.6429px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="20" style="height: 69.2857px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="18" style="height: 62.8571px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="22" style="height: 75.7143px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="19" style="height: 66.0714px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="24" style="height: 82.1429px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="20" style="height: 69.2857px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="23" style="height: 78.9286px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="22" style="height: 75.7143px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="25" style="height: 85.3571px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="24" style="height: 82.1429px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="26" style="height: 88.5714px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="25" style="height: 85.3571px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="28" style="height: 95px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="26" style="height: 88.5714px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="28" style="height: 95px; background: rgb(184, 136, 46);"></div><div class="trend-bar" title="28" style="height: 95px; background: rgb(184, 136, 46);"></div></div><div class="trend-labels"><span>Day 1</span><span>Day 10</span><span>Day 20</span><span>Day 30</span></div></div>
+          </div>
+          <div style="font-size:9px;color:var(--mut);margin-top:6px">Y-axis: minutes. Longest sustained within-range period per day.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd">📋 IEP Progress Report Data Summary — Quarterly (Feb 24 – Mar 31, 18 School Days)</div>
+        <div style="font-size:12px;color:var(--slate);line-height:1.8;padding:4px 0">
+          <div style="padding:6px 0;border-bottom:1px solid var(--fog)"><strong>Goal 1 — Voice Volume:</strong> Total VVE: 22. RTR: 22 of 22. Self-returns: 17 of 22. Prompted: 5 of 22. Average peak dB: 66 (range 58–78). Average event duration: 16.2 sec. Average return latency: 18.4 sec. Average ambient dB at event: 64.</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--fog)"><strong>Goal 2 — Self-Correction:</strong> Returns without adult voice: 17 of 22. Average self-return latency: 16.1 sec (vs. 24.8 sec for prompted returns). Average peak dB at self-returns: 64 (vs. 71 for prompted).</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--fog)"><strong>Goal 3 — Sustained Engagement:</strong> Periods ≥20 min: 28 across 18 days. Longest: 32 min 14 sec. Days with ≥1 period of 20+ min: 16 of 18. Average sustained: 24 min 18 sec. HRV "at baseline" during sustained periods: 26 of 28. Movement "low": 27 of 28.</div>
+          <div style="padding:6px 0"><strong>Goal 4 — Arousal Awareness (OT):</strong> Transition HRV below baseline: 12 of 18. Transition EDA above baseline: 14 of 18. Average duration from environment change to all labels at baseline: 3 min 42 sec. Quiet Instruction all labels at baseline: 15+ of 18. Average ambient dB — Transition: 72. Quiet Instruction: 45.</div>
+        </div>
+        <div style="font-size:9px;color:var(--mut);margin-top:10px;padding:10px;background:var(--fog);border-radius:6px;border:1px solid var(--bdr);font-style:italic"><strong>Data classification and compliance note:</strong> Voice volume in dB, ambient sound in dB, event counts, durations in seconds and minutes, latencies, vocalization counts, and timestamps are acoustic and behavioral observations displayed as raw measurements — equivalent to a sound level meter, stopwatch, and tally counter. Heart rate, HRV, skin conductance, and skin temperature are physiological wellness indicators displayed as baseline-referenced labels only (above / at / below personal baseline) — not raw physiological measurements. Each physiological stream is independently reported and never combined into composite scores or indices. This data is formatted for entry into Georgia GO-IEP and Tennessee IEP progress monitoring systems. The qualified professional writes the progress determination (e.g., "adequate progress," "goal met," "insufficient progress") based on their review of these observations and their independent professional judgment. This report contains objective behavioral, acoustic, and physiological observations generated by a general wellness awareness tool and does not constitute a clinical evaluation, diagnosis, or treatment recommendation.</div>
+      </div>
+      <div style="text-align:center;padding:22px 28px;background:linear-gradient(135deg,var(--ink),var(--navy));border-radius:var(--r);color:#fff;margin-top:16px">
+        <div style="font-family:&#39;Fraunces&#39;,serif;font-size:18px;font-weight:400;margin-bottom:4px">Ready to see AVVOF™ in your school?</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);max-width:500px;margin:0 auto">30-day no-cost discovery pilot. 5 students. Your team decides.</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--teal2)">info@sensorybridges.com · sensorybridges.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><div class="wrap">
+
+  <!-- Opt-out toggle -->
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px;margin-bottom:16px;text-align:left">
+    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">🔒 Data Collection Controls</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;font-size:11px">
+      <label style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.35);cursor:pointer"><input type="checkbox" checked="" onchange="toggleSensor(&#39;voice&#39;,this.checked)"> Voice Volume (dB)</label>
+      <label style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.35);cursor:pointer"><input type="checkbox" checked="" onchange="toggleSensor(&#39;hr&#39;,this.checked)"> Heart Rate / HRV</label>
+      <label style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.35);cursor:pointer"><input type="checkbox" checked="" onchange="toggleSensor(&#39;eda&#39;,this.checked)"> Skin Conductance</label>
+      <label style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.35);cursor:pointer"><input type="checkbox" checked="" onchange="toggleSensor(&#39;move&#39;,this.checked)"> Movement</label>
+      <label style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.35);cursor:pointer"><input type="checkbox" checked="" onchange="toggleSensor(&#39;temp&#39;,this.checked)"> Skin Temperature</label>
+      <label style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.35);cursor:pointer"><input type="checkbox" checked="" onchange="toggleSensor(&#39;ambient&#39;,this.checked)"> Ambient Sound</label>
+    </div>
+    <div style="font-size:9px;color:rgba(255,255,255,.2);margin-top:6px">Each sensor stream can be independently enabled or disabled by the authorized adult (parent, guardian, or school administrator) at any time. Disabled sensors do not collect, process, or transmit any data. Changes take effect immediately on the device.</div>
+  </div>
+
+  <!-- Privacy Policy -->
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px;margin-bottom:16px;text-align:left">
+    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">📋 Privacy Policy Summary</div>
+    <div style="font-size:10px;color:rgba(255,255,255,.25);line-height:1.8">
+      <strong style="color:rgba(255,255,255,.4)">What is collected:</strong> Voice volume amplitude (dB), ambient sound level (dB), event timestamps, event durations, environment classification labels, and physiological wellness labels (above / at / below personal baseline for heart rate, HRV, skin conductance, skin temperature, and movement). No audio content, speech content, words, or conversation is ever recorded, stored, or transmitted.<br><br>
+      <strong style="color:rgba(255,255,255,.4)">What is NOT collected:</strong> No audio recordings. No speech content. No words or language. No raw physiological values (no BPM, ms, μS, or °F). No location data in the school deployment. No photographs or images. No student names in the data stream — all data is linked to a de-identified student code assigned by the school administrator.<br><br>
+      <strong style="color:rgba(255,255,255,.4)">On-device processing:</strong> All raw sensor signals are processed on the Samsung Galaxy Watch 8 Exynos W1000 chip and immediately destroyed. The 10-second rolling audio buffer continuously overwrites. No raw sensor data is ever stored on the device or transmitted anywhere. Only derived wellness labels, event counts, durations, and acoustic measurements (dB) leave the device.<br><br>
+      <strong style="color:rgba(255,255,255,.4)">Data transmission:</strong> Observation data syncs from the device to the school's platform instance via Knox-secured BLE connection at the end of the school day on the school's WiFi network only. Data is encrypted in transit (TLS 1.3) and at rest (AES-256). No data is transmitted to any cloud service, third party, or external server outside the school's platform instance.<br><br>
+      <strong style="color:rgba(255,255,255,.4)">Data retention:</strong> Observation data is retained for the current IEP cycle (typically one academic year) and automatically purged at the end of the retention period unless the authorized adult requests extension. Data can be deleted at any time by the authorized adult (parent/guardian) or school administrator.<br><br>
+      <strong style="color:rgba(255,255,255,.4)">Cookies and tracking:</strong> This demo uses no cookies, no tracking pixels, no analytics scripts, and no third-party code. The production platform will use only essential session cookies required for user authentication — never advertising cookies, tracking cookies, or third-party analytics. No data from the platform is shared with advertisers, data brokers, or any third party.<br><br>
+      <strong style="color:rgba(255,255,255,.4)">Opt-out:</strong> Any sensor stream can be independently disabled at any time by the authorized adult. The device can be completely deactivated by the authorized adult or school administrator at any time. All data collection ceases immediately upon deactivation. Previously collected data can be deleted upon request.
+    </div>
+  </div>
+
+  <!-- FERPA / COPPA Compliance -->
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px;margin-bottom:16px;text-align:left">
+    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">🏛️ FERPA &amp; COPPA Compliance</div>
+    <div style="font-size:10px;color:rgba(255,255,255,.25);line-height:1.8">
+      <strong style="color:rgba(255,255,255,.4)">FERPA (Family Educational Rights and Privacy Act, 20 U.S.C. § 1232g):</strong> All observation data generated by the Brooks Band is classified as an education record under FERPA when used in a school setting. The school district is the data controller. Sensory Bridges, Inc. operates as a "school official" under a FERPA-compliant Data Processing Agreement (DPA) with the district, providing services the district would otherwise provide itself. Parents and eligible students retain all FERPA rights including the right to inspect, review, request amendment, and request deletion of all observation data. Data is shared only with school officials with a legitimate educational interest as defined by the district's annual FERPA notification. No observation data is disclosed to any third party without prior written parent consent or an applicable FERPA exception. The platform supports FERPA-compliant directory information exclusion — no student names appear in the data stream.<br><br>
+      <strong style="color:rgba(255,255,255,.4)">COPPA (Children's Online Privacy Protection Act, 15 U.S.C. §§ 6501–6506):</strong> The Brooks Band collects data from children under 13 in a school setting. Under COPPA's school exception, the school may consent on behalf of the parent for the collection of student data for educational purposes only, provided the school has obtained the parent's consent for the use of the device (as required by IDEA assistive technology provisions and the student's IEP). No data collected under the school exception is used for any commercial purpose. No data is shared with third parties for non-educational purposes. The platform collects no persistent identifiers (no device IDs, advertising IDs, or cookies that track children across sites). Parents retain the right to review, request deletion of, and refuse further collection of their child's data at any time. Sensory Bridges, Inc. maintains a COPPA-compliant data retention and deletion policy.<br><br>
+      <strong style="color:rgba(255,255,255,.4)">IDEA (Individuals with Disabilities Education Act, 20 U.S.C. § 1400 et seq.):</strong> The Brooks Band is positioned as an assistive technology device under IDEA § 300.5. Its use is documented in the student's IEP as determined by the IEP team. All observation data supports the IEP team's documentation and progress monitoring requirements under 34 CFR § 300.320(a)(3). The platform does not make educational placement, eligibility, or service decisions — those are made by the IEP team using their professional judgment.
+    </div>
+  </div>
+
+  <!-- Legal footer -->
+  AVVOF™ · Brooks Band™ · Sensory Bridges, Inc. · Chattanooga, TN<br>
+  © 2026 Sensory Bridges, Inc. All rights reserved.<br>
+  General wellness assistive technology. Not intended to diagnose, treat, cure, or prevent any disease or condition.<br>
+  Demo contains simulated data only. No real student data. No personally identifiable information.<br>
+  All IEP and service decisions require qualified licensed professionals.<br>
+  This demo uses no cookies, no tracking pixels, and no third-party analytics.<br>
+  Acoustic data (voice volume, ambient sound) is displayed as raw decibel measurements. Physiological data (heart rate, HRV, skin conductance, skin temperature) is displayed as baseline-referenced wellness labels only.<br>
+  All data is intended to support qualified professionals in their own assessments and does not constitute a clinical evaluation, diagnosis, or treatment recommendation.<br>
+  <span style="color:rgba(255,255,255,.25);cursor:pointer" onclick="document.getElementById(&#39;sec-privacy-detail&#39;).style.display=document.getElementById(&#39;sec-privacy-detail&#39;).style.display===&#39;none&#39;?&#39;block&#39;:&#39;none&#39;">View Full Privacy Policy · FERPA Notice · COPPA Notice</span>
+  <div id="sec-privacy-detail" style="display:none;margin-top:10px;text-align:left;font-size:9px;color:rgba(255,255,255,.2);line-height:1.7;max-width:800px;margin-left:auto;margin-right:auto">
+    For the complete Privacy Policy, FERPA Annual Notification Template, COPPA Compliance Documentation, Data Processing Agreement, and Data Retention Schedule, contact: privacy@sensorybridges.com. Sensory Bridges, Inc. will provide a complete Data Processing Agreement to any school district prior to device deployment. The DPA will be reviewed and approved by the district's legal counsel and FERPA compliance officer before any student data is collected.
+  </div>
+</div></div>
+
+<script>
+let voiceState='ok',envState='qi';
+const envNames={qi:'Quiet Instruction',ga:'Group Activity',tr:'Transition',ha:'Unstructured / High-Ambient'};
+const envDb={qi:48,ga:62,tr:74,ha:84};
+const voiceDb={ok:42,mid:56,hi:68,st:46};
+const voiceColors={ok:'#0f7b4f',mid:'#cc7a00',hi:'#c04040',st:'#5a3e8a'};
+const voiceLabels={ok:'WITHIN RANGE',mid:'ABOVE RANGE',hi:'WELL ABOVE',st:'RETURNING'};
+const voiceStatusClass={ok:'ok',mid:'mid',hi:'hi',st:'st'};
+const bioStates={
+  ok:{hr:'At personal baseline',eda:'At personal baseline',move:'Low',temp:'At personal baseline'},
+  mid:{hr:'Slightly below baseline',eda:'Above personal baseline',move:'Moderate',temp:'At personal baseline'},
+  hi:{hr:'Below personal baseline',eda:'Above personal baseline',move:'Elevated',temp:'At personal baseline'},
+  st:{hr:'At personal baseline',eda:'At personal baseline',move:'Low',temp:'At personal baseline'}
+};
+function setVoice(s){
+  voiceState=s;
+  const db=voiceDb[s]+Math.floor(Math.random()*4-2);
+  document.getElementById('w-db').innerHTML=db+' <span>dB</span>';
+  document.getElementById('w-db').style.color=voiceColors[s];
+  const st=document.getElementById('w-status');
+  st.textContent=voiceLabels[s];st.className='wf-status '+voiceStatusClass[s];
+  document.getElementById('w-ring').className='wf-ring '+voiceStatusClass[s];
+  document.getElementById('sv-voice').textContent=db+' dB';
+  const bio=bioStates[s];
+  document.getElementById('sv-hr').textContent=bio.hr;
+  document.getElementById('sv-eda').textContent=bio.eda;
+  document.getElementById('sv-move').textContent=bio.move;
+  document.getElementById('sv-temp').textContent=bio.temp;
+}
+function setEnv(e){
+  envState=e;
+  document.querySelectorAll('.ctrl-btn.env').forEach(b=>b.classList.remove('active'));
+  document.getElementById('env-'+e).classList.add('active');
+  document.getElementById('sv-ambient').textContent=envDb[e]+' dB';
+  document.getElementById('sr-ambient').querySelector('.sensor-base').textContent='Environment: '+envNames[e]+' · All roles';
+}
+function buildWF(){const w=document.getElementById('wf');if(!w)return;w.innerHTML='';for(let i=0;i<60;i++){const b=document.createElement('div');b.className='wf-bar';b.style.height=(Math.random()*30+4)+'px';w.appendChild(b);}}
+function animWF(){const w=document.getElementById('wf');if(!w)return;const bars=w.querySelectorAll('.wf-bar');const mx={ok:24,mid:44,hi:60,st:28},mn={ok:3,mid:8,hi:16,st:3};bars.forEach(b=>{b.style.height=(Math.random()*(mx[voiceState]-mn[voiceState])+mn[voiceState])+'px';b.style.background=voiceColors[voiceState];});}
+function buildTrend(id,data,color){const el=document.getElementById(id);if(!el)return;const max=Math.max(...data);el.innerHTML='';data.forEach(v=>{const b=document.createElement('div');b.className='trend-bar';b.style.height=(max>0?(v/max)*90+5:5)+'px';b.style.background=color||'var(--teal)';b.title=v;el.appendChild(b);});}
+function showSec(id){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-pill').forEach(p=>p.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0,0);
+}
+function showRole(id){
+  const container=event.target.closest('.role-tabs').parentElement;
+  container.querySelectorAll('.role-pane').forEach(p=>p.classList.remove('active'));
+  container.querySelectorAll('.role-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('rp-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+function showAI(id){
+  const container=event.target.closest('.role-tabs').parentElement;
+  container.querySelectorAll('.role-pane').forEach(p=>p.classList.remove('active'));
+  container.querySelectorAll('.role-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('rp-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+function updateTime(){const now=new Date();let h=now.getHours(),m=now.getMinutes();document.getElementById('w-time').textContent=(h>12?h-12:h)+':'+(m<10?'0':'')+m;}
+function toggleSensor(sensor,enabled){
+  const map={voice:'sr-voice',hr:'sr-hr',eda:'sr-eda',move:'sr-move',temp:'sr-temp',ambient:'sr-ambient'};
+  const el=document.getElementById(map[sensor]);
+  if(el){el.style.opacity=enabled?'1':'0.25';el.style.textDecoration=enabled?'none':'line-through';}
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  buildWF();setVoice('ok');setEnv('qi');
+  updateTime();setInterval(updateTime,30000);
+  buildTrend('trend-vve',[5,4,6,3,5,4,3,4,2,3,4,2,3,2,3,2,1,2,3,1,2,1,2,1,1,2,1,1,1,1],'#0b7d6e');
+  buildTrend('trend-self',[1,2,1,2,2,3,2,3,3,2,3,3,3,3,4,3,4,3,4,4,3,4,4,4,5,4,5,4,5,5],'#0f7b4f');
+  buildTrend('trend-sus',[8,10,12,9,14,11,15,13,16,14,18,15,19,17,20,18,22,19,24,20,23,22,25,24,26,25,28,26,28,28],'#b8882e');
+});
+setInterval(animWF,200);
+</script>
+
+
+</body><div id="aiFabShadowRoot" data-fab-type="react" style="opacity: 1;"><template shadowrootmode="open"><div id="fab-react-root"><div class="fab-root"><div class="acrobat-button-container " style="bottom: 36px;"><div class="acrobat-button " role="button" aria-label="Get summaries and key insights using AI Assistant"><button class="close-btn  "><svg class="close-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_8552_7892" maskUnits="userSpaceOnUse" x="0" y="0" width="14" height="14" style="mask-type: alpha;"><path d="M7.82482 7.00034L10.6374 4.18778C10.7893 4.03592 10.7893 3.78969 10.6374 3.63783L10.3625 3.36292C10.2106 3.21106 9.96446 3.21106 9.81255 3.36292L6.99995 6.17548L4.18734 3.36292C4.03543 3.21106 3.78933 3.21106 3.63743 3.36292L3.36247 3.63783C3.21056 3.78969 3.21056 4.03592 3.36247 4.18778L6.17507 7.00034L3.36247 9.81295C3.21056 9.96481 3.21056 10.2111 3.36247 10.3629L3.63743 10.6378C3.78933 10.7897 4.03543 10.7897 4.18734 10.6378L6.99995 7.82526L9.81255 10.6378C9.96446 10.7897 10.2106 10.7897 10.3625 10.6378L10.6374 10.3629C10.7893 10.2111 10.7893 9.96481 10.6374 9.81295L7.82482 7.00034Z" fill="#222222"></path></mask><g mask="url(#mask0_8552_7892)"><rect width="14" height="14"></rect></g></svg><svg class="burger-icon" width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_12188_28876" maskUnits="userSpaceOnUse" x="3" y="3" width="15" height="14" style="mask-type: alpha;"><path d="M15.1285 12.8008H6.37852C6.08867 12.8008 5.85352 13.0359 5.85352 13.3258C5.85352 13.6156 6.08867 13.8508 6.37852 13.8508H15.1285C15.4184 13.8508 15.6535 13.6156 15.6535 13.3258C15.6535 13.0359 15.4184 12.8008 15.1285 12.8008Z" fill="#292929"></path><path d="M6.37852 6.85078H15.1285C15.4184 6.85078 15.6535 6.61562 15.6535 6.32578C15.6535 6.03594 15.4184 5.80078 15.1285 5.80078H6.37852C6.08867 5.80078 5.85352 6.03594 5.85352 6.32578C5.85352 6.61562 6.08867 6.85078 6.37852 6.85078Z" fill="#292929"></path><path d="M15.1285 9.30078H6.37852C6.08867 9.30078 5.85352 9.53594 5.85352 9.82578C5.85352 10.1156 6.08867 10.3508 6.37852 10.3508H15.1285C15.4184 10.3508 15.6535 10.1156 15.6535 9.82578C15.6535 9.53594 15.4184 9.30078 15.1285 9.30078Z" fill="#292929"></path></mask><g mask="url(#mask0_12188_28876)"><rect x="3.75391" y="3" width="14" height="14" fill="#464646"></rect></g></svg></button><div class="icon-container" role="button" tabindex="0" aria-label="Open AI Assistant"><svg id="ImportedIcons" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="fab-svg-icon"><path d="m6.21661,16.39534c-1.35034,2.23499-2.67933,3.64758-3.45616,3.64758-.12795.00539-.25276-.04056-.34667-.12762-.14818-.12483-.21629-.32065-.17758-.5105.14764-.80079,1.68628-1.95576,3.98041-3.00946Zm6.49075-3.19656c-.57993.12528-1.1792.27056-1.78689.43544-.4366.11893-.87951.24862-1.32255.38729.23541-.4949.4515-.98554.6398-1.452.24831-.6159.48156-1.232.69564-1.83456.18831.30354.38304.59839.58195.88207.39375.56092.81787,1.09736,1.19205,1.58176Zm-2.99822-10.63684c.08814-.18001.26644-.29855.46653-.31016.51149,0,.62276.63358.62276,1.1638-.06787,1.25011-.29293,2.48669-.66988,3.68055-.85816-2.33642-.73831-3.97319-.41942-4.53419h.00001Zm9.60883,12.20974c-.13359.4402-.56725.71808-1.023.6555-.15594-.00061-.3112-.02054-.46224-.05933-1.07834-.28263-2.07953-.80363-2.92976-1.5246.71719-.11267,1.44198-.17001,2.16797-.17149.48402-.00813.96771.03017,1.44442.11438.43447.09244.92449.33873.80261.98554Zm1.45515-1.0537c-1.01837-.83309-2.33117-1.21735-3.63802-1.06487-.98482.00983-1.96732.09739-2.93836.26187-.62354-.62512-1.19003-1.30467-1.69272-2.03054-.38314-.54455-.73672-1.10931-1.05923-1.69182.54287-1.57384.85986-3.2167.94151-4.87953,0-1.49369-.57564-3.09087-2.19132-3.09087-.56296.01952-1.07528.33036-1.35261.82066-.68906,1.2165-.41298,3.72002.68705,6.26756-.38306,1.17041-.80046,2.31007-1.31196,3.57265-.43687,1.08123-.93191,2.13803-1.48293,3.16579-1.64775.68213-5.15115,2.33642-5.48494,4.16456-.10306.53569.0783,1.08658.47942,1.45629.39145.35044.90217.53779,1.42737.5236,2.10998,0,4.21366-3.003,5.63044-5.58789.80461-.2816,1.62641-.53671,2.44391-.759.8967-.24407,1.76345-.44427,2.58082-.594,1.39014,1.39224,3.25004,2.21523,5.21531,2.30773,1.36751,0,1.87887-.60942,2.06516-1.122.20733-.5893.08589-1.24438-.3189-1.72019Z" fill="var(--iconRed, #d31510)" fill-rule="evenodd"></path></svg></div></div><div class="draggable-handle "><svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.60039 13.0699C5.26313 13.0699 5.80039 12.5327 5.80039 11.8699C5.80039 11.2072 5.26313 10.6699 4.60039 10.6699C3.93765 10.6699 3.40039 11.2072 3.40039 11.8699C3.40039 12.5327 3.93765 13.0699 4.60039 13.0699Z" fill="#292929"></path><path d="M4.60039 8.27109C5.26313 8.27109 5.80039 7.73384 5.80039 7.07109C5.80039 6.40835 5.26313 5.87109 4.60039 5.87109C3.93765 5.87109 3.40039 6.40835 3.40039 7.07109C3.40039 7.73384 3.93765 8.27109 4.60039 8.27109Z" fill="#292929"></path><path d="M4.60039 3.47031C5.26313 3.47031 5.80039 2.93305 5.80039 2.27031C5.80039 1.60757 5.26313 1.07031 4.60039 1.07031C3.93765 1.07031 3.40039 1.60757 3.40039 2.27031C3.40039 2.93305 3.93765 3.47031 4.60039 3.47031Z" fill="#292929"></path><path d="M9.4002 13.0699C10.0629 13.0699 10.6002 12.5327 10.6002 11.8699C10.6002 11.2072 10.0629 10.6699 9.4002 10.6699C8.73745 10.6699 8.2002 11.2072 8.2002 11.8699C8.2002 12.5327 8.73745 13.0699 9.4002 13.0699Z" fill="#292929"></path><path d="M9.4002 8.27109C10.0629 8.27109 10.6002 7.73384 10.6002 7.07109C10.6002 6.40835 10.0629 5.87109 9.4002 5.87109C8.73745 5.87109 8.2002 6.40835 8.2002 7.07109C8.2002 7.73384 8.73745 8.27109 9.4002 8.27109Z" fill="#292929"></path><path d="M9.4002 3.47031C10.0629 3.47031 10.6002 2.93305 10.6002 2.27031C10.6002 1.60757 10.0629 1.07031 9.4002 1.07031C8.73745 1.07031 8.2002 1.60757 8.2002 2.27031C8.2002 2.93305 8.73745 3.47031 9.4002 3.47031Z" fill="#292929"></path></svg></div></div></div></div><style>
+    .acrobat-button-container {
+        position: fixed;
+        right: 0;
+        bottom: 36px;
+        z-index: 2147483646;
+        visibility: visible !important;
+        pointer-events: all;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    @media print {
+        .acrobat-button-container {
+            display: none !important;
+        }
+    }
+
+    .acrobat-button {
+        position: relative;
+        background: white;
+        display: flex;
+        align-items: center;
+        pointer-events: all;
+        touch-action: none;
+        box-shadow: 0px 2px 8px 0px #00000029;
+        height: 34px;
+        width: 34px;
+        border: 1px solid transparent;
+        background-clip: padding-box, border-box;
+        background-origin: border-box;
+        background-image: linear-gradient(white, white),
+                        linear-gradient(95.85deg, #D73220 0%, #D92361 33%, #7155FA 100%);
+        border-radius: 18px;
+        justify-content: right;
+        margin-right: var(--fab-margin-right, 28px);
+        overflow: hidden;
+    }
+
+    .acrobat-button-container-transparent {
+        opacity: 0.4 !important;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .acrobat-button-container-transparent:hover,
+    .acrobat-button-container-transparent:focus,
+    .acrobat-button-container-transparent:active {
+        opacity: 1;
+    }
+
+    .acrobat-button > svg {
+        flex-shrink: 0;
+        margin: 4px 5px 5px 5px;
+        width: 22px;
+        height: 22px;
+        pointer-events: none;
+        fill: #b40000;
+    }
+    .acrobat-button:has(.close-btn.open),
+    .expand-acrobat-button {
+        width: 64px;
+    }
+
+    .disabled {
+        background: #B1B1B1;
+    }
+
+    .tooltip-text {
+        width: 160px;
+        visibility: hidden;
+        opacity: 0;
+        background-color: #FFFFFF;
+        color: #292929;
+        border-radius: 7px;
+        padding: 4px 1px 5px 9px;
+        position: absolute;
+        z-index: 1;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 10px;
+        transition: opacity 0.3s, visibility 0s linear 2s;
+        font-size: 12px;
+        line-height: 15px;
+        font-family: 'adobe-clean', Adobe Clean, sans-serif;
+        filter: drop-shadow(0px 1px 6px rgba(0, 0, 0, 0.12));
+    }
+
+    .tooltip-text::after {
+       content: '';
+       position: absolute;
+       top: 50%;
+       left: 100%;
+       transform: translateY(-50%);
+       border-width: 6px;
+       border-style: solid;
+       border-color: transparent transparent transparent #fff;
+    }
+
+    .show-tooltip {
+        visibility: visible;
+        opacity: 1;
+        line-height: 1.5;
+        font-family: 'adobe-clean', Adobe Clean, sans-serif;
+        transition: opacity 0.3s;
+        transition-delay: 500ms;
+    }
+
+    .close-btn {
+        position: relative;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .close-btn svg {
+        fill: #464646;
+    }
+
+    .close-btn.showCloseButton {
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        padding: 2px;
+    }
+
+    .fab-view-settings-dialog {
+        display: none;
+        position: absolute;
+        bottom: 40px;
+        z-index: 1;
+    }
+
+    .close-btn:hover {
+        background: #E6E6E6;
+        border-radius: 50%; /* Keep original circular hover */
+        cursor: pointer;
+    }
+
+    .fab-view-settings-dialog.showDialog {
+        display: block;
+    }
+    .close-btn .burger-icon {
+        display: inline;
+        margin-bottom: 2px;
+    }
+    .close-btn .close-icon {
+        display: none;
+    }
+    .close-btn.open .burger-icon {
+        display: none;
+    }
+    .close-btn.open .close-icon {
+        display: inline;
+    }
+    .tooltip-text .tooltip-text-content {
+        font-weight: bold;
+    }
+    .tooltip-text .tooltip-sub-text-text {
+        font-style: italic;
+        font-size: 11px;
+    }
+
+    /* Icon container styles - replaces iframe */
+    .icon-container {
+        width: 33px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: grab;
+        pointer-events: all;
+        flex-shrink: 0;
+        background: transparent;
+        border: none;
+    }
+
+    .icon-container:active {
+        cursor: grabbing;
+    }
+
+    .fab-svg-icon {
+        width: 22px;
+        height: 22px;
+        padding: 5px 5px 5px 6px;
+        pointer-events: none;
+        fill: #b40000;
+    }
+
+    .draggable-handle {
+        display: none;
+        position: absolute;
+        right: var(--drag-handle-right, 12px);
+        cursor: grab;
+    }
+    .draggable-handle-visible {
+        display: flex;
+    }
+
+    /* Font face declarations - for proper font loading in Shadow DOM */
+    @font-face {
+        font-family: 'adobe-clean';
+        font-weight: 400;
+        src: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/css/fonts/AdobeClean-Regular.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'adobe-clean';
+        font-weight: 700;
+        src: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/css/fonts/AdobeClean-Bold.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'AdobeClean-Regular';
+        src: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/css/fonts/AdobeClean-Regular.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'AdobeClean-Bold';
+        src: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/css/fonts/AdobeClean-Bold.otf') format('opentype');
+    }
+    body {
+        font-family: 'AdobeClean-Regular', adobe-clean, "Adobe Clean", sans-serif;
+    }
+
+    .dialog-container {
+        width: 166px;
+        background-color: #ffffff;
+        border-radius: 4px;
+        border: 1px solid #B1B1B1;
+        box-shadow: 0px 1px 4px 0px #00000026;
+        z-index: 1000;
+        padding: 4px;
+        position: relative;
+        margin: 4px 0px;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu .menu_item {
+        cursor: pointer;
+        font-family: 'AdobeClean-Regular', adobe-clean, "Adobe Clean", sans-serif;
+        align-content: center;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18.2px;
+        text-align: left;
+        color: #222222;
+        padding: 0px 12px;
+        height: 32px;
+        width: 140px;
+    }
+
+    .menu .menu_item:hover {
+        background-color: #eaeaea;
+    }
+
+    .preferences {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18.2px;
+        text-align: left;
+        color: #464646;
+    }
+
+    .divider {
+        border-top: 1px solid #E6E6E6;
+    }
+
+    /* React-specific wrappers - minimal */
+    .fab-root {
+        font-family: 'adobe-clean', Adobe Clean, sans-serif;
+    }
+
+    button.close-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 10; /* Ensure clickable above all other elements */
+        pointer-events: auto;
+    }
+
+    /* FAB Action Pills - From Figma Design */
+    .fab-pills-container {
+        position: absolute;
+        bottom: 42px; /* FAB height (34px) + gap (8px) = 42px */
+        right: var(--fab-margin-right, 28px);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-end;
+        width: 142px;
+        z-index: 1;
+    }
+
+    .fab-pills-container.pills-below {
+        bottom: auto;
+        top: 42px; /* Same gap when positioned below */
+    }
+
+    /* Extend hover area using ::after pseudo-element - doesn't affect visual layout */
+    .fab-pills-container::after {
+        content: '';
+        position: absolute;
+        top: 100%; /* Start right after the pills content */
+        left: 0;
+        right: 0;
+        height: 8px;
+        background: transparent;
+        pointer-events: auto;
+    }
+
+    .fab-pills-container.pills-below::after {
+        top: auto;
+        bottom: 100%; /* Start right before the pills when positioned below */
+    }
+
+    /* FTE Header - First Time Experience (56px with close button) */
+    .fab-fte-header {
+        position: relative;
+        width: 142px;
+        min-height: 56px;
+        background: #FFFFFF;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 0px 2px 0px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    .fab-fte-background {
+        position: absolute;
+        left: -13px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 183.33px;
+        height: 126.82px;
+        background: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/images/fab-header-background.svg') no-repeat center;
+        background-size: cover;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .fab-fte-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 2;
+        color: #222222;
+        padding: 0;
+    }
+
+    .fab-fte-close:hover {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+    }
+
+    .fab-fte-close svg {
+        width: 8px;
+        height: 8px;
+    }
+
+    .fab-fte-text {
+        position: relative;
+        width: 102px;
+        font-family: 'AdobeClean-Bold', adobe-clean, sans-serif;
+        font-weight: 400; /* Use Bold font file directly, not synthetic bold */
+        font-size: 12px;
+        line-height: 16px;
+        color: #222222; /* Figma spec color */
+        z-index: 1;
+        white-space: normal;
+        word-wrap: break-word;
+        margin-left: 16px;
+        margin-right: auto;
+        box-sizing: border-box;
+        -webkit-font-smoothing: subpixel-antialiased; /* Better font rendering */
+        -moz-osx-font-smoothing: auto;
+    }
+
+    /* Hover Header - Normal state (24px without close button) */
+    .fab-hover-header {
+        position: relative;
+        width: 142px;
+        min-height: 24px;
+        background: #FFFFFF; /* White background to show the colorful SVG and text */
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 0px 2px 0px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .fab-hover-background {
+        position: absolute;
+        left: -27px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 212.63px;
+        height: 147.09px;
+        background: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/images/fab-header-background.svg') no-repeat center;
+        background-size: cover;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .fab-hover-text {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'AdobeClean-Bold', adobe-clean, sans-serif;
+        font-weight: 400; /* Use Bold font file directly, not synthetic bold */
+        font-size: 12px;
+        line-height: 15px;
+        color: #222222; /* Figma spec color */
+        z-index: 1;
+        white-space: normal;
+        padding: 4px 9px;
+        box-sizing: border-box;
+        -webkit-font-smoothing: subpixel-antialiased; /* Better font rendering */
+        -moz-osx-font-smoothing: auto;
+    }
+
+    /* Individual Pill Buttons */
+    .fab-pill-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+        width: 142px;
+        min-height: 24px; /* Min height, allows growth with content */
+        background: #FFFFFF;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 0px 2px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.2s ease;
+        overflow: visible;
+    }
+
+    .fab-pill-button:hover {
+        background: #D5D5D5;
+    }
+
+    .fab-pill-button:hover .fab-pill-label,
+    .fab-pill-button:hover .fab-pill-icon {
+        color: #000000; /* Hover state color from Figma Alias/content/neutral/hover */
+    }
+
+    .fab-pill-button:active {
+        background: #F4F4F4;
+    }
+
+    .fab-pill-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 7px 4px 10px; /* Exact Figma specs: top right bottom left */
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+
+    .fab-pill-icon img {
+        width: 16px;
+        height: 16px;
+        display: block;
+        flex-shrink: 0;
+        /* SVG icons with currentColor fill will inherit color from parent */
+        filter: brightness(0) saturate(100%) invert(13%) sepia(0%) saturate(0%) hue-rotate(196deg) brightness(97%) contrast(97%); /* #222222 */
+    }
+
+    .fab-pill-button:hover .fab-pill-icon img {
+        filter: brightness(0) saturate(100%); /* #000000 on hover */
+    }
+
+    .fab-pill-label {
+        display: flex;
+        align-items: center;
+        font-family: 'AdobeClean-Bold', adobe-clean, sans-serif;
+        font-weight: 400; /* Use Bold font file directly, not synthetic bold */
+        font-size: 12px;
+        line-height: 15px; /* 1.252 * 12px = 15.024px */
+        color: #222222; /* Default text color from Figma Alias/content/neutral/default */
+        padding: 4px 9px 5px 0; /* Reduced right padding to prevent wrapping */
+        text-align: left;
+        white-space: normal; /* Allow text wrapping for multi-line content */
+        box-sizing: border-box;
+        flex: 1;
+        overflow: visible;
+        -webkit-font-smoothing: subpixel-antialiased; /* Better font rendering */
+        -moz-osx-font-smoothing: auto;
+    }
+</style></template></div></html>
