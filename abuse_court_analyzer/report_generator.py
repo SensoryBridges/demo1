@@ -11,9 +11,10 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 import openpyxl
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side, numbers
 from openpyxl.utils.dataframe import dataframe_to_rows
-from openpyxl.chart import BarChart, Reference
+from openpyxl.chart import BarChart, PieChart, Reference
+from openpyxl.formatting.rule import CellIsRule, ColorScaleRule, DataBarRule
 from docx import Document
 from docx.shared import Inches, Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -28,6 +29,13 @@ class ExcelReportGenerator:
     ALERT_FILL = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
     GOOD_FILL = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
     WARN_FILL = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")
+    CRITICAL_FILL = PatternFill(start_color="C00000", end_color="C00000", fill_type="solid")
+    CRITICAL_FONT = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+    HIGH_FILL = PatternFill(start_color="FF6B6B", end_color="FF6B6B", fill_type="solid")
+    MODERATE_FILL = PatternFill(start_color="FFD93D", end_color="FFD93D", fill_type="solid")
+    LOW_FILL = PatternFill(start_color="A8E6CF", end_color="A8E6CF", fill_type="solid")
+    SUBHEADER_FILL = PatternFill(start_color="D6E4F0", end_color="D6E4F0", fill_type="solid")
+    SUBHEADER_FONT = Font(name="Calibri", size=11, bold=True, color="1F4E79")
     BORDER = Border(
         left=Side(style="thin"), right=Side(style="thin"),
         top=Side(style="thin"), bottom=Side(style="thin")

@@ -11,6 +11,25 @@ from datetime import datetime, timedelta
 from collections import Counter, defaultdict
 from .config import COURT_ROLES, RIGHTS_CATEGORIES
 
+try:
+    from .config import (SC_FAMILY_COURT_RULES, SC_RULES_CIVIL_PROCEDURE,
+                         SC_JUDICIAL_CODE, SC_CUSTODY_FACTORS,
+                         SC_SUPREME_COURT_365, UCCJEA, CONSTITUTIONAL_RIGHTS,
+                         FRAUD_INDICATORS, DISMISSAL_GROUNDS)
+except ImportError:
+    SC_FAMILY_COURT_RULES = {}
+    SC_RULES_CIVIL_PROCEDURE = {}
+    SC_JUDICIAL_CODE = {}
+    SC_CUSTODY_FACTORS = {}
+    SC_SUPREME_COURT_365 = {}
+    UCCJEA = {}
+    CONSTITUTIONAL_RIGHTS = {}
+    FRAUD_INDICATORS = {}
+    DISMISSAL_GROUNDS = {}
+
+# Case analysis start date -- all SC-specific analysis uses this cutoff
+SC_ANALYSIS_START_DATE = pd.Timestamp("2022-03-11")
+
 
 # ============================================================================
 # State-specific rules of procedure (extensible registry)
@@ -70,6 +89,18 @@ class CourtAnalyzer:
         self.officials_registry = {}
         self.filings_data = None
         self.case_timeline = []
+
+        # SC-specific config references (loaded from config module)
+        self.sc_family_court_rules = SC_FAMILY_COURT_RULES
+        self.sc_rules_civil_procedure = SC_RULES_CIVIL_PROCEDURE
+        self.sc_judicial_code = SC_JUDICIAL_CODE
+        self.sc_custody_factors = SC_CUSTODY_FACTORS
+        self.sc_supreme_court_365 = SC_SUPREME_COURT_365
+        self.uccjea = UCCJEA
+        self.constitutional_rights = CONSTITUTIONAL_RIGHTS
+        self.fraud_indicators = FRAUD_INDICATORS
+        self.dismissal_grounds = DISMISSAL_GROUNDS
+        self.analysis_start_date = SC_ANALYSIS_START_DATE
 
     # ------------------------------------------------------------------
     # Official tracking
