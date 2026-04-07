@@ -1,0 +1,16 @@
+date,person,address,city,state,zip,source,jurisdiction_implications
+,Kent Cales,1308 Old Rd (with McManus family),Lexington,SC,,Residence record,Kent residing with McManus family at this address; used as SC residence for jurisdiction claim
+,Kent Cales,APT (separate apartment),,,,,Kent had separate apartment address - raises question of actual residence
+,Megan Cales,4410 Alabama Ave,,NC,27409,Strom Law records / Allstate policy,NC zip code 27409 used by Strom Law for Megan; UCCJEA issue - if child resided here child was NOT in SC
+,Megan Cales,,Chickamauga,GA,,Residence record,Mother and child resided in Georgia; UCCJEA home state analysis - child not in SC for 6+ consecutive months
+,Megan Cales,,Tennessee,TN,,Order of Protection / Divorce filing,Mother had Order of Protection in TN; child living in TN contradicts SC home state jurisdiction under UCCJEA
+,John McManus,2 Rollingwood Hills Ct,Blythewood,SC,,Property/residence records,McManus family address in Blythewood
+,Jane McManus,2 Rollingwood Hills Ct,Blythewood,SC,,Property/residence records,McManus family address in Blythewood
+,John McManus,1312 Old Rd,,SC,,Property/residence records,McManus address near Kent at 1308 Old Rd
+,Jane McManus,1312 Old Rd,,SC,,Property/residence records,McManus address near Kent at 1308 Old Rd
+2011,Robert Kent Cales IV,2 Rollingwood Hills Ct,Blythewood,SC,,2011 Wildlife criminal case #756988,Kent listed at McManus address on wildlife case - long-term residence with McManus family
+1986,Robert Kent Cales III,205 S. Saluda Ave,Columbia,SC,,1986 case 86-DR-40-3699,Father (Kent III) address from 1986 family court case
+,Kent Cales (Voter Registration),,NC,NC,27409,NC Voter Registration,Kent registered to vote in NC with zip 27409 - same zip as Megan's Alabama Ave address; raises domicile questions for SC jurisdiction
+2022-05-12,Robert Kent Cales IV (married),1308 Old Rd,,SC,,Allstate Insurance Policy,Allstate policy lists Robert as married at 1308 Old Rd; Megan listed as married driver
+2022-05-12,Megan Cales (additional interested party),4410 Alabama Ave,,NC,27409,Allstate Insurance Policy,Additional interested party Megan at NC address on same policy; VIN linked to Buick; Lienholder SAFE
+,Child (Sawyer born 10/3/2019),Multiple (TN/GA/NC),,TN/GA/NC,,UCCJEA Analysis,Child born 10/3/2019 lived with mother in TN and GA while SC court exercised jurisdiction; child was NOT in SC for 6+ consecutive months - SC lacks UCCJEA home state jurisdiction

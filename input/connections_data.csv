@@ -1,0 +1,17 @@
+person1,person1_role,person2,person2_role,connection_type,evidence,date,notes
+Mindy Zimmerman,Political Candidate,Benjamin Shealy,Political Partner,Election Partnership,Ran for election together,,Zimmerman and Shealy ran for election as partners
+Katrina Shealy,SC State Senator,Benjamin Shealy,Related,Political/Family,Senate term ends Nov 11 2024,2024-11-11,Katrina Shealy Senate term ending - potential political influence connection
+Kent Cales,Father/Respondent,Rebecca West,Attorney/Representative,Legal Agreement,Agreement between Kent Rebecca West and Patricia Strom,,Kent West and Strom entered agreement - coordination between parties
+Kent Cales,Father/Respondent,Patricia Strom,Attorney,Legal Agreement,Agreement between Kent Rebecca West and Patricia Strom,,Patricia Strom part of agreement with Kent and West
+Megan Cales,Mother/Petitioner,Kent Cales,Father/Respondent,Expedited Relief,MC KC Patricia Morr Seigler Expedited Relief connection,,Connection between parties and Morr Seigler regarding expedited relief
+Patricia Morr Seigler,Attorney/Judge,Kent Cales,Father/Respondent,Expedited Relief,Expedited relief connection,,Morr Seigler involved in expedited relief matter
+Joseph Strom,Certified Mediator,Strom Law,Law Firm,Employment/Mediation,Joseph Strom at Strom Law is Certified Mediator,,Joseph Strom serves as certified mediator at Strom Law - potential conflict if also representing a party
+Emily Hinson,GAL,buildingfamiliessc.com,Adoption Agency,Professional Affiliation,Emily Hinson listed at buildingfamiliessc.com adoption agency address,,GAL Emily Hinson connected to adoption agency - conflict of interest concern when denying mother visitation
+Suzanne,Wrecker Company Owner,Donald,Connected Party,Business/Vehicle,Suzanne wrecker co and Donald October 2020 connection,2020-10,Suzanne's wrecker company and Donald connected around case filing time Oct 2020
+Pete McManus,McManus Family,Vehicle/Property Tax Records,Tax Records,Property/Vehicle,Pete McManus vehicle and property tax connections,,McManus family vehicle and property tax records showing financial connections
+Jane McManus,McManus Family,Dentsville Pontiac Area,Vehicle Tax Location,Vehicle Tax,Jane McManus car taxes paid in Dentsville Pontiac area,2018,2018 car tax records for Jane McManus in Dentsville Pontiac area
+Frank Addy,Judge,Laurens County Common Pleas,Court,Judicial Assignment,Frank Addy serves as Judge in Laurens County Common Pleas,,Judge Frank Addy in Laurens County - connection to McManus traffic case
+McManus,Family,Lexington Traffic Court,Court,Traffic Case,McManus Lexington judgment in traffic court heard in Laurens County,,Lexington traffic case judgment heard in Laurens County - unusual venue
+IOLTA Account,Trust Account,Homestead Exemption,Bankruptcy Protection,Financial,IOLTA account near $60k - homestead exemption amount for bankruptcy,,IOLTA account balance near $60k matches homestead exemption threshold for bankruptcy protection
+Smokey Brown,Power of Attorney Holder,Kent Cales,Principal,Power of Attorney,POA over Kent paid by Jane McManus,2022-03-15,Jane McManus paid for Smokey Brown to have POA over Kent on 3/15/2022
+Josh,Power of Attorney Holder,Kent Cales,Principal,Power of Attorney Conflict,Josh POA conflicts with Jane's POA (Smokey Brown) over Kent,,Josh holds separate POA over Kent creating conflict with Jane McManus's appointed POA (Smokey Brown)

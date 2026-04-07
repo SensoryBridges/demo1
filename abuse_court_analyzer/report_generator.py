@@ -11,9 +11,10 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 import openpyxl
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side, numbers
 from openpyxl.utils.dataframe import dataframe_to_rows
-from openpyxl.chart import BarChart, Reference
+from openpyxl.chart import BarChart, PieChart, Reference
+from openpyxl.formatting.rule import CellIsRule, ColorScaleRule, DataBarRule
 from docx import Document
 from docx.shared import Inches, Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -28,6 +29,13 @@ class ExcelReportGenerator:
     ALERT_FILL = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
     GOOD_FILL = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
     WARN_FILL = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")
+    CRITICAL_FILL = PatternFill(start_color="C00000", end_color="C00000", fill_type="solid")
+    CRITICAL_FONT = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+    HIGH_FILL = PatternFill(start_color="FF6B6B", end_color="FF6B6B", fill_type="solid")
+    MODERATE_FILL = PatternFill(start_color="FFD93D", end_color="FFD93D", fill_type="solid")
+    LOW_FILL = PatternFill(start_color="A8E6CF", end_color="A8E6CF", fill_type="solid")
+    SUBHEADER_FILL = PatternFill(start_color="D6E4F0", end_color="D6E4F0", fill_type="solid")
+    SUBHEADER_FONT = Font(name="Calibri", size=11, bold=True, color="1F4E79")
     BORDER = Border(
         left=Side(style="thin"), right=Side(style="thin"),
         top=Side(style="thin"), bottom=Side(style="thin")
@@ -255,6 +263,779 @@ class ExcelReportGenerator:
         self._add_dict_sheet("Methodology", methodology,
                              "METHODOLOGY & LEGAL DEFENSIBILITY")
 
+    def _apply_autofilter(self, ws, header_row, num_cols):
+        """Apply auto-filter to all columns starting at the given header row."""
+        last_col_letter = openpyxl.utils.get_column_letter(num_cols)
+        ws.auto_filter.ref = f"A{header_row}:{last_col_letter}{ws.max_row}"
+
+    def _apply_severity_coloring(self, ws, df, severity_col_name, data_start_row):
+        """Apply color coding to cells in a severity column."""
+        if severity_col_name not in df.columns:
+            return
+        col_idx = list(df.columns).index(severity_col_name) + 1
+        for row_idx in range(data_start_row, data_start_row + len(df)):
+            cell = ws.cell(row=row_idx, column=col_idx)
+            val = str(cell.value).upper()
+            if "CRITICAL" in val:
+                cell.fill = self.CRITICAL_FILL
+                cell.font = self.CRITICAL_FONT
+            elif "HIGH" in val or "SEVERE" in val:
+                cell.fill = self.HIGH_FILL
+            elif "MODERATE" in val or "MEDIUM" in val:
+                cell.fill = self.MODERATE_FILL
+            elif "LOW" in val or "MINOR" in val:
+                cell.fill = self.LOW_FILL
+            elif "GOOD" in val or "COMPLIANT" in val:
+                cell.fill = self.GOOD_FILL
+
+    def _apply_row_severity_coloring(self, ws, df, severity_col_name, data_start_row, num_cols):
+        """Apply color coding to entire rows based on a severity column value."""
+        if severity_col_name not in df.columns:
+            return
+        col_idx = list(df.columns).index(severity_col_name) + 1
+        for row_idx in range(data_start_row, data_start_row + len(df)):
+            sev_cell = ws.cell(row=row_idx, column=col_idx)
+            val = str(sev_cell.value).upper()
+            fill = None
+            font = None
+            if "CRITICAL" in val:
+                fill = self.CRITICAL_FILL
+                font = self.CRITICAL_FONT
+            elif "HIGH" in val or "SEVERE" in val:
+                fill = self.HIGH_FILL
+            elif "MODERATE" in val or "MEDIUM" in val:
+                fill = self.MODERATE_FILL
+            if fill:
+                for c in range(1, num_cols + 1):
+                    ws.cell(row=row_idx, column=c).fill = fill
+                    if font:
+                        ws.cell(row=row_idx, column=c).font = font
+
+    def add_detailed_event_timeline(self, timeline):
+        """Add detailed event timeline sheet with every event color-coded by severity.
+
+        Args:
+            timeline: list of dicts with keys: date, description, persons_involved,
+                      laws_broken, human_rights_violations, method, source_document,
+                      severity.
+        """
+        if not timeline:
+            return
+
+        columns = [
+            "date", "description", "persons_involved", "laws_broken",
+            "human_rights_violations", "method", "source_document", "severity"
+        ]
+        rows = []
+        for event in timeline:
+            row = {}
+            for col in columns:
+                val = event.get(col, "")
+                if isinstance(val, list):
+                    val = "; ".join(str(v) for v in val)
+                row[col] = val
+            rows.append(row)
+
+        df = pd.DataFrame(rows, columns=columns)
+
+        # Sort by date when possible
+        try:
+            df["date"] = pd.to_datetime(df["date"], errors="coerce")
+            df = df.sort_values("date", na_position="last")
+        except Exception:
+            pass
+
+        ws = self._add_sheet("Event Timeline", df, "DETAILED EVENT TIMELINE")
+
+        # title=row 1, blank=row 2, header=row 3, data starts at row 4
+        data_start_row = 4
+        num_cols = len(columns)
+
+        self._apply_autofilter(ws, 3, num_cols)
+        self._apply_row_severity_coloring(ws, df, "severity", data_start_row, num_cols)
+
+        # Format date column
+        for row_idx in range(data_start_row, data_start_row + len(df)):
+            cell = ws.cell(row=row_idx, column=1)
+            if isinstance(cell.value, datetime):
+                cell.number_format = "YYYY-MM-DD"
+
+        # Set appropriate column widths for content-heavy columns
+        ws.column_dimensions["B"].width = 60
+        ws.column_dimensions["C"].width = 30
+        ws.column_dimensions["D"].width = 40
+        ws.column_dimensions["E"].width = 40
+        ws.column_dimensions["F"].width = 25
+        ws.column_dimensions["G"].width = 30
+
+        # Freeze header row so filters remain visible while scrolling
+        ws.freeze_panes = "A4"
+
+    def add_365_day_analysis(self, analysis):
+        """Add 365-day order compliance analysis sheet with timeline.
+
+        Args:
+            analysis: dict with keys: orders (list of dicts with order_date,
+                      order_type, compliance_deadline, compliance_status,
+                      days_elapsed, violation_details, legal_basis),
+                      summary (dict), timeline (list).
+        """
+        if not analysis:
+            return
+
+        orders = analysis.get("orders", [])
+        if orders:
+            order_cols = [
+                "order_date", "order_type", "compliance_deadline",
+                "compliance_status", "days_elapsed", "violation_details", "legal_basis"
+            ]
+            rows = []
+            for order in orders:
+                row = {col: order.get(col, "") for col in order_cols}
+                if isinstance(row.get("violation_details"), list):
+                    row["violation_details"] = "; ".join(str(v) for v in row["violation_details"])
+                rows.append(row)
+
+            df = pd.DataFrame(rows, columns=order_cols)
+            ws = self._add_sheet("365-Day Analysis", df,
+                                 "365-DAY ORDER COMPLIANCE ANALYSIS")
+            data_start_row = 4
+            num_cols = len(order_cols)
+
+            self._apply_autofilter(ws, 3, num_cols)
+            self._apply_severity_coloring(ws, df, "compliance_status", data_start_row)
+
+            # Format date columns
+            for col_name in ["order_date", "compliance_deadline"]:
+                if col_name in df.columns:
+                    col_idx = list(df.columns).index(col_name) + 1
+                    for row_idx in range(data_start_row, data_start_row + len(df)):
+                        ws.cell(row=row_idx, column=col_idx).number_format = "YYYY-MM-DD"
+
+            # Format days_elapsed as integer
+            if "days_elapsed" in df.columns:
+                col_idx = list(df.columns).index("days_elapsed") + 1
+                for row_idx in range(data_start_row, data_start_row + len(df)):
+                    ws.cell(row=row_idx, column=col_idx).number_format = "0"
+
+            ws.column_dimensions["B"].width = 30
+            ws.column_dimensions["F"].width = 50
+            ws.column_dimensions["G"].width = 40
+            ws.freeze_panes = "A4"
+
+        # Summary sub-sheet
+        summary = analysis.get("summary", {})
+        if summary:
+            self._add_dict_sheet("365-Day Summary", summary,
+                                 "365-DAY COMPLIANCE SUMMARY")
+
+    def add_uccjea_analysis(self, analysis):
+        """Add UCCJEA jurisdiction analysis sheet.
+
+        Args:
+            analysis: dict with keys: jurisdiction_findings (list of dicts),
+                      address_history (list of dicts), home_state_determination (dict),
+                      significant_connection (dict), dismissal_grounds (dict),
+                      inconvenient_forum_factors (dict).
+        """
+        if not analysis:
+            return
+
+        # Jurisdiction findings
+        findings = analysis.get("jurisdiction_findings", [])
+        if findings:
+            df = pd.DataFrame(findings)
+            ws = self._add_sheet("UCCJEA Analysis", df,
+                                 "UCCJEA JURISDICTION ANALYSIS")
+            data_start_row = 4
+            self._apply_autofilter(ws, 3, len(df.columns))
+            self._apply_severity_coloring(ws, df, "status", data_start_row)
+            ws.freeze_panes = "A4"
+
+        # Address history
+        addr_history = analysis.get("address_history", [])
+        if addr_history:
+            addr_df = pd.DataFrame(addr_history)
+            ws2 = self._add_sheet("Address History", addr_df,
+                                  "CHILD ADDRESS HISTORY — UCCJEA")
+            self._apply_autofilter(ws2, 3, len(addr_df.columns))
+
+            for col_name in addr_df.columns:
+                if "date" in col_name.lower():
+                    col_idx = list(addr_df.columns).index(col_name) + 1
+                    for row_idx in range(4, 4 + len(addr_df)):
+                        ws2.cell(row=row_idx, column=col_idx).number_format = "YYYY-MM-DD"
+            ws2.freeze_panes = "A4"
+
+        # Dismissal grounds summary
+        dismissal = analysis.get("dismissal_grounds", {})
+        if dismissal:
+            self._add_dict_sheet("UCCJEA Dismissal", dismissal,
+                                 "UCCJEA DISMISSAL GROUNDS")
+
+    def add_best_interest_factors(self, analysis):
+        """Add best-interest-of-child 17-factor analysis sheet.
+
+        Args:
+            analysis: dict with keys: factors (list of 17 dicts, each with
+                      factor_name, factor_number, parent_a_score, parent_b_score,
+                      parent_a_evidence, parent_b_evidence, weight),
+                      parent_a_name, parent_b_name, summary (dict).
+        """
+        if not analysis:
+            return
+
+        factors = analysis.get("factors", [])
+        parent_a = analysis.get("parent_a_name", "Parent A")
+        parent_b = analysis.get("parent_b_name", "Parent B")
+
+        if not factors:
+            return
+
+        columns = [
+            "factor_number", "factor_name",
+            f"{parent_a}_score", f"{parent_b}_score",
+            f"{parent_a}_evidence", f"{parent_b}_evidence",
+            "weight"
+        ]
+        rows = []
+        for f in factors:
+            rows.append({
+                "factor_number": f.get("factor_number", ""),
+                "factor_name": f.get("factor_name", ""),
+                f"{parent_a}_score": f.get("parent_a_score", ""),
+                f"{parent_b}_score": f.get("parent_b_score", ""),
+                f"{parent_a}_evidence": f.get("parent_a_evidence", ""),
+                f"{parent_b}_evidence": f.get("parent_b_evidence", ""),
+                "weight": f.get("weight", 1.0),
+            })
+
+        df = pd.DataFrame(rows, columns=columns)
+        ws = self._add_sheet("Best Interest Factors", df,
+                             "BEST INTEREST OF THE CHILD — 17-FACTOR ANALYSIS")
+
+        data_start_row = 4
+        num_cols = len(columns)
+        self._apply_autofilter(ws, 3, num_cols)
+
+        # Conditional formatting on score columns (1-10 scale: green=high, red=low)
+        score_a_col_idx = 3
+        score_b_col_idx = 4
+        score_a_letter = openpyxl.utils.get_column_letter(score_a_col_idx)
+        score_b_letter = openpyxl.utils.get_column_letter(score_b_col_idx)
+        last_data_row = data_start_row + len(df) - 1
+
+        for col_letter in [score_a_letter, score_b_letter]:
+            cell_range = f"{col_letter}{data_start_row}:{col_letter}{last_data_row}"
+            ws.conditional_formatting.add(
+                cell_range,
+                CellIsRule(operator="lessThan", formula=["4"],
+                           fill=self.ALERT_FILL)
+            )
+            ws.conditional_formatting.add(
+                cell_range,
+                CellIsRule(operator="between", formula=["4", "6"],
+                           fill=self.WARN_FILL)
+            )
+            ws.conditional_formatting.add(
+                cell_range,
+                CellIsRule(operator="greaterThan", formula=["6"],
+                           fill=self.GOOD_FILL)
+            )
+
+        # Format weight column as percentage when values are <= 1
+        weight_col_idx = list(df.columns).index("weight") + 1
+        for row_idx in range(data_start_row, data_start_row + len(df)):
+            cell = ws.cell(row=row_idx, column=weight_col_idx)
+            try:
+                val = float(cell.value)
+                if val <= 1.0:
+                    cell.number_format = "0.0%"
+            except (ValueError, TypeError):
+                pass
+
+        # Widen evidence columns
+        ws.column_dimensions["B"].width = 40
+        ws.column_dimensions["E"].width = 55
+        ws.column_dimensions["F"].width = 55
+
+        # Add weighted-total row
+        total_row = data_start_row + len(df)
+        ws.cell(row=total_row, column=1, value="").border = self.BORDER
+        total_cell = ws.cell(row=total_row, column=2, value="WEIGHTED TOTAL")
+        total_cell.font = Font(name="Calibri", size=11, bold=True)
+        total_cell.border = self.BORDER
+
+        for col_idx in [score_a_col_idx, score_b_col_idx]:
+            col_letter = openpyxl.utils.get_column_letter(col_idx)
+            weight_letter = openpyxl.utils.get_column_letter(weight_col_idx)
+            formula = (
+                f"=SUMPRODUCT({col_letter}{data_start_row}:{col_letter}{last_data_row},"
+                f"{weight_letter}{data_start_row}:{weight_letter}{last_data_row})"
+                f"/SUM({weight_letter}{data_start_row}:{weight_letter}{last_data_row})"
+            )
+            cell = ws.cell(row=total_row, column=col_idx, value=formula)
+            cell.font = Font(name="Calibri", size=11, bold=True)
+            cell.number_format = "0.00"
+            cell.border = self.BORDER
+            cell.fill = self.SUBHEADER_FILL
+
+        ws.freeze_panes = "A4"
+
+        # Summary sub-sheet
+        summary = analysis.get("summary", {})
+        if summary:
+            self._add_dict_sheet("Best Interest Summary", summary,
+                                 "BEST INTEREST ANALYSIS SUMMARY")
+
+    def add_rule_11_60_analysis(self, rule_11_violations, rule_60_fraud):
+        """Add Rule 11 sanctions and Rule 60(d)(3) fraud analysis sheets.
+
+        Args:
+            rule_11_violations: list of dicts with date, filer, filing,
+                                misrepresentation, evidence_of_bad_faith,
+                                applicable_rule, severity, remedy.
+            rule_60_fraud: list of dicts with date, perpetrator, fraud_type,
+                           description, evidence, legal_standard, severity,
+                           procedural_impact.
+        """
+        if rule_11_violations:
+            r11_cols = [
+                "date", "filer", "filing", "misrepresentation",
+                "evidence_of_bad_faith", "applicable_rule", "severity", "remedy"
+            ]
+            rows = []
+            for v in rule_11_violations:
+                row = {col: v.get(col, "") for col in r11_cols}
+                for col in r11_cols:
+                    if isinstance(row[col], list):
+                        row[col] = "; ".join(str(x) for x in row[col])
+                rows.append(row)
+
+            df = pd.DataFrame(rows, columns=r11_cols)
+            ws = self._add_sheet("Rule 11 Violations", df,
+                                 "RULE 11 — SANCTIONS FOR MISREPRESENTATION")
+            data_start_row = 4
+            self._apply_autofilter(ws, 3, len(r11_cols))
+            self._apply_severity_coloring(ws, df, "severity", data_start_row)
+
+            for row_idx in range(data_start_row, data_start_row + len(df)):
+                ws.cell(row=row_idx, column=1).number_format = "YYYY-MM-DD"
+
+            ws.column_dimensions["C"].width = 35
+            ws.column_dimensions["D"].width = 50
+            ws.column_dimensions["E"].width = 45
+            ws.column_dimensions["H"].width = 35
+            ws.freeze_panes = "A4"
+
+        if rule_60_fraud:
+            r60_cols = [
+                "date", "perpetrator", "fraud_type", "description",
+                "evidence", "legal_standard", "severity", "procedural_impact"
+            ]
+            rows = []
+            for f in rule_60_fraud:
+                row = {col: f.get(col, "") for col in r60_cols}
+                for col in r60_cols:
+                    if isinstance(row[col], list):
+                        row[col] = "; ".join(str(x) for x in row[col])
+                rows.append(row)
+
+            df = pd.DataFrame(rows, columns=r60_cols)
+            ws = self._add_sheet("Rule 60 Fraud", df,
+                                 "RULE 60(d)(3) — FRAUD ON THE COURT")
+            data_start_row = 4
+            self._apply_autofilter(ws, 3, len(r60_cols))
+            self._apply_severity_coloring(ws, df, "severity", data_start_row)
+            self._apply_row_severity_coloring(ws, df, "severity", data_start_row, len(r60_cols))
+
+            for row_idx in range(data_start_row, data_start_row + len(df)):
+                ws.cell(row=row_idx, column=1).number_format = "YYYY-MM-DD"
+
+            ws.column_dimensions["D"].width = 55
+            ws.column_dimensions["E"].width = 45
+            ws.column_dimensions["F"].width = 40
+            ws.column_dimensions["H"].width = 40
+            ws.freeze_panes = "A4"
+
+    def add_judicial_code_analysis(self, analysis):
+        """Add per-judge judicial code compliance analysis sheets.
+
+        Args:
+            analysis: list of dicts, each with: judge_name,
+                      overall_compliance_score, canons_violated (list of dicts
+                      with canon_number, canon_title, violation_description,
+                      date, evidence, severity), summary, recommendations.
+        """
+        if not analysis:
+            return
+
+        # Per-judge summary sheet
+        summary_rows = []
+        for judge in analysis:
+            canons = judge.get("canons_violated", [])
+            canon_nums = (", ".join(str(c.get("canon_number", "")) for c in canons)
+                          if canons else "None")
+            critical_count = sum(
+                1 for c in canons if "CRITICAL" in str(c.get("severity", "")).upper()
+            )
+            high_count = sum(
+                1 for c in canons if "HIGH" in str(c.get("severity", "")).upper()
+            )
+            summary_rows.append({
+                "judge_name": judge.get("judge_name", ""),
+                "overall_compliance_score": judge.get("overall_compliance_score", ""),
+                "total_violations": len(canons),
+                "critical_violations": critical_count,
+                "high_violations": high_count,
+                "canons_violated": canon_nums,
+                "summary": judge.get("summary", ""),
+                "recommendations": judge.get("recommendations", ""),
+            })
+
+        summary_df = pd.DataFrame(summary_rows)
+        ws_summary = self._add_sheet("Judicial Code Summary", summary_df,
+                                     "JUDICIAL CODE OF CONDUCT — COMPLIANCE SUMMARY")
+        data_start_row = 4
+        self._apply_autofilter(ws_summary, 3, len(summary_df.columns))
+
+        # Conditional formatting on compliance score
+        if "overall_compliance_score" in summary_df.columns:
+            col_idx = list(summary_df.columns).index("overall_compliance_score") + 1
+            col_letter = openpyxl.utils.get_column_letter(col_idx)
+            last_row = data_start_row + len(summary_df) - 1
+            cell_range = f"{col_letter}{data_start_row}:{col_letter}{last_row}"
+            ws_summary.conditional_formatting.add(
+                cell_range,
+                CellIsRule(operator="lessThan", formula=["50"],
+                           fill=self.ALERT_FILL)
+            )
+            ws_summary.conditional_formatting.add(
+                cell_range,
+                CellIsRule(operator="between", formula=["50", "70"],
+                           fill=self.WARN_FILL)
+            )
+            ws_summary.conditional_formatting.add(
+                cell_range,
+                CellIsRule(operator="greaterThan", formula=["70"],
+                           fill=self.GOOD_FILL)
+            )
+
+        ws_summary.column_dimensions["A"].width = 25
+        ws_summary.column_dimensions["F"].width = 30
+        ws_summary.column_dimensions["G"].width = 50
+        ws_summary.column_dimensions["H"].width = 50
+        ws_summary.freeze_panes = "A4"
+
+        # Detailed canon violations sheet
+        detail_rows = []
+        for judge in analysis:
+            for canon in judge.get("canons_violated", []):
+                detail_rows.append({
+                    "judge_name": judge.get("judge_name", ""),
+                    "canon_number": canon.get("canon_number", ""),
+                    "canon_title": canon.get("canon_title", ""),
+                    "violation_description": canon.get("violation_description", ""),
+                    "date": canon.get("date", ""),
+                    "evidence": canon.get("evidence", ""),
+                    "severity": canon.get("severity", ""),
+                })
+
+        if detail_rows:
+            detail_df = pd.DataFrame(detail_rows)
+            ws_detail = self._add_sheet("Judicial Canon Detail", detail_df,
+                                        "JUDICIAL CANON VIOLATIONS — DETAIL")
+            data_start_row = 4
+            self._apply_autofilter(ws_detail, 3, len(detail_df.columns))
+            self._apply_severity_coloring(ws_detail, detail_df, "severity", data_start_row)
+
+            for row_idx in range(data_start_row, data_start_row + len(detail_df)):
+                ws_detail.cell(row=row_idx, column=5).number_format = "YYYY-MM-DD"
+
+            ws_detail.column_dimensions["C"].width = 30
+            ws_detail.column_dimensions["D"].width = 55
+            ws_detail.column_dimensions["F"].width = 50
+            ws_detail.freeze_panes = "A4"
+
+    def add_per_person_scoring(self, scoring):
+        """Add per-person abuse scoring breakdown sheet.
+
+        Args:
+            scoring: list of dicts with person_name, role, total_score,
+                     category_scores (dict mapping category to score),
+                     incident_count, severity_distribution (dict),
+                     key_findings (list of strings).
+        """
+        if not scoring:
+            return
+
+        # Collect all abuse categories across all persons
+        all_categories = set()
+        for person in scoring:
+            for cat in person.get("category_scores", {}).keys():
+                all_categories.add(cat)
+        all_categories = sorted(all_categories)
+
+        rows = []
+        for person in scoring:
+            row = {
+                "person_name": person.get("person_name", ""),
+                "role": person.get("role", ""),
+                "total_score": person.get("total_score", 0),
+                "incident_count": person.get("incident_count", 0),
+            }
+            cat_scores = person.get("category_scores", {})
+            for cat in all_categories:
+                row[f"score_{cat}"] = cat_scores.get(cat, 0)
+
+            sev_dist = person.get("severity_distribution", {})
+            row["critical_incidents"] = sev_dist.get("CRITICAL", 0)
+            row["high_incidents"] = sev_dist.get("HIGH", 0)
+            row["moderate_incidents"] = sev_dist.get("MODERATE", 0)
+            row["low_incidents"] = sev_dist.get("LOW", 0)
+
+            findings = person.get("key_findings", [])
+            row["key_findings"] = "; ".join(str(f) for f in findings) if findings else ""
+            rows.append(row)
+
+        df = pd.DataFrame(rows)
+        ws = self._add_sheet("Per-Person Scoring", df,
+                             "PER-PERSON ABUSE SCORING BREAKDOWN")
+        data_start_row = 4
+        num_cols = len(df.columns)
+        self._apply_autofilter(ws, 3, num_cols)
+
+        # Color-scale on total_score column
+        if "total_score" in df.columns:
+            col_idx = list(df.columns).index("total_score") + 1
+            col_letter = openpyxl.utils.get_column_letter(col_idx)
+            last_row = data_start_row + len(df) - 1
+            cell_range = f"{col_letter}{data_start_row}:{col_letter}{last_row}"
+            ws.conditional_formatting.add(
+                cell_range,
+                ColorScaleRule(
+                    start_type="min", start_color="C6EFCE",
+                    mid_type="percentile", mid_value=50, mid_color="FFEB9C",
+                    end_type="max", end_color="FFC7CE"
+                )
+            )
+
+        # Data bars on per-category score columns
+        for cat in all_categories:
+            col_name = f"score_{cat}"
+            if col_name in df.columns:
+                col_idx = list(df.columns).index(col_name) + 1
+                col_letter = openpyxl.utils.get_column_letter(col_idx)
+                last_row = data_start_row + len(df) - 1
+                cell_range = f"{col_letter}{data_start_row}:{col_letter}{last_row}"
+                ws.conditional_formatting.add(
+                    cell_range,
+                    DataBarRule(start_type="min", end_type="max", color="FF6B6B")
+                )
+
+        # Widen key_findings column
+        if "key_findings" in df.columns:
+            findings_col_idx = list(df.columns).index("key_findings") + 1
+            findings_letter = openpyxl.utils.get_column_letter(findings_col_idx)
+            ws.column_dimensions[findings_letter].width = 60
+
+        ws.freeze_panes = "A4"
+
+    def add_dismissal_opportunities(self, opportunities):
+        """Add sheet listing every point where the case should have been dismissed.
+
+        Args:
+            opportunities: list of dicts with date, event, legal_basis,
+                           applicable_statute, why_not_dismissed,
+                           responsible_official, prejudice_to_party,
+                           severity, cumulative_impact.
+        """
+        if not opportunities:
+            return
+
+        columns = [
+            "date", "event", "legal_basis", "applicable_statute",
+            "why_not_dismissed", "responsible_official", "prejudice_to_party",
+            "severity", "cumulative_impact"
+        ]
+        rows = []
+        for opp in opportunities:
+            row = {}
+            for col in columns:
+                val = opp.get(col, "")
+                if isinstance(val, list):
+                    val = "; ".join(str(v) for v in val)
+                row[col] = val
+            rows.append(row)
+
+        df = pd.DataFrame(rows, columns=columns)
+
+        try:
+            df["date"] = pd.to_datetime(df["date"], errors="coerce")
+            df = df.sort_values("date", na_position="last")
+        except Exception:
+            pass
+
+        ws = self._add_sheet("Dismissal Opportunities", df,
+                             "MISSED DISMISSAL OPPORTUNITIES")
+        data_start_row = 4
+        num_cols = len(columns)
+
+        self._apply_autofilter(ws, 3, num_cols)
+        self._apply_severity_coloring(ws, df, "severity", data_start_row)
+
+        for row_idx in range(data_start_row, data_start_row + len(df)):
+            ws.cell(row=row_idx, column=1).number_format = "YYYY-MM-DD"
+
+        ws.column_dimensions["B"].width = 45
+        ws.column_dimensions["C"].width = 45
+        ws.column_dimensions["D"].width = 35
+        ws.column_dimensions["E"].width = 45
+        ws.column_dimensions["F"].width = 25
+        ws.column_dimensions["G"].width = 40
+        ws.column_dimensions["I"].width = 40
+
+        # Summary row
+        summary_row = data_start_row + len(df) + 1
+        cell = ws.cell(row=summary_row, column=1, value="TOTAL MISSED OPPORTUNITIES")
+        cell.font = Font(name="Calibri", size=11, bold=True)
+        count_cell = ws.cell(row=summary_row, column=2, value=len(df))
+        count_cell.font = Font(name="Calibri", size=11, bold=True)
+
+        ws.freeze_panes = "A4"
+
+    def add_judge_rotation_analysis(self, analysis):
+        """Add judge rotation patterns analysis sheet.
+
+        Args:
+            analysis: dict with keys: rotations (list of dicts with judge_name,
+                      start_date, end_date, days_served, reason_for_change,
+                      orders_issued, significant_actions), pattern_analysis (dict),
+                      anomalies (list of dicts).
+        """
+        if not analysis:
+            return
+
+        rotations = analysis.get("rotations", [])
+        if rotations:
+            rot_cols = [
+                "judge_name", "start_date", "end_date", "days_served",
+                "reason_for_change", "orders_issued", "significant_actions"
+            ]
+            rows = []
+            for r in rotations:
+                row = {col: r.get(col, "") for col in rot_cols}
+                if isinstance(row.get("significant_actions"), list):
+                    row["significant_actions"] = "; ".join(
+                        str(a) for a in row["significant_actions"]
+                    )
+                rows.append(row)
+
+            df = pd.DataFrame(rows, columns=rot_cols)
+            ws = self._add_sheet("Judge Rotation", df,
+                                 "JUDGE ROTATION ANALYSIS")
+            data_start_row = 4
+            self._apply_autofilter(ws, 3, len(rot_cols))
+
+            for col_name in ["start_date", "end_date"]:
+                col_idx = list(df.columns).index(col_name) + 1
+                for row_idx in range(data_start_row, data_start_row + len(df)):
+                    ws.cell(row=row_idx, column=col_idx).number_format = "YYYY-MM-DD"
+
+            if "days_served" in df.columns:
+                col_idx = list(df.columns).index("days_served") + 1
+                for row_idx in range(data_start_row, data_start_row + len(df)):
+                    ws.cell(row=row_idx, column=col_idx).number_format = "0"
+
+            ws.column_dimensions["E"].width = 35
+            ws.column_dimensions["G"].width = 55
+            ws.freeze_panes = "A4"
+
+        # Pattern analysis sub-sheet
+        pattern = analysis.get("pattern_analysis", {})
+        if pattern:
+            self._add_dict_sheet("Rotation Patterns", pattern,
+                                 "JUDGE ROTATION PATTERN ANALYSIS")
+
+        # Anomalies sub-sheet
+        anomalies = analysis.get("anomalies", [])
+        if anomalies:
+            anom_df = pd.DataFrame(anomalies)
+            ws_anom = self._add_sheet("Rotation Anomalies", anom_df,
+                                      "JUDGE ROTATION ANOMALIES")
+            self._apply_autofilter(ws_anom, 3, len(anom_df.columns))
+            self._apply_severity_coloring(ws_anom, anom_df, "severity", 4)
+            ws_anom.freeze_panes = "A4"
+
+    def add_conflict_of_interest(self, conflicts):
+        """Add detected conflicts of interest sheet.
+
+        Args:
+            conflicts: list of dicts with official_name, role, conflict_type,
+                       conflicting_party, description, evidence,
+                       financial_interest, recusal_required, severity,
+                       date_identified.
+        """
+        if not conflicts:
+            return
+
+        columns = [
+            "official_name", "role", "conflict_type", "conflicting_party",
+            "description", "evidence", "financial_interest", "recusal_required",
+            "severity", "date_identified"
+        ]
+        rows = []
+        for c in conflicts:
+            row = {}
+            for col in columns:
+                val = c.get(col, "")
+                if isinstance(val, list):
+                    val = "; ".join(str(v) for v in val)
+                elif isinstance(val, bool):
+                    val = "YES" if val else "NO"
+                row[col] = val
+            rows.append(row)
+
+        df = pd.DataFrame(rows, columns=columns)
+        ws = self._add_sheet("Conflicts of Interest", df,
+                             "DETECTED CONFLICTS OF INTEREST")
+        data_start_row = 4
+        num_cols = len(columns)
+
+        self._apply_autofilter(ws, 3, num_cols)
+        self._apply_severity_coloring(ws, df, "severity", data_start_row)
+
+        # Highlight recusal_required = YES
+        if "recusal_required" in df.columns:
+            col_idx = list(df.columns).index("recusal_required") + 1
+            for row_idx in range(data_start_row, data_start_row + len(df)):
+                cell = ws.cell(row=row_idx, column=col_idx)
+                if str(cell.value).upper() == "YES":
+                    cell.fill = self.ALERT_FILL
+                    cell.font = Font(name="Calibri", size=11, bold=True, color="C00000")
+
+        # Format financial_interest as currency
+        if "financial_interest" in df.columns:
+            col_idx = list(df.columns).index("financial_interest") + 1
+            for row_idx in range(data_start_row, data_start_row + len(df)):
+                cell = ws.cell(row=row_idx, column=col_idx)
+                try:
+                    val = float(str(cell.value).replace("$", "").replace(",", ""))
+                    cell.value = val
+                    cell.number_format = "$#,##0.00"
+                except (ValueError, TypeError):
+                    pass
+
+        # Format dates
+        if "date_identified" in df.columns:
+            col_idx = list(df.columns).index("date_identified") + 1
+            for row_idx in range(data_start_row, data_start_row + len(df)):
+                ws.cell(row=row_idx, column=col_idx).number_format = "YYYY-MM-DD"
+
+        ws.column_dimensions["E"].width = 50
+        ws.column_dimensions["F"].width = 45
+        ws.freeze_panes = "A4"
+
     def add_charts_sheet(self, chart_paths):
         """Add a sheet with embedded chart images."""
         ws = self.wb.create_sheet(title="Charts")
@@ -274,6 +1055,48 @@ class ExcelReportGenerator:
                 except Exception:
                     ws.cell(row=row, column=1, value=f"[Chart: {os.path.basename(path)}]")
                     row += 2
+
+    def add_raw_data_sheet(self, sheet_name, df):
+        """Add a raw data sheet with auto-filters for querying in Excel."""
+        if df is None or df.empty:
+            return
+
+        # Truncate sheet name to 31 chars (Excel limit)
+        safe_name = sheet_name[:31]
+        ws = self.wb.create_sheet(title=safe_name)
+
+        # Write headers
+        for col_idx, col_name in enumerate(df.columns, 1):
+            cell = ws.cell(row=1, column=col_idx, value=str(col_name))
+            cell.font = self.HEADER_FONT
+            cell.fill = self.HEADER_FILL
+            cell.alignment = Alignment(horizontal="center", wrap_text=True)
+
+        # Write data
+        for row_idx, row in enumerate(df.itertuples(index=False), 2):
+            for col_idx, value in enumerate(row, 1):
+                cell = ws.cell(row=row_idx, column=col_idx)
+                if pd.isna(value):
+                    cell.value = ""
+                else:
+                    cell.value = str(value) if not isinstance(value, (int, float)) else value
+
+        # Auto-filter on all columns
+        if len(df) > 0:
+            ws.auto_filter.ref = ws.dimensions
+
+        # Auto-width columns
+        for col_idx, col_name in enumerate(df.columns, 1):
+            max_len = max(len(str(col_name)), 10)
+            for row in ws.iter_rows(min_row=2, max_row=min(len(df) + 1, 50),
+                                     min_col=col_idx, max_col=col_idx):
+                for cell in row:
+                    if cell.value:
+                        max_len = max(max_len, min(len(str(cell.value)), 50))
+            ws.column_dimensions[openpyxl.utils.get_column_letter(col_idx)].width = max_len + 2
+
+        # Freeze top row
+        ws.freeze_panes = "A2"
 
     def save(self):
         """Save the workbook."""
@@ -658,6 +1481,405 @@ class WordReportGenerator:
             "from the source data using the documented methodology. The analysis "
             "software version and parameters are recorded for verification purposes."
         )
+
+    def add_detailed_timeline_section(self, timeline):
+        """Add detailed event timeline section to the Word report.
+
+        Args:
+            timeline: list of dicts with date, description, persons_involved,
+                      laws_broken, human_rights_violations, method,
+                      source_document, severity.
+        """
+        self.doc.add_heading("Appendix C: Detailed Event Timeline", level=1)
+
+        if not timeline:
+            self.doc.add_paragraph("No timeline events available.")
+            return
+
+        self.doc.add_paragraph(f"Total events documented: {len(timeline)}")
+        self.doc.add_paragraph()
+
+        # Group events by severity for narrative overview
+        severity_groups = {}
+        for event in timeline:
+            sev = str(event.get("severity", "UNKNOWN")).upper()
+            severity_groups.setdefault(sev, []).append(event)
+
+        for sev in ["CRITICAL", "HIGH", "MODERATE", "LOW"]:
+            events = severity_groups.get(sev, [])
+            if not events:
+                continue
+            self.doc.add_heading(f"{sev} Severity Events ({len(events)})", level=2)
+            for event in events:
+                p = self.doc.add_paragraph()
+                date_str = str(event.get("date", "Unknown date"))
+                run = p.add_run(f"{date_str}: ")
+                run.bold = True
+                if sev == "CRITICAL":
+                    run.font.color.rgb = RGBColor(192, 0, 0)
+                p.add_run(str(event.get("description", "")))
+
+                details = []
+                persons = event.get("persons_involved", "")
+                if persons:
+                    if isinstance(persons, list):
+                        persons = ", ".join(persons)
+                    details.append(f"Persons: {persons}")
+                laws = event.get("laws_broken", "")
+                if laws:
+                    if isinstance(laws, list):
+                        laws = ", ".join(laws)
+                    details.append(f"Laws broken: {laws}")
+                hr_violations = event.get("human_rights_violations", "")
+                if hr_violations:
+                    if isinstance(hr_violations, list):
+                        hr_violations = ", ".join(hr_violations)
+                    details.append(f"Human rights violations: {hr_violations}")
+                source = event.get("source_document", "")
+                if source:
+                    details.append(f"Source: {source}")
+
+                for detail in details:
+                    self.doc.add_paragraph(detail, style="List Bullet")
+
+        # Full timeline table
+        self.doc.add_heading("Complete Timeline Table", level=2)
+        columns = ["date", "description", "persons_involved", "laws_broken",
+                    "severity", "source_document"]
+        rows = []
+        for event in timeline:
+            row = {}
+            for col in columns:
+                val = event.get(col, "")
+                if isinstance(val, list):
+                    val = "; ".join(str(v) for v in val)
+                row[col] = str(val)[:200]
+            rows.append(row)
+        df = pd.DataFrame(rows, columns=columns)
+        self._add_dataframe_table(df, max_rows=100)
+
+    def add_legal_analysis_section(self, rule_11, rule_60, judicial_code):
+        """Add legal analysis section covering Rule 11, Rule 60, and judicial code.
+
+        Args:
+            rule_11: list of dicts (Rule 11 violations).
+            rule_60: list of dicts (Rule 60(d)(3) fraud findings).
+            judicial_code: list of dicts (per-judge judicial code analysis).
+        """
+        self.doc.add_heading("Appendix D: Legal Analysis", level=1)
+
+        # Rule 11
+        self.doc.add_heading("D.1 Rule 11 — Sanctions for Misrepresentation", level=2)
+        if not rule_11:
+            self.doc.add_paragraph("No Rule 11 violations identified.")
+        else:
+            self.doc.add_paragraph(
+                f"Total Rule 11 violations identified: {len(rule_11)}"
+            )
+            for i, v in enumerate(rule_11, 1):
+                self.doc.add_heading(
+                    f"Violation #{i}: {v.get('filing', 'Unknown Filing')}", level=3
+                )
+                p = self.doc.add_paragraph()
+                run = p.add_run("Date: ")
+                run.bold = True
+                p.add_run(str(v.get("date", "N/A")))
+
+                p = self.doc.add_paragraph()
+                run = p.add_run("Filer: ")
+                run.bold = True
+                p.add_run(str(v.get("filer", "N/A")))
+
+                p = self.doc.add_paragraph()
+                run = p.add_run("Misrepresentation: ")
+                run.bold = True
+                p.add_run(str(v.get("misrepresentation", "")))
+
+                p = self.doc.add_paragraph()
+                run = p.add_run("Evidence of Bad Faith: ")
+                run.bold = True
+                evidence = v.get("evidence_of_bad_faith", "")
+                if isinstance(evidence, list):
+                    evidence = "; ".join(str(e) for e in evidence)
+                p.add_run(str(evidence))
+
+                p = self.doc.add_paragraph()
+                run = p.add_run("Severity: ")
+                run.bold = True
+                severity = str(v.get("severity", ""))
+                sev_run = p.add_run(severity)
+                if "CRITICAL" in severity.upper() or "HIGH" in severity.upper():
+                    sev_run.font.color.rgb = RGBColor(192, 0, 0)
+                    sev_run.bold = True
+
+                p = self.doc.add_paragraph()
+                run = p.add_run("Recommended Remedy: ")
+                run.bold = True
+                p.add_run(str(v.get("remedy", "")))
+
+        # Rule 60(d)(3)
+        self.doc.add_heading("D.2 Rule 60(d)(3) — Fraud on the Court", level=2)
+        if not rule_60:
+            self.doc.add_paragraph("No Rule 60(d)(3) fraud findings identified.")
+        else:
+            self.doc.add_paragraph(
+                f"Total fraud findings: {len(rule_60)}"
+            )
+            for i, f in enumerate(rule_60, 1):
+                self.doc.add_heading(
+                    f"Finding #{i}: {f.get('fraud_type', 'Unknown')}", level=3
+                )
+                for field in ["date", "perpetrator", "description", "evidence",
+                              "legal_standard", "severity", "procedural_impact"]:
+                    val = f.get(field, "")
+                    if isinstance(val, list):
+                        val = "; ".join(str(v) for v in val)
+                    if val:
+                        p = self.doc.add_paragraph()
+                        run = p.add_run(f"{field.replace('_', ' ').title()}: ")
+                        run.bold = True
+                        sev_run = p.add_run(str(val))
+                        if field == "severity" and (
+                            "CRITICAL" in str(val).upper() or "HIGH" in str(val).upper()
+                        ):
+                            sev_run.font.color.rgb = RGBColor(192, 0, 0)
+                            sev_run.bold = True
+
+        # Judicial Code
+        self.doc.add_heading("D.3 Judicial Code of Conduct Compliance", level=2)
+        if not judicial_code:
+            self.doc.add_paragraph("No judicial code analysis available.")
+        else:
+            for judge in judicial_code:
+                name = judge.get("judge_name", "Unknown")
+                score = judge.get("overall_compliance_score", "N/A")
+                self.doc.add_heading(
+                    f"Judge {name} — Compliance Score: {score}", level=3
+                )
+
+                summary_text = judge.get("summary", "")
+                if summary_text:
+                    self.doc.add_paragraph(str(summary_text))
+
+                canons = judge.get("canons_violated", [])
+                if canons:
+                    self.doc.add_paragraph(
+                        f"Canon violations ({len(canons)}):"
+                    )
+                    for canon in canons:
+                        bullet_text = (
+                            f"Canon {canon.get('canon_number', '?')}: "
+                            f"{canon.get('canon_title', '')} — "
+                            f"{canon.get('violation_description', '')}"
+                        )
+                        self.doc.add_paragraph(bullet_text, style="List Bullet")
+                        if canon.get("evidence"):
+                            self.doc.add_paragraph(
+                                f"Evidence: {canon['evidence']}",
+                                style="List Bullet 2"
+                            )
+
+                recs = judge.get("recommendations", "")
+                if recs:
+                    p = self.doc.add_paragraph()
+                    run = p.add_run("Recommendations: ")
+                    run.bold = True
+                    p.add_run(str(recs))
+
+    def add_jurisdiction_section(self, uccjea, dismissal_opps):
+        """Add jurisdiction and dismissal analysis section.
+
+        Args:
+            uccjea: dict with UCCJEA analysis data.
+            dismissal_opps: list of dicts with dismissal opportunity data.
+        """
+        self.doc.add_heading("Appendix E: Jurisdiction & Dismissal Analysis", level=1)
+
+        # UCCJEA
+        self.doc.add_heading("E.1 UCCJEA Jurisdiction Analysis", level=2)
+        if not uccjea:
+            self.doc.add_paragraph("No UCCJEA analysis available.")
+        else:
+            findings = uccjea.get("jurisdiction_findings", [])
+            if findings:
+                self.doc.add_heading("Jurisdiction Findings", level=3)
+                for finding in findings:
+                    p = self.doc.add_paragraph()
+                    for key, value in finding.items():
+                        if isinstance(value, list):
+                            value = "; ".join(str(v) for v in value)
+                        run = p.add_run(f"{key.replace('_', ' ').title()}: ")
+                        run.bold = True
+                        p.add_run(f"{value}  ")
+                    self.doc.add_paragraph()
+
+            addr_history = uccjea.get("address_history", [])
+            if addr_history:
+                self.doc.add_heading("Address History", level=3)
+                addr_df = pd.DataFrame(addr_history)
+                self._add_dataframe_table(addr_df)
+
+            dismissal_grounds = uccjea.get("dismissal_grounds", {})
+            if dismissal_grounds:
+                self.doc.add_heading("UCCJEA Dismissal Grounds", level=3)
+                for key, value in dismissal_grounds.items():
+                    p = self.doc.add_paragraph()
+                    run = p.add_run(f"{key.replace('_', ' ').title()}: ")
+                    run.bold = True
+                    if isinstance(value, list):
+                        p.add_run("; ".join(str(v) for v in value))
+                    elif isinstance(value, dict):
+                        p.add_run(str(value))
+                    else:
+                        p.add_run(str(value))
+
+        # Dismissal Opportunities
+        self.doc.add_heading("E.2 Missed Dismissal Opportunities", level=2)
+        if not dismissal_opps:
+            self.doc.add_paragraph("No dismissal opportunities identified.")
+        else:
+            self.doc.add_paragraph(
+                f"Total missed dismissal opportunities: {len(dismissal_opps)}"
+            )
+            for i, opp in enumerate(dismissal_opps, 1):
+                date_str = str(opp.get("date", "Unknown"))
+                event_str = str(opp.get("event", ""))
+                self.doc.add_heading(
+                    f"Opportunity #{i} — {date_str}", level=3
+                )
+
+                p = self.doc.add_paragraph()
+                run = p.add_run("Event: ")
+                run.bold = True
+                p.add_run(event_str)
+
+                for field in ["legal_basis", "applicable_statute",
+                              "why_not_dismissed", "responsible_official",
+                              "prejudice_to_party", "cumulative_impact"]:
+                    val = opp.get(field, "")
+                    if isinstance(val, list):
+                        val = "; ".join(str(v) for v in val)
+                    if val:
+                        p = self.doc.add_paragraph()
+                        run = p.add_run(f"{field.replace('_', ' ').title()}: ")
+                        run.bold = True
+                        p.add_run(str(val))
+
+                severity = str(opp.get("severity", ""))
+                if severity:
+                    p = self.doc.add_paragraph()
+                    run = p.add_run("Severity: ")
+                    run.bold = True
+                    sev_run = p.add_run(severity)
+                    if "CRITICAL" in severity.upper() or "HIGH" in severity.upper():
+                        sev_run.font.color.rgb = RGBColor(192, 0, 0)
+                        sev_run.bold = True
+
+    def add_best_interest_section(self, factors):
+        """Add best interest of the child analysis section.
+
+        Args:
+            factors: dict with parent_a_name, parent_b_name, factors (list),
+                     summary (dict).
+        """
+        self.doc.add_heading("Appendix F: Best Interest of the Child Analysis", level=1)
+
+        if not factors:
+            self.doc.add_paragraph("No best interest analysis available.")
+            return
+
+        parent_a = factors.get("parent_a_name", "Parent A")
+        parent_b = factors.get("parent_b_name", "Parent B")
+        factor_list = factors.get("factors", [])
+
+        self.doc.add_paragraph(
+            "The following analysis applies the statutory best-interest-of-the-child "
+            "factors. Each factor is scored on a 1-10 scale for each parent, with "
+            "supporting evidence references. Scores of 1-3 indicate significant "
+            "concerns, 4-6 indicate moderate performance, and 7-10 indicate strong "
+            "performance."
+        )
+
+        if factor_list:
+            self.doc.add_heading("Factor-by-Factor Analysis", level=2)
+
+            # Build summary table
+            table_rows = []
+            for f in factor_list:
+                table_rows.append({
+                    "Factor #": f.get("factor_number", ""),
+                    "Factor": f.get("factor_name", ""),
+                    f"{parent_a} Score": f.get("parent_a_score", ""),
+                    f"{parent_b} Score": f.get("parent_b_score", ""),
+                })
+            summary_df = pd.DataFrame(table_rows)
+            self._add_dataframe_table(summary_df)
+
+            self.doc.add_paragraph()
+
+            # Detailed narrative per factor
+            for f in factor_list:
+                factor_num = f.get("factor_number", "?")
+                factor_name = f.get("factor_name", "")
+                self.doc.add_heading(
+                    f"Factor {factor_num}: {factor_name}", level=3
+                )
+
+                score_a = f.get("parent_a_score", "N/A")
+                score_b = f.get("parent_b_score", "N/A")
+
+                p = self.doc.add_paragraph()
+                run = p.add_run(f"{parent_a} Score: ")
+                run.bold = True
+                score_run = p.add_run(str(score_a))
+                try:
+                    if int(score_a) <= 3:
+                        score_run.font.color.rgb = RGBColor(192, 0, 0)
+                        score_run.bold = True
+                    elif int(score_a) >= 7:
+                        score_run.font.color.rgb = RGBColor(0, 128, 0)
+                        score_run.bold = True
+                except (ValueError, TypeError):
+                    pass
+
+                evidence_a = f.get("parent_a_evidence", "")
+                if evidence_a:
+                    self.doc.add_paragraph(
+                        f"Evidence: {evidence_a}", style="List Bullet"
+                    )
+
+                p = self.doc.add_paragraph()
+                run = p.add_run(f"{parent_b} Score: ")
+                run.bold = True
+                score_run = p.add_run(str(score_b))
+                try:
+                    if int(score_b) <= 3:
+                        score_run.font.color.rgb = RGBColor(192, 0, 0)
+                        score_run.bold = True
+                    elif int(score_b) >= 7:
+                        score_run.font.color.rgb = RGBColor(0, 128, 0)
+                        score_run.bold = True
+                except (ValueError, TypeError):
+                    pass
+
+                evidence_b = f.get("parent_b_evidence", "")
+                if evidence_b:
+                    self.doc.add_paragraph(
+                        f"Evidence: {evidence_b}", style="List Bullet"
+                    )
+
+        # Summary
+        summary = factors.get("summary", {})
+        if summary:
+            self.doc.add_heading("Overall Assessment", level=2)
+            for key, value in summary.items():
+                p = self.doc.add_paragraph()
+                run = p.add_run(f"{key.replace('_', ' ').title()}: ")
+                run.bold = True
+                if isinstance(value, list):
+                    p.add_run("; ".join(str(v) for v in value))
+                else:
+                    p.add_run(str(value))
 
     def _add_dataframe_table(self, df, max_rows=50):
         """Add a DataFrame as a formatted Word table."""

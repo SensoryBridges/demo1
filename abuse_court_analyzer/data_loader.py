@@ -23,6 +23,19 @@ class DataLoader:
         self.officials_data = None
         self.financial_data = None
         self.communications_data = None
+        self.visitation_data = None
+        self.addresses_data = None
+        self.case_numbers_data = None
+        self.connections_data = None
+        self.detailed_hearings_data = None
+        self.comprehensive_timeline_data = None
+        self.violations_data = None
+        self.attorney_consultations_data = None
+        self.attorney_fees_data = None
+        self.common_pleas_data = None
+        self.abuse_categories_data = None
+        self.uccjea_violations_data = None
+        self.visitation_costs_data = None
 
     def load_excel(self, file_path):
         """Load all sheets from an Excel workbook."""
@@ -57,7 +70,11 @@ class DataLoader:
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"File not found: {file_path}")
 
-        df = pd.read_csv(file_path)
+        try:
+            df = pd.read_csv(file_path)
+        except pd.errors.ParserError:
+            # Retry with Python engine which handles irregular fields better
+            df = pd.read_csv(file_path, engine="python", on_bad_lines="warn")
         df.columns = [str(c).strip().lower().replace(" ", "_") for c in df.columns]
         df = self._clean_dataframe(df)
 
@@ -111,33 +128,87 @@ class DataLoader:
     def auto_classify_sheets(self):
         """Attempt to auto-classify loaded sheets by content."""
         classifications = {}
+        # Track which specialized datasets we've found
+        court_dfs = []
+
         for name, df in self.raw_data.items():
             cols_lower = set(str(c).lower() for c in df.columns)
             name_lower = name.lower()
 
-            if any(k in name_lower for k in ["abuse", "incident", "behavior", "separation"]):
+            # Specific file types first (most specific matches)
+            if "attorney_consultation" in name_lower:
+                self.attorney_consultations_data = df
+                classifications[name] = "attorney_consultations"
+            elif "attorney_fee" in name_lower:
+                self.attorney_fees_data = df
+                self.financial_data = df if self.financial_data is None else pd.concat(
+                    [self.financial_data, df], ignore_index=True, sort=False)
+                classifications[name] = "attorney_fees"
+            elif "common_pleas" in name_lower:
+                self.common_pleas_data = df
+                court_dfs.append(df)
+                classifications[name] = "common_pleas_cases"
+            elif "abuse_categories" in name_lower or "abuse_category" in name_lower:
+                self.abuse_categories_data = df
+                classifications[name] = "abuse_categories_detail"
+            elif "uccjea" in name_lower:
+                self.uccjea_violations_data = df
+                self.violations_data = df if self.violations_data is None else pd.concat(
+                    [self.violations_data, df], ignore_index=True, sort=False)
+                classifications[name] = "uccjea_violations"
+            elif "visitation_cost" in name_lower:
+                self.visitation_costs_data = df
+                classifications[name] = "visitation_costs"
+            elif "visitation" in name_lower:
+                self.visitation_data = df
+                classifications[name] = "visitation_tracking"
+            elif "address" in name_lower or "jurisdiction" in name_lower:
+                self.addresses_data = df
+                classifications[name] = "addresses_jurisdiction"
+            elif "case_number" in name_lower:
+                self.case_numbers_data = df
+                classifications[name] = "case_numbers"
+            elif "connection" in name_lower:
+                self.connections_data = df
+                classifications[name] = "connections"
+            elif "comprehensive_timeline" in name_lower:
+                self.comprehensive_timeline_data = df
+                classifications[name] = "comprehensive_timeline"
+            elif "detailed_hearing" in name_lower:
+                self.detailed_hearings_data = df
+                classifications[name] = "detailed_hearings"
+            elif "violation" in name_lower and "constitutional" not in name_lower:
+                self.violations_data = df
+                classifications[name] = "violations"
+            elif "constitutional" in name_lower:
+                classifications[name] = "constitutional_violations"
+            elif any(k in name_lower for k in ["abuse", "incident", "behavior", "separation"]):
                 self.abuse_data = df
                 classifications[name] = "abuse_incidents"
             elif any(k in name_lower for k in ["official", "judge", "attorney", "gal", "guardian"]):
                 self.officials_data = df
                 classifications[name] = "court_officials"
-            elif any(k in name_lower for k in ["court", "case", "filing", "motion", "docket"]):
-                self.court_data = df
-                classifications[name] = "court_records"
             elif any(k in name_lower for k in ["financ", "money", "cost", "fee", "payment"]):
                 self.financial_data = df
                 classifications[name] = "financial_records"
             elif any(k in name_lower for k in ["commun", "message", "email", "text", "call"]):
                 self.communications_data = df
                 classifications[name] = "communications"
+            elif any(k in name_lower for k in ["court", "case", "filing", "motion", "docket", "hearing", "related"]):
+                court_dfs.append(df)
+                classifications[name] = "court_records"
             elif "abuse" in cols_lower or "incident" in cols_lower or "behavior" in cols_lower:
                 self.abuse_data = df
                 classifications[name] = "abuse_incidents"
             elif "judge" in cols_lower or "attorney" in cols_lower or "filing" in cols_lower:
-                self.court_data = df
+                court_dfs.append(df)
                 classifications[name] = "court_records"
             else:
                 classifications[name] = "unclassified"
+
+        # Merge all court record dataframes into one
+        if court_dfs:
+            self.court_data = pd.concat(court_dfs, ignore_index=True, sort=False)
 
         return classifications
 

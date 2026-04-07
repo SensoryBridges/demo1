@@ -1,13 +1,31 @@
-name,role,party,law_firm,bar_number,university,notes
-Hon. Tonya Newton,Judge,Court,Lexington Family Court,,,"Initial judge, temporary hearing 12/2020"
-Hon. Donna Seigler Crouch,Judge,Court,Lexington Family Court,,,"Primary judge from 2022, issued ex parte emergency order 4/11/2022"
-Hon. Seigler,Judge,Court,Lexington Family Court,,,
-Hon. Zimmerman,Judge,Court,Lexington Family Court,,,
-Hon. Hurley,Judge,Court,Lexington Family Court,,,
-Suzanne L. Hawkins,Attorney (Plaintiff),Plaintiff,,SCB13549,,Relieved 12/2021 - filed motion to relieve counsel
-Lawrence Dale Turner,Attorney (Plaintiff),Plaintiff,,SCB104767,,Appeared 2/24/2022 - Relieved 5/6/2022 at 365 benchmark
-Joshua Edwin Noah Pozsik,Attorney (Defendant),Defendant,Pozsik and Carpenter,SCB81278,,Appeared 12/15/2020 - present throughout
-Patricia Morr,Attorney (3rd Party),Third Party,Strom Law,,,"Appeared 5/25/2022, not on official record"
-Amanda Smith Mueller,Attorney (3rd Party),Third Party,,SCB100705,,Appeared 6/16/2022 for McManus - consent order not signed
-Emily Hinson,Guardian Ad Litem,Court,,@6264791,,Appointed 1/7/2021 - filed multiple affidavits and emergency motion
-Kailyn Slice,Unknown,Unknown,,,,Certificate of Service 5/32/2022 - not on record
+name,role,organization,bar_number,notary_info,contact,address,notes,connections
+Robert Kent Cales IV,Defendant,,,,,,Aliases: Robert Kahle Robert Perry Clinkscales; TruthFinder ID @3149816,Father of Sawyer
+Megan Cales,Plaintiff,,,,,,Filed complaint 11/4/2020,Mother of Sawyer
+Robert Kent Cales III,Family (Defendant),,,,,,"65yo, Father's father",Defendant's father
+Jane Grugan McManus,Family (Defendant),,,,,,"66yo, born Nov 1956, Father's mother",Defendant's mother; married to Pete McManus
+Johnny Alton McManus,Stepfather (Defendant),,,,,,"63yo, aka Pete McManus, born Oct 1959, Stepfather",Married to Jane Grugan McManus
+Kerri Cales,Family (Defendant),,,,,,"61yo, born Jan 1962",Related to Defendant
+AnnMarie McManus,Family (Defendant),,,,,,McManus family member,Connected to Pete and Jane McManus
+Jaxson Cales,Family (Defendant),,,,,,Cales family member,Connected to Defendant
+Chief Magistrate Judge Matthew Johnson,Magistrate Judge,Magistrate Court,,,,,,
+Judge Greg Seigler,Judge,Lexington Family Court,,,,,,
+Judge Huntley Crouch,Judge,Lexington Family Court,,,,,Primary judge from 2022; issued ex parte emergency order 4/11/2022,
+Judge Robert Newton,Judge,Lexington Family Court,,,,,Initial judge; temporary hearing 12/2020,
+Joshua Edwin Noah Pozsik,Attorney (Defendant),Pozsik & Carpenter LLC,FL Bar 93929 / SC Bar 81278,Richland notary exp 12/02/2023,jp@familylawcolumbia.com / 803-764-1105,1314 Lincoln St Ste 305 Columbia SC 29201,Stetson Law 2010; SC admitted May 23 2011; Appeared 12/15/2020,Kent's attorney; shares bar 81278 with Linda Carpenter; son of Gary Paul Pozsik
+Linda Carpenter,Attorney,Pozsik & Carpenter LLC,SC Bar 81278,,,,Bar 81278 same as Joshua Pozsik; Pete & Jane's attorney in divorce in another county,Josh's partner at firm; represented McManus in separate divorce
+Amanda Smith Mueller,Attorney (3rd Party),Burnette Shutt & McDaniel PA,SC Bar 100705,Richland notary exp 5/23/2026,,1314 Lincoln St Ste 305 Columbia SC 29201 or Burnette Shutt office,Pete & Jane's current attorney; Appeared 6/16/2022; consent order not signed,Represents McManus interests
+Patricia Morr,Attorney (3rd Party),Strom Law,,,,,Appeared 5/25/2022; not on official record,
+Emily Hinson,Guardian Ad Litem,,@6264791,Lexington notary exp 02/10/2030,,,Appointed 1/7/2021; filed multiple affidavits and emergency motion,GAL for Sawyer
+Suzanne Lorraine Hawkins,Attorney (Plaintiff),,SC Bar 13549,Richland notary exp 10/15/2024,,,Plaintiff's first attorney; relieved 12/2021; filed motion to relieve counsel,
+Suzanne Atkins Hawkins,Attorney,,SC Bar 2851,,,,Different Suzanne Hawkins - bar 2851 vs 13549,Possible relation or confusion with Suzanne Lorraine Hawkins
+Lawrence Dale Turner,Attorney (Plaintiff),Moore Bradley Myers,SC Bar 104767,,,,Plaintiff's second attorney; appeared 2/24/2022; relieved 5/6/2022 at 365 benchmark,
+Smokey Brown,Attorney,,SC Bar 13435,,,,,,
+Gary Paul Pozsik,Notary,,,,Lexington notary exp 03/04/2023,,,Likely Joshua Pozsik's father
+Mindy Zimmerman,Connected Party,,,,,,,Married to Donald Zimmerman; Donald is notary in Newberry exp 04/13/2027
+Donna Strom,Notary,,,Richland notary exp 03/18/2029,,,,
+Melissa Atwood,Notary,,,Richland notary exp 12/11/2028,,,,
+Tresa B. Wolfe,Notary,,,Lexington notary exp 1/14/2029,,,,
+Kenneth Wiggins,Attorney (FL),,,,941-749-1737 / wigginslaw21@yahoo.com,1001 3rd Ave W Ste 350 Bradenton FL 34205,Florida attorney,
+Jewitte Dooley,Conflict,,,,,,Conflict noted,
+Stephanie Fajardo,Conflict,,,,,,Conflict of interest noted,
+Kailyn Slice,Unknown,,,,,,Certificate of Service 5/32/2022 - not on record,

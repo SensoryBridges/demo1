@@ -1,0 +1,14 @@
+case_number,case_name,court,state,county,start_date,status,related_to,notes
+2020-DR-32-1949,Cales v. Cales,Family Court,SC,Lexington,2020-11-04,Active,,Primary custody case
+2020-DR-320-0949,Jane/Amanda/Kent III case,Family Court,SC,,,,2020-DR-32-1949,Related McManus/Cales III case
+153041,Jane Grugan Cales vs Robert Kent Cales III,Family Court,SC,Richland,,,2020-DR-32-1949,Historical family court case involving Kent's parents
+86-DR-40-3699,Jane Grugan Cales Petitioner vs Robert Kent Cales III Respondent,Family Court,SC,Richland,1986,,,1986 family court case - Richland County
+2020DR3201732,Incorrect order filing,Family Court,SC,,2022-03-10,,2020-DR-32-1949,Incorrect order filed to this case number on 3/10/2022 - clerical or intentional misfiling
+2022DR3200210,Turner v Turner (false docket),Family Court,SC,,2022-01-25,,2020-DR-32-1949,False docket number connected to 1/25/2022 hearing - actually Turner v Turner case not Cales
+TN-OP-2022,TN Order of Protection,,TN,,2022-03-11,,2020-DR-32-1949,Tennessee Order of Protection filed by mother
+TN-DIV-2022,TN Divorce and Rule to Show Cause,,TN,,2022-06-21,,2020-DR-32-1949,Tennessee divorce filing with Rule to Show Cause
+TN-CUS-2022,TN Motion for Custody,,TN,,2022-10-04,,2020-DR-32-1949,Tennessee Motion for Custody filed by mother
+RC-MOD-2023,Richland County Complaint to Modify Custody,,SC,Richland,2023-04-10,,2020-DR-32-1949,Complaint to modify custody filed in Richland County
+RC-JUDG-2022,Jane Grugan Cales vs Robert Kent Cales III - Judgment,,SC,Richland,2022-11-21,,153041,Richland County judgment issued 11/21/2022
+756988,State vs Robert Kent Cales IV,Wildlife Criminal Court,SC,,,,2020-DR-32-1949,Wildlife criminal case against Kent IV
+KC-MOD-2026,Kent custody modification,,SC,,2026-03-26,,2020-DR-32-1949,Kent's custody modification filed 3/26/2026
