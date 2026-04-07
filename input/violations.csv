@@ -1,0 +1,19 @@
+date,violation_type,rule_violated,description,violator,severity
+2022-04-11,Ex Parte Order Without Proper Notice,SC Rule 65(b) SCRCP,Ex parte bench order issued removing child from mother without full adversarial hearing or proper notice,Judge Crouch,10
+2022-04-11,Threat of Amber Alert,SC Code 16-3-1060 / TN Code 39-17-1002,Judge threatened Amber Alert for child in different state - does not meet statutory criteria for abduction,Judge Crouch,10
+2022-04-11,Denial of Due Process,14th Amendment / SC Const Art I Sec 3,Mother denied meaningful opportunity to be heard before custody was changed,Judge Crouch,9
+2022-04-11,Unreasonable Seizure,4th Amendment,Unreasonable seizure of child from mother's home without warrant or exigent circumstances,Judge Crouch,10
+2022-05-23,Emergency Order Without Emergency,SC Code 63-3-530,Emergency temporary order issued without documented emergency - mother's custody reduced from ~87% to ~1%,Judge Crouch,9
+2022-03-09,Improper Attorney Withdrawal at 365 Benchmark,SC Rule 11.1 SCRFC,Attorney Turner relieved at exactly 365 day mark - pattern of strategic withdrawal,Turner / Court,7
+2022-05-25,Attorney Appearance Not on Record,SC Rule 5(b) SCRCP,Patricia Morr notice of appearance not reflected in official case record,Court Clerk,6
+2022-05-32,Filing with Invalid Date,SC Rule 5(e) SCRCP,Certificate of Service from Kailyn Slice filed with impossible date May 32,Court Clerk / Slice,5
+2022-06-16,Consent Order Filed Without Signature,SC Rule 11 SCRCP,Consent order filed by Mueller but not signed - procedural violation,Mueller / Court,6
+2022-06-21,Filing by Relieved Counsel,SC Rule 1.16 RPC,Dale Turner filed certificate of service after being relieved as counsel,Turner,7
+2022-09-13,Default for Lack of Appearance,SC Rule 55 SCRCP,Pro se mother penalized for non-appearance while facing multiple represented opposing parties,Court,8
+2021-12-20,Strategic Attorney Abandonment,SC Rule 1.16(d) RPC,First attorney Hawkins withdrew leaving mother unrepresented before critical hearings,Hawkins,7
+2022-03-02,Rapid Second Attorney Withdrawal,SC Rule 1.16(d) RPC,Second attorney Turner filed to withdraw within days of appearing,Turner,7
+2022-01-01,Failure to Appoint Counsel,SC Code 63-3-530(A)(46),Mother left unrepresented in custody proceedings with child's welfare at stake,Court,8
+2022-07-27,Denial of Jurisdiction Transfer,SC Code 63-3-530,Request to move jurisdiction denied despite documented safety concerns,Judge Crouch,7
+2022-08-19,Third Party Crossclaim Against Pro Se Mother,SC Rule 13 SCRCP,McManus grandparents filed counterclaim/crossclaim while mother was unrepresented,McManus / Pozsik,7
+2022-04-07,GAL Filing Emergency Motion,SC Code 63-11-510,GAL filed emergency motion on same day as mother's email to judge - appearance of coordination,Hinson / Court,8
+2021-01-01,GAL Bias Pattern,SC Code 63-11-510,GAL consistently supported defendant position in all affidavits and filings,Hinson,7
