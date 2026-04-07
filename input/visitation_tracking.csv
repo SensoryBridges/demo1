@@ -1,0 +1,32 @@
+month_year,parent,visitation_days,total_days,percentage,notes
+Pre-4/12/2022 Total,Mother,485,524,86.60%,Mother had primary custody before case disruption
+Pre-4/12/2022 Total,Father,39,524,13.40%,Father total visitation before case disruption
+Post-4/12/2022 Total,Mother,7,128,18.29%,Mother visitation after GAL/court intervention
+Post-Case Total,Father,39,652,16.72%,Father visitation across entire case period
+Nov 2020,Father,0,30,0.00%,Kent canceled; -7 days
+Dec 2020,Father,5,31,6.20%,Kent canceled 2 of 7 scheduled days
+Jan 2021,Father,4,31,7.75%,4 visitation days
+Feb 2021,Father,3,28,9.30%,Kent canceled 1 of 4 scheduled days
+Mar 2021,Father,3,31,10.30%,Kent canceled 1 of 4 scheduled days
+Apr 2021,Father,0,30,0.00%,Kent canceled all visitation
+May 2021,Father,4,31,7.50%,4 visitation days
+Jun 2021,Father,4,30,7.50%,4 visitation days
+Jul 2021,Father,4,31,7.75%,4 visitation days
+Aug 2021,Father,0,31,0.00%,Kent canceled all visitation
+Sep 2021,Father,5,30,30.00%,5 visitation days - increased schedule
+Oct 2021,Father,0,31,0.00%,Kent canceled all visitation
+Nov 2021,Father,5,30,30.00%,5 visitation days
+Dec 2021,Father,2,31,15.50%,Kent canceled 5 nights; only 2 days
+Jan 2022,Father,0,31,0.00%,Kent canceled all visitation
+Feb 2022,Father,0,28,0.00%,Kent canceled all visitation
+Mar 2022,Father,0,31,0.00%,Order of Protection in effect - no visitation
+Apr 2022 (before 4/12),Mother,12,12,100.00%,Mother had full custody before 4/12/2022; 0 father days
+Apr 2022 (after 4/12),Mother,0,18,0.00%,GAL denied mother all visitation after 4/12/2022
+May 2022,Mother,3,31,10.30%,SC no-contact order initially; then 3 days allowed
+Jun 2022,Mother,4,30,7.50%,SC no-contact order initially; then 4 days allowed
+Jul 2022,Mother,0,31,0.00%,SC no-contact then denied/suspended via Emergency Order July 7
+Aug 2022,Mother,0,31,0.00%,Denied by GAL Emily Hinson
+Sep 2022,Mother,1,30,3.30%,Initially 0% then minimal visitation restored
+Oct 2022,Mother,0,31,0.00%,Mother visitation denied
+Nov 2022,Mother,0,30,0.00%,Mother visitation denied
+Dec 2022,Mother,0,31,0.00%,Mother visitation denied
