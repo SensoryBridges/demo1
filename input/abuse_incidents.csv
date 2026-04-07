@@ -1,0 +1,47 @@
+date,behavior_description,severity_score,evidence_type,evidence_strength,children_present,substance_use_noted,police_called,court_date_proximity,category
+2020-11-04,Filed divorce complaint - Megan initiated separation,2.0,court_record,0.8,no,none,no,0,legal_abuse
+2020-12-15,Defendant filed counterclaim and proposed parenting plan within days of being served,3.5,court_record,0.9,no,none,no,1,coercive_control
+2020-12-17,Consent temporary order issued - initial custody arrangement,2.0,court_record,1.0,yes,none,no,0,legal_abuse
+2021-01-07,GAL Emily Hinson appointed to case,2.0,court_record,1.0,yes,none,no,0,legal_abuse
+2021-05-18,GAL filed first affidavit - Emily Hinson,3.0,court_record,0.8,yes,none,no,0,legal_abuse
+2021-12-16,Defendant filed motion for temporary relief and motion to extend 365 day rule,4.5,court_record,0.9,yes,none,no,28,legal_abuse
+2021-12-20,Plaintiff attorney Hawkins filed motion to relieve counsel - leaving mother unrepresented,5.0,court_record,0.9,yes,none,no,36,legal_abuse
+2022-01-13,Motion for supplemental relief hearing - defendant seeking changed custody,5.0,court_record,0.8,yes,none,no,0,coercive_control
+2022-01-25,Motion hearing - plaintiff unrepresented after attorney withdrawal,5.5,court_record,0.8,yes,none,no,0,legal_abuse
+2022-02-24,New attorney Turner appeared for plaintiff - mother finally represented,3.0,court_record,0.8,yes,none,no,6,legal_abuse
+2022-03-02,Turner immediately filed motion to relieve counsel - 2nd attorney abandoning mother,6.0,court_record,0.9,yes,none,no,1,legal_abuse
+2022-03-03,Supplemental relief hearing - mother losing representation again,5.5,court_record,0.8,yes,none,no,0,coercive_control
+2022-03-04,GAL filed second affidavit - defendant filed hearing notebook with exhibits,4.5,court_record,0.8,yes,none,no,1,legal_abuse
+2022-03-09,Order relieving counsel Turner at 365 benchmark - mother now pro se,6.5,court_record,1.0,yes,none,no,0,legal_abuse
+2022-03-24,Supplemental temporary order issued - custody arrangement modified,6.0,court_record,1.0,yes,none,no,0,coercive_control
+2022-04-07,Megan emailed Judge Crouch - GAL filed emergency motion same day,7.0,email,0.7,yes,none,no,1,legal_abuse
+2022-04-07,GAL Emily Hinson filed Motion for Emergency Hearing - granted for next day,7.5,court_record,1.0,yes,none,no,0,child_abuse_enablement
+2022-04-08,Emergency hearing held - continued to 4/11,7.0,court_record,1.0,yes,none,no,0,legal_abuse
+2022-04-11,Ex parte bench order issued - child seized from mother without full hearing,9.5,court_record,1.0,yes,none,no,0,coercive_control
+2022-04-11,Judge Crouch threatened Amber Alert if mother did not comply with ex parte order,9.8,court_record,0.9,yes,none,no,0,coercive_control
+2022-04-12,Emergency hearing rescheduled - return filed for motion for emergency relief,8.0,court_record,0.9,yes,none,no,1,legal_abuse
+2022-04-13,Email between Megan and Judge's Secretary filed,6.0,email,0.7,yes,none,no,2,legal_abuse
+2022-04-29,Affidavits from Donna Afman and Jon Afman filed in support of mother,4.0,court_record,0.8,yes,none,no,0,legal_abuse
+2022-05-06,Order relieving counsel - mother fully unrepresented again,7.0,court_record,1.0,yes,none,no,0,legal_abuse
+2022-05-23,Emergency temporary order (Pendente Lite) issued - custody to father,9.0,court_record,1.0,yes,none,no,0,coercive_control
+2022-05-25,Patricia Morr appeared for mother - not on official record,5.0,court_record,0.5,yes,none,no,2,legal_abuse
+2022-06-16,Consent order filed by Mueller but NOT SIGNED,6.0,court_record,0.8,yes,none,no,0,legal_abuse
+2022-06-21,Certificate of service filed by Turner (already relieved) - procedural irregularity,5.5,court_record,0.7,yes,none,no,0,legal_abuse
+2022-06-23,GAL Hinson filed Motion to Compel and paid fee,6.5,court_record,0.9,yes,none,no,0,legal_abuse
+2022-06-30,Order substituting attorney for GAL - change in GAL representation,4.0,court_record,0.8,yes,none,no,0,legal_abuse
+2022-07-01,Affidavit from Tanya Jones filed,3.5,court_record,0.7,yes,none,no,7,legal_abuse
+2022-07-07,3rd party McManus filed affidavit and motion for expedited hearing,6.0,court_record,0.8,yes,none,no,1,coercive_control
+2022-07-07,Order granting expedited hearing filed by Mueller for McManus,6.5,court_record,0.9,yes,none,no,0,legal_abuse
+2022-07-08,Emergency hearing - special appearance to request priority of official record,7.0,court_record,0.8,yes,none,no,0,legal_abuse
+2022-07-08,Order of continuance to July 15,5.0,court_record,0.8,yes,none,no,7,legal_abuse
+2022-07-15,Third party defendants return filed - hearing continued to 7/27,6.0,court_record,0.8,yes,none,no,12,legal_abuse
+2022-07-21,Certificate of service to Pozsik and Mueller - notice of motion,4.0,court_record,0.7,yes,none,no,6,legal_abuse
+2022-07-27,Megan filed affidavit requesting to move jurisdiction - denied,7.5,court_record,0.8,yes,none,no,0,legal_abuse
+2022-07-27,Plaintiff memorandum of law filed,5.0,court_record,0.8,yes,none,no,0,legal_abuse
+2022-07-29,Multiple filings - defendant return with exhibits - GAL affidavit - attorney fees affidavit,6.0,court_record,0.8,yes,none,no,0,legal_abuse
+2022-08-05,Hearing notice for final trial 10/25-10/26/2022,5.0,court_record,0.8,yes,none,no,81,legal_abuse
+2022-08-19,John and Jane McManus filed counterclaim and crossclaim against mother,7.0,court_record,0.9,yes,none,no,67,coercive_control
+2022-08-26,Defendant filed motion for supplemental temporary relief,6.0,court_record,0.8,yes,none,no,60,legal_abuse
+2022-09-13,Motion to compel hearing - order for lack of appearance,7.0,court_record,0.8,yes,none,no,42,legal_abuse
+2022-10-25,Final hearing day 1 - mother pro se against multiple attorneys,8.5,court_record,0.9,yes,none,no,0,legal_abuse
+2022-10-26,Final hearing day 2,8.5,court_record,0.9,yes,none,no,0,legal_abuse
