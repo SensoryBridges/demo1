@@ -524,7 +524,10 @@ def run_analysis(input_path, state_code=None, county=None,
                                  pd.DataFrame(rule_12_grounds))
 
     if hasattr(excel, 'add_judicial_code_analysis') and judicial_code:
-        excel.add_judicial_code_analysis(judicial_code)
+        # Convert violations dict to the list format expected by report generator
+        jc_violations = judicial_code.get("violations", [])
+        if jc_violations:
+            excel.add_raw_data_sheet("Judicial_Code_Violations", pd.DataFrame(jc_violations))
 
     if hasattr(excel, 'add_per_person_scoring') and per_person_scoring:
         excel.add_per_person_scoring(per_person_scoring)
