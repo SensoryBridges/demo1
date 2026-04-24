@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/sensorybridges/demo1/court_incidents.schema.json",
+  "title": "Court Document Incident Feed",
+  "description": "Schema for filtered court-document events with change tracking. Modeled on https://status.cloud.google.com/incidents.schema.json, adapted so 'products' become 'affected_parties' and 'locations' carry jurisdiction metadata. An incident is a dated event drawn from a court record (filing, order, hearing, violation, visitation entry, communication, etc.). Each run of the tracker timestamps new and changed incidents and appends an 'update' describing what changed, by whom it was filed, who was affected, and where.",
+  "type": "array",
+  "items": { "$ref": "#/definitions/incident" },
+  "definitions": {
+    "incident": {
+      "type": "object",
+      "required": [
+        "id",
+        "begin",
+        "created",
+        "modified",
+        "external_desc",
+        "status_impact",
+        "severity",
+        "affected_parties",
+        "currently_affected_locations",
+        "updates",
+        "most_recent_update"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable identifier. SHA1 of (case_number | begin | external_desc | source_document), first 16 hex chars."
+        },
+        "number": {
+          "type": "string",
+          "description": "Case number / docket number the event belongs to."
+        },
+        "begin": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the court event occurred (earliest known timestamp)."
+        },
+        "end": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "When the event concluded; null for still-open / point-in-time events."
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the tracker first observed this incident."
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the tracker last observed a change to this incident."
+        },
+        "external_desc": {
+          "type": "string",
+          "description": "Human-readable description of the court event."
+        },
+        "event_type": {
+          "type": "string",
+          "description": "Raw event category from the source record (Filing, Order, Hearing, Visitation Data, Communication, Deadline, ...)."
+        },
+        "source_document": {
+          "type": "string",
+          "description": "The document or record the event was extracted from."
+        },
+        "uri": {
+          "type": ["string", "null"],
+          "description": "Optional pointer (path, URL, docket entry) to the underlying document."
+        },
+        "status_impact": {
+          "type": "string",
+          "enum": [
+            "COURT_ORDER_ISSUED",
+            "RIGHTS_VIOLATION",
+            "FILING_ENTERED",
+            "HEARING_HELD",
+            "DEADLINE_SET",
+            "SERVICE_EVENT",
+            "INFORMATIONAL"
+          ],
+          "description": "High-level impact class, analogous to GCP's SERVICE_OUTAGE / SERVICE_DISRUPTION / SERVICE_INFORMATION."
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low"],
+          "description": "Derived severity. 'critical' when constitutional rights or custody is implicated; 'low' for routine administrative entries."
+        },
+        "laws_broken": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Statutes, rules, or canons cited as violated by this event."
+        },
+        "violations": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Free-text violation tags from the source record."
+        },
+        "affected_parties": {
+          "type": "array",
+          "description": "People or entities affected, with role if known. Analogous to GCP 'affected_products'.",
+          "items": {
+            "type": "object",
+            "required": ["title", "id"],
+            "properties": {
+              "title": { "type": "string", "description": "Display name." },
+              "id": { "type": "string", "description": "Slugified identifier." },
+              "role": {
+                "type": ["string", "null"],
+                "description": "Judge, Attorney, GAL, Party, Child, Witness, Clerk, Filer, ..."
+              },
+              "how_affected": {
+                "type": ["string", "null"],
+                "description": "How this person is affected by this event (filer, respondent, subject of order, denied visitation, etc.)."
+              }
+            }
+          }
+        },
+        "currently_affected_locations": {
+          "type": "array",
+          "description": "Locations/jurisdictions affected at the latest update. Analogous to GCP 'currently_affected_locations'.",
+          "items": { "$ref": "#/definitions/location" }
+        },
+        "previously_affected_locations": {
+          "type": "array",
+          "description": "Locations that were affected earlier but are no longer as of the most recent update.",
+          "items": { "$ref": "#/definitions/location" }
+        },
+        "updates": {
+          "type": "array",
+          "description": "Chronological change log for this incident. Each run of the tracker may append one update.",
+          "items": { "$ref": "#/definitions/update" }
+        },
+        "most_recent_update": { "$ref": "#/definitions/update" }
+      }
+    },
+    "update": {
+      "type": "object",
+      "required": ["created", "when", "text", "status"],
+      "properties": {
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Wall-clock time the tracker wrote this update."
+        },
+        "modified": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "when": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Effective timestamp the update describes (usually equal to 'created', or the event's 'begin' for the initial observation)."
+        },
+        "text": {
+          "type": "string",
+          "description": "What changed, written so a reader can skim the history without diffing."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["OPENED", "UPDATED", "REOPENED", "RESOLVED"],
+          "description": "Status transition for this update."
+        },
+        "changed_fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Names of fields that differ from the previous observed state."
+        },
+        "affected_locations": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/location" }
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": ["title", "id"],
+      "properties": {
+        "title": { "type": "string", "description": "Display label, e.g. 'Richland County, SC'." },
+        "id": { "type": "string", "description": "Slugified identifier." },
+        "jurisdiction": {
+          "type": ["string", "null"],
+          "description": "Court/jurisdiction name if extractable."
+        },
+        "state": { "type": ["string", "null"] },
+        "county": { "type": ["string", "null"] },
+        "address": { "type": ["string", "null"] },
+        "implications": {
+          "type": ["string", "null"],
+          "description": "Jurisdictional implications noted in the source record (e.g. UCCJEA home-state analysis)."
+        }
+      }
+    }
+  }
+}
